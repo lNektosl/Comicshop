@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/Comic_shop
+    username: postgres
+    password: 1
+
+  liquibase:
+    change-log: classpath:liquibase.changelog/db-changelog.yml
+
