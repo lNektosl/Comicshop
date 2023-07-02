@@ -82,9 +82,10 @@ public class ComicServiceImpl implements ComicService {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(img.getBytes());
         BufferedImage bufferedImage = ImageIO.read(byteArrayInputStream);
 
-        ImageIO.write(bufferedImage, "jpg", new File(path + "/" + name + ".jpg"));
+        ImageIO.write(bufferedImage, "jpg", new File(path + "/"
+                + name.replace(" ", "_") + ".jpg"));
 
-        comic.setImagePath(path);
+        comic.setImagePath(path + "/" + name.replace(" ", "_") + ".jpg");
         return comicMapper.comicToComicResponse(comicRepository.save(comic));
     }
 

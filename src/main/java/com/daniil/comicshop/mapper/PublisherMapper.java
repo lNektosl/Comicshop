@@ -20,7 +20,7 @@ public interface PublisherMapper {
     ModelResponse publisherToModelResponse(Publisher publisher);
 
     @Named("mapComics")
-    default List<Integer> mapComics(Set<Comic> comics) {
+    default List<Integer> mapComics(List<Comic> comics) {
         return comics.stream()
                 .map(Comic::getId)
                 .toList();
