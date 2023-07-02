@@ -1,4 +1,4 @@
-package com.daniil.comicshop.entity.dto.controler;
+package com.daniil.comicshop.controler;
 
 import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Cart;

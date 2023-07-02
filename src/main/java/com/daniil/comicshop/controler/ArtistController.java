@@ -1,9 +1,9 @@
-package com.daniil.comicshop.entity.dto.controler;
+package com.daniil.comicshop.controler;
 
 import com.daniil.comicshop.entity.dto.request.ArtistRequest;
 import com.daniil.comicshop.entity.dto.request.ComicIdsRequest;
 import com.daniil.comicshop.entity.dto.response.ArtistResponse;
-import com.daniil.comicshop.entity.service.ArtistService;
+import com.daniil.comicshop.service.ArtistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ArtistController {
 
-//    String deleteArtist(int id);
     private final ArtistService artistService;
 
     @GetMapping

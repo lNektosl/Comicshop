@@ -1,11 +1,11 @@
-package com.daniil.comicshop.entity.service.impl;
+package com.daniil.comicshop.service.impl;
 
 import com.daniil.comicshop.entity.Artist;
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.entity.dto.request.ArtistRequest;
 import com.daniil.comicshop.entity.dto.request.ComicIdsRequest;
 import com.daniil.comicshop.entity.dto.response.ArtistResponse;
-import com.daniil.comicshop.entity.service.ArtistService;
+import com.daniil.comicshop.service.ArtistService;
 import com.daniil.comicshop.mapper.ArtistMapper;
 import com.daniil.comicshop.repository.ArtistRepository;
 import com.daniil.comicshop.repository.ComicRepository;

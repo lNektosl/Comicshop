@@ -13,6 +13,7 @@ import com.daniil.comicshop.repository.AuthorRepository;
 import com.daniil.comicshop.repository.ComicRepository;
 import com.daniil.comicshop.repository.PublisherRepository;
 import com.daniil.comicshop.repository.SeriesRepository;
+import com.daniil.comicshop.service.impl.ComicServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,8 +1,8 @@
-package com.daniil.comicshop.entity.service.impl;
+package com.daniil.comicshop.service.impl;
 
 import com.daniil.comicshop.entity.Publisher;
 import com.daniil.comicshop.entity.dto.response.ModelResponse;
-import com.daniil.comicshop.entity.service.ModelService;
+import com.daniil.comicshop.service.ModelService;
 import com.daniil.comicshop.mapper.PublisherMapper;
 import com.daniil.comicshop.repository.PublisherRepository;
 import lombok.RequiredArgsConstructor;

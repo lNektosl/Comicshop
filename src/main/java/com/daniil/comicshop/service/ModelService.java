@@ -1,4 +1,4 @@
-package com.daniil.comicshop.entity.service;
+package com.daniil.comicshop.service;
 
 import com.daniil.comicshop.entity.dto.response.ModelResponse;
 

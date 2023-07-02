@@ -1,9 +1,8 @@
-package com.daniil.comicshop.entity.dto.controler;
+package com.daniil.comicshop.controler;
 
-import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.entity.dto.request.ComicRequest;
 import com.daniil.comicshop.entity.dto.response.ComicResponse;
-import com.daniil.comicshop.entity.service.ComicService;
+import com.daniil.comicshop.service.ComicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
