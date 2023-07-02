@@ -13,25 +13,16 @@ import com.daniil.comicshop.repository.AuthorRepository;
 import com.daniil.comicshop.repository.ComicRepository;
 import com.daniil.comicshop.repository.PublisherRepository;
 import com.daniil.comicshop.repository.SeriesRepository;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -156,17 +147,18 @@ class ComicServiceImplTest {
     }
 
     @Test
-    void changeImg() throws IOException {
+    void changeImg_shouldBeSuccessful() throws IOException {
         when(comicRepository.findById(anyInt())).thenReturn(Optional.of(comic));
         when(comicMapper.comicToComicResponse(comicRepository.save(comic))).thenReturn(comicResponse);
 
         String path = "src/main/resources/images/1.jpg";
         String path2 = "src/main/resources/images/Test/Test.jpg";
         MultipartFile multipartFile = new MockMultipartFile("test.jpg",new FileInputStream(path));
-        System.out.println(comic.getImagePath());
 
-        assertEquals(comicResponse,comicService.changeImg(1,multipartFile));
-        System.out.println(comic.getImagePath());
+        comicService.changeImg(1,multipartFile);
+
+        assertEquals(path2,comic.getImagePath());
+
         assertTrue(Files.exists(Path.of("src/main/resources/images/Test/Test.jpg")));
 
         //todo Поиск НОК и НОД
@@ -174,7 +166,7 @@ class ComicServiceImplTest {
     }
 
     @Test
-    void changeById() {
+    void changeById_shouldBeSuccessful() {
         when(publisherRepository.findById(any())).thenReturn(Optional.of(publisher));
         when(seriesRepository.findById(any())).thenReturn(Optional.of(series));
         when(comicRepository.findById(any())).thenReturn(Optional.of(comic));
@@ -184,8 +176,9 @@ class ComicServiceImplTest {
         assertEquals(comicResponse,comicService.changeById(comic.getId(),comicRequest2));
     }
 
-    @AfterEach
-    void Erase() throws IOException {
+
+   @AfterAll
+    static void Erase() throws IOException {
         Files.delete(Path.of("src/main/resources/images/Test/Test.jpg"));
         Files.delete(Path.of("src/main/resources/images/Test"));
     }
