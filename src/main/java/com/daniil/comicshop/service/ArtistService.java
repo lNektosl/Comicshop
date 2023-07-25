@@ -7,11 +7,11 @@ import com.daniil.comicshop.entity.dto.response.ArtistResponse;
 import java.util.List;
 
 public interface ArtistService {
-    ArtistResponse addArtist(ArtistRequest artistRequest);
-    ArtistResponse getArtistById(int id);
-    List<ArtistResponse> getAllArtists();
-    ArtistResponse changeArtistName(int id,ArtistRequest artistRequest);
-    ArtistResponse addComicsToArtist(int id, ComicIdsRequest comicIds);
-    ArtistResponse removeComicsFromArtist(int id, ComicIdsRequest comicIds);
-    String deleteArtist(int id);
+    ArtistResponse add(ArtistRequest artistRequest);
+    ArtistResponse getById(int id);
+    List<ArtistResponse> getAll();
+    ArtistResponse changeName(int id, ArtistRequest artistRequest);
+    ArtistResponse addComics(int id, ComicIdsRequest comicIds);
+    ArtistResponse removeComics(int id, ComicIdsRequest comicIds);
+    String delete(int id);
 }

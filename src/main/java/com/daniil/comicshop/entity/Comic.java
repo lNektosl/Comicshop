@@ -19,6 +19,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @Entity
@@ -52,6 +53,7 @@ public class Comic {
     private List<Artist> artists;
 
     @ManyToMany(mappedBy = "comics")
+    @JsonIgnore
     private List<Author> authors;
 
     @ManyToOne
@@ -62,4 +64,18 @@ public class Comic {
     @ManyToOne
     @JoinColumn(name = "series_id",referencedColumnName = "id")
     private Series series;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comic comic = (Comic) o;
+        return id == comic.id && name.equals(comic.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 }

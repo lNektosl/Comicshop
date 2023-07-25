@@ -8,12 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 import java.util.Set;
@@ -35,7 +37,7 @@ public class Publisher {
     private String name;
 
     @OneToMany(mappedBy = "publisher")
+//    @OrderBy("id")
 //    @JsonIgnore
-//    @ToString.Exclude
-    private List<Comic> comics;
+    private Set<Comic> comics;
 }

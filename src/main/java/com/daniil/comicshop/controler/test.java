@@ -43,9 +43,7 @@ public class test {
     }
 
     @GetMapping("/author")
-    public List<Author> test4(){
-        return authorRepository.findAll();
-    }
+    public List<Author> test4(){return authorRepository.findAll();}
     @GetMapping("/series")
     public List<Series> test5(){
         return seriesRepository.findAll();

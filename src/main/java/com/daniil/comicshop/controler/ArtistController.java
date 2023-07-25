@@ -25,34 +25,34 @@ public class ArtistController {
 
     @GetMapping
     public List<ArtistResponse> getAllArtists(){
-        return artistService.getAllArtists();
+        return artistService.getAll();
     }
 
     @GetMapping("/{id}")
     public ArtistResponse getById(@PathVariable int id){
-        return artistService.getArtistById(id);
+        return artistService.getById(id);
     }
 
     @PostMapping("/add")
     public ArtistResponse addArtist(@RequestBody ArtistRequest artistRequest){
-        return artistService.addArtist(artistRequest);
+        return artistService.add(artistRequest);
     }
 
     @PutMapping("/{id}/change")
     public ArtistResponse changeArtistName(@PathVariable int id, @RequestBody ArtistRequest artistRequest){
-       return artistService.changeArtistName(id,artistRequest);
+       return artistService.changeName(id,artistRequest);
     }
 
     @PutMapping("/{id}/addComics")
     public ArtistResponse addComicToArtist(@PathVariable int id, @RequestBody ComicIdsRequest comicsIds){
-        return artistService.addComicsToArtist(id,comicsIds);
+        return artistService.addComics(id,comicsIds);
     }
     @PutMapping("/{id}/removeComics")
     public ArtistResponse removeComics(@PathVariable int id, @RequestBody ComicIdsRequest comicsIds){
-        return artistService.removeComicsFromArtist(id,comicsIds);
+        return artistService.removeComics(id,comicsIds);
     }
     @DeleteMapping("/{id}/delete")
     public String deleteArtist(@PathVariable int id){
-        return artistService.deleteArtist(id);
+        return artistService.delete(id);
     }
 }

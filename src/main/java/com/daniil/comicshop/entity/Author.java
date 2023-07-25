@@ -1,6 +1,5 @@
 package com.daniil.comicshop.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +13,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -41,8 +39,8 @@ public class Author {
     @JoinTable(name = "author_comic",
             joinColumns = {@JoinColumn(name = "author_id")},
             inverseJoinColumns = {@JoinColumn(name = "comic_id")})
-    @JsonIgnore
-    @ToString.Exclude
+//    @JsonIgnore
+//    @ToString.Exclude
     private Set<Comic> comics;
 
     @Override

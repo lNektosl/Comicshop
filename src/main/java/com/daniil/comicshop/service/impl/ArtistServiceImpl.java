@@ -25,28 +25,28 @@ public class ArtistServiceImpl implements ArtistService {
     private final ArtistMapper artistMapper;
 
     @Override
-    public ArtistResponse addArtist(ArtistRequest artistRequest) {
+    public ArtistResponse add(ArtistRequest artistRequest) {
         Artist artist = artistMapper.artistRequestToArtist(artistRequest);
         artistRepository.save(artist);
         return artistMapper.artistToArtistResponse(artist);
     }
 
     @Override
-    public ArtistResponse getArtistById(int id) {
+    public ArtistResponse getById(int id) {
         return artistMapper.artistToArtistResponse(artistRepository.findById(id).orElseThrow(() ->
                 new NoSuchElementException(
                         String.format("Artist with id %s doesn't exist", id))));
     }
 
     @Override
-    public List<ArtistResponse> getAllArtists() {
+    public List<ArtistResponse> getAll() {
         return artistRepository.findAll().stream()
                 .map(artistMapper::artistToArtistResponse)
                 .toList();
     }
 
     @Override
-    public ArtistResponse changeArtistName(int id, ArtistRequest artistRequest) {
+    public ArtistResponse changeName(int id, ArtistRequest artistRequest) {
         Artist artist = findArtistById(id);
         artist.setName(artistRequest.name());
         artistRepository.save(artist);
@@ -54,7 +54,7 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public ArtistResponse addComicsToArtist(int id, ComicIdsRequest comicIds) {
+    public ArtistResponse addComics(int id, ComicIdsRequest comicIds) {
         Artist artist = findArtistById(id);
         Set<Comic> comics = artist.getComics();
         comics.addAll(comicRepository.findAllById(comicIds.comicsIds()));
@@ -64,7 +64,7 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public ArtistResponse removeComicsFromArtist(int id, ComicIdsRequest comicIds) {
+    public ArtistResponse removeComics(int id, ComicIdsRequest comicIds) {
         Artist artist = findArtistById(id);
         Set<Comic> comics = artist.getComics();
         comicRepository.findAllById(comicIds.comicsIds()).forEach(comics::remove);
@@ -74,7 +74,7 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public String deleteArtist(int id) {
+    public String delete(int id) {
         artistRepository.deleteById(id);
         return String.format("Artist with id - %s was deleted",id);
     }
