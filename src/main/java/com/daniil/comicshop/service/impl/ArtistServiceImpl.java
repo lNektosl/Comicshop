@@ -1,10 +1,11 @@
 package com.daniil.comicshop.service.impl;
 
+import com.daniil.comicshop.dto.response.AuthorResponse;
 import com.daniil.comicshop.entity.Artist;
 import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.entity.dto.request.ArtistRequest;
-import com.daniil.comicshop.entity.dto.request.ComicIdsRequest;
-import com.daniil.comicshop.entity.dto.response.ArtistResponse;
+import com.daniil.comicshop.dto.request.ArtistRequest;
+import com.daniil.comicshop.dto.request.ComicIdsRequest;
+import com.daniil.comicshop.dto.response.ArtistResponse;
 import com.daniil.comicshop.service.ArtistService;
 import com.daniil.comicshop.mapper.ArtistMapper;
 import com.daniil.comicshop.repository.ArtistRepository;
@@ -74,9 +75,10 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public String delete(int id) {
+    public ArtistResponse delete(int id) {
+        ArtistResponse response = artistMapper.artistToArtistResponse(findArtistById(id));
         artistRepository.deleteById(id);
-        return String.format("Artist with id - %s was deleted",id);
+        return response;
     }
 
     private Artist findArtistById(int id){

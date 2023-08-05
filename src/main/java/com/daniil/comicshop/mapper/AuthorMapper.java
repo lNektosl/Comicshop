@@ -3,8 +3,8 @@ package com.daniil.comicshop.mapper;
 import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Comic;
 
-import com.daniil.comicshop.entity.dto.request.AuthorRequest;
-import com.daniil.comicshop.entity.dto.response.AuthorResponse;
+import com.daniil.comicshop.dto.request.AuthorRequest;
+import com.daniil.comicshop.dto.response.AuthorResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

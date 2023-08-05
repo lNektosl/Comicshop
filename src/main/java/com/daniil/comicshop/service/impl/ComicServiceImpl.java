@@ -5,8 +5,8 @@ import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.entity.Publisher;
 import com.daniil.comicshop.entity.Series;
-import com.daniil.comicshop.entity.dto.request.ComicRequest;
-import com.daniil.comicshop.entity.dto.response.ComicResponse;
+import com.daniil.comicshop.dto.request.ComicRequest;
+import com.daniil.comicshop.dto.response.ComicResponse;
 import com.daniil.comicshop.service.ComicService;
 import com.daniil.comicshop.mapper.ComicMapper;
 import com.daniil.comicshop.repository.ArtistRepository;
@@ -90,9 +90,10 @@ public class ComicServiceImpl implements ComicService {
     }
 
     @Override
-    public String deleteById(int id) {
+    public ComicResponse deleteById(int id) {
+        ComicResponse comicResponse = comicMapper.comicToComicResponse(comicRepository.findById(id).orElseThrow());
         comicRepository.deleteById(id);
-        return "Comic with id - " + id + " was deleted";
+        return comicResponse;
     }
 
     @Override
@@ -102,6 +103,7 @@ public class ComicServiceImpl implements ComicService {
         ));
         comic.setName(request.getName());
         comic.setAmount(request.getAmount());
+        comic.setDescription(request.getDescription());
 
         comic.setPublisher(publisherRepository.findById(request.getPublisherId()).orElseThrow());
         comic.setSeries(seriesRepository.findById(request.getPublisherId()).orElseThrow());

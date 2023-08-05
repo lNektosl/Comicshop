@@ -1,8 +1,8 @@
 package com.daniil.comicshop.controler;
 
-import com.daniil.comicshop.entity.dto.request.ArtistRequest;
-import com.daniil.comicshop.entity.dto.request.ComicIdsRequest;
-import com.daniil.comicshop.entity.dto.response.ArtistResponse;
+import com.daniil.comicshop.dto.request.ArtistRequest;
+import com.daniil.comicshop.dto.request.ComicIdsRequest;
+import com.daniil.comicshop.dto.response.ArtistResponse;
 import com.daniil.comicshop.service.ArtistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -52,7 +52,7 @@ public class ArtistController {
         return artistService.removeComics(id,comicsIds);
     }
     @DeleteMapping("/{id}/delete")
-    public String deleteArtist(@PathVariable int id){
+    public ArtistResponse deleteArtist(@PathVariable int id){
         return artistService.delete(id);
     }
 }

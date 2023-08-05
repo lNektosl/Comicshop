@@ -1,4 +1,4 @@
-package com.daniil.comicshop.entity.dto.response;
+package com.daniil.comicshop.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +20,6 @@ public class ComicResponse {
     private int publisherId;
     private int seriesId;
     private String imagePath;
-
-
+    private String description;
+    private Double price;
 }

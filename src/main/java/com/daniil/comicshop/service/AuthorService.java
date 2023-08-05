@@ -1,8 +1,8 @@
 package com.daniil.comicshop.service;
 
-import com.daniil.comicshop.entity.dto.request.AuthorRequest;
-import com.daniil.comicshop.entity.dto.request.ComicIdsRequest;
-import com.daniil.comicshop.entity.dto.response.AuthorResponse;
+import com.daniil.comicshop.dto.request.AuthorRequest;
+import com.daniil.comicshop.dto.request.ComicIdsRequest;
+import com.daniil.comicshop.dto.response.AuthorResponse;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface AuthorService {
     AuthorResponse changeName(int id, AuthorRequest authorRequest);
     AuthorResponse addComics(int id, ComicIdsRequest comicIds);
     AuthorResponse removeComics(int id, ComicIdsRequest comicIds);
-    String delete(int id);
+    AuthorResponse delete(int id);
 }

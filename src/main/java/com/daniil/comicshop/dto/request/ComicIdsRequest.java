@@ -1,4 +1,4 @@
-package com.daniil.comicshop.entity.dto.request;
+package com.daniil.comicshop.dto.request;
 
 import java.util.List;
 

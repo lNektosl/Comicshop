@@ -1,7 +1,6 @@
 package com.daniil.comicshop.controler;
 
-import com.daniil.comicshop.entity.Publisher;
-import com.daniil.comicshop.entity.dto.response.PublisherResponse;
+import com.daniil.comicshop.dto.response.PublisherResponse;
 import com.daniil.comicshop.service.PublisherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

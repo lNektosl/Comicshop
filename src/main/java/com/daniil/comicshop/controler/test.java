@@ -1,12 +1,10 @@
 package com.daniil.comicshop.controler;
 
 import com.daniil.comicshop.entity.Author;
-import com.daniil.comicshop.entity.Cart;
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.entity.Publisher;
 import com.daniil.comicshop.entity.Series;
 import com.daniil.comicshop.repository.AuthorRepository;
-import com.daniil.comicshop.repository.CartRepository;
 import com.daniil.comicshop.repository.ComicRepository;
 import com.daniil.comicshop.repository.PublisherRepository;
 import com.daniil.comicshop.repository.SeriesRepository;
@@ -22,7 +20,6 @@ import java.util.List;
 @RequestMapping("/test")
 public class test {
     private final ComicRepository comicRepository;
-    private final CartRepository cartRepository;
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
     private final SeriesRepository seriesRepository;
@@ -30,11 +27,6 @@ public class test {
     @GetMapping("/comic")
     public List<Comic> test(){
         return comicRepository.findAll();
-    }
-
-    @GetMapping("/cart")
-    public List<Cart> test2(){
-        return cartRepository.findAll();
     }
 
     @GetMapping("/publisher")

@@ -2,8 +2,8 @@ package com.daniil.comicshop.mapper;
 
 import com.daniil.comicshop.entity.Artist;
 import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.entity.dto.request.ArtistRequest;
-import com.daniil.comicshop.entity.dto.response.ArtistResponse;
+import com.daniil.comicshop.dto.request.ArtistRequest;
+import com.daniil.comicshop.dto.response.ArtistResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

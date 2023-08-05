@@ -45,6 +45,8 @@ public class Comic {
         if(this.imagePath==null||this.imagePath.isEmpty())
             this.imagePath = "src/main/resources/images/1.jpg";
     }
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "amount")
     private int amount;
@@ -64,6 +66,9 @@ public class Comic {
     @ManyToOne
     @JoinColumn(name = "series_id",referencedColumnName = "id")
     private Series series;
+
+    @Column(name = "price")
+    private Double price;
 
 
     @Override
