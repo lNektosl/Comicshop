@@ -1,17 +1,17 @@
 package com.daniil.comicshop.service;
 
 import com.daniil.comicshop.dto.request.ComicIdsRequest;
-import com.daniil.comicshop.dto.request.PublisherRequest;
-import com.daniil.comicshop.dto.response.PublisherResponse;
+import com.daniil.comicshop.entity.Publisher;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PublisherService {
-    PublisherResponse add(PublisherRequest publisherRequest);
-    PublisherResponse getById(int id);
-    List<PublisherResponse> getAll();
-    PublisherResponse changeName(int id, PublisherRequest publisherRequest);
-    PublisherResponse addComics(int id, ComicIdsRequest comicIds);
-    PublisherResponse removeComics(int id, ComicIdsRequest comicIds);
-    PublisherResponse delete(int id);
+    Publisher add(Publisher publisher);
+    Optional<Publisher> getById(int id);
+    List<Publisher> getAll();
+    Publisher changeName(Publisher publisher);
+    Publisher changeComics(int id, ComicIdsRequest comicIds);
+//    Optional<Publisher> removeComics(int id, ComicIdsRequest comicIds);
+    Optional<Publisher> delete(int id);
 }

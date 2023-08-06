@@ -1,8 +1,7 @@
 package com.daniil.comicshop.controler;
 
-import com.daniil.comicshop.dto.request.ArtistRequest;
 import com.daniil.comicshop.dto.request.ComicIdsRequest;
-import com.daniil.comicshop.dto.response.ArtistResponse;
+import com.daniil.comicshop.entity.Artist;
 import com.daniil.comicshop.service.ArtistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/artist")
@@ -24,35 +24,35 @@ public class ArtistController {
     private final ArtistService artistService;
 
     @GetMapping
-    public List<ArtistResponse> getAllArtists(){
+    public List<Artist> getAllArtists(){
         return artistService.getAll();
     }
 
     @GetMapping("/{id}")
-    public ArtistResponse getById(@PathVariable int id){
+    public Optional<Artist> getById(@PathVariable int id){
         return artistService.getById(id);
     }
 
     @PostMapping("/add")
-    public ArtistResponse addArtist(@RequestBody ArtistRequest artistRequest){
-        return artistService.add(artistRequest);
+    public Artist addArtist(@RequestBody Artist artist){
+        return artistService.add(artist);
     }
 
-    @PutMapping("/{id}/change")
-    public ArtistResponse changeArtistName(@PathVariable int id, @RequestBody ArtistRequest artistRequest){
-       return artistService.changeName(id,artistRequest);
+    @PutMapping("/change")
+    public Artist changeArtistName(@RequestBody Artist artist){
+       return artistService.changeName(artist);
     }
 
     @PutMapping("/{id}/addComics")
-    public ArtistResponse addComicToArtist(@PathVariable int id, @RequestBody ComicIdsRequest comicsIds){
-        return artistService.addComics(id,comicsIds);
+    public Artist changeComics(@PathVariable int id, @RequestBody ComicIdsRequest comicsIds){
+        return artistService.changeComics(id,comicsIds);
     }
-    @PutMapping("/{id}/removeComics")
-    public ArtistResponse removeComics(@PathVariable int id, @RequestBody ComicIdsRequest comicsIds){
-        return artistService.removeComics(id,comicsIds);
-    }
+//    @PutMapping("/{id}/removeComics")
+//    public ArtistResponse removeComics(@PathVariable int id, @RequestBody ComicIdsRequest comicsIds){
+//        return artistService.removeComics(id,comicsIds);
+//    }
     @DeleteMapping("/{id}/delete")
-    public ArtistResponse deleteArtist(@PathVariable int id){
+    public Optional<Artist> deleteArtist(@PathVariable int id){
         return artistService.delete(id);
     }
 }

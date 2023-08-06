@@ -1,20 +1,17 @@
 package com.daniil.comicshop.service.impl;
 
-import com.daniil.comicshop.dto.response.AuthorResponse;
 import com.daniil.comicshop.entity.Artist;
 import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.dto.request.ArtistRequest;
 import com.daniil.comicshop.dto.request.ComicIdsRequest;
-import com.daniil.comicshop.dto.response.ArtistResponse;
 import com.daniil.comicshop.service.ArtistService;
-import com.daniil.comicshop.mapper.ArtistMapper;
 import com.daniil.comicshop.repository.ArtistRepository;
 import com.daniil.comicshop.repository.ComicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -23,68 +20,49 @@ public class ArtistServiceImpl implements ArtistService {
 
     private final ArtistRepository artistRepository;
     private final ComicRepository comicRepository;
-    private final ArtistMapper artistMapper;
 
     @Override
-    public ArtistResponse add(ArtistRequest artistRequest) {
-        Artist artist = artistMapper.artistRequestToArtist(artistRequest);
-        artistRepository.save(artist);
-        return artistMapper.artistToArtistResponse(artist);
+    public Artist add(Artist artist) {
+        return artistRepository.save(artist);
     }
 
     @Override
-    public ArtistResponse getById(int id) {
-        return artistMapper.artistToArtistResponse(artistRepository.findById(id).orElseThrow(() ->
-                new NoSuchElementException(
-                        String.format("Artist with id %s doesn't exist", id))));
+    public Optional<Artist> getById(int id) {
+        return artistRepository.findById(id);
     }
 
     @Override
-    public List<ArtistResponse> getAll() {
-        return artistRepository.findAll().stream()
-                .map(artistMapper::artistToArtistResponse)
-                .toList();
+    public List<Artist> getAll() {
+        return artistRepository.findAll();
     }
 
     @Override
-    public ArtistResponse changeName(int id, ArtistRequest artistRequest) {
-        Artist artist = findArtistById(id);
-        artist.setName(artistRequest.name());
-        artistRepository.save(artist);
-        return artistMapper.artistToArtistResponse(artist);
+    public Artist changeName(Artist artist) {
+        return artistRepository.save(artist);
     }
 
     @Override
-    public ArtistResponse addComics(int id, ComicIdsRequest comicIds) {
-        Artist artist = findArtistById(id);
-        Set<Comic> comics = artist.getComics();
-        comics.addAll(comicRepository.findAllById(comicIds.comicsIds()));
+    public Artist changeComics(int id, ComicIdsRequest comicIds) {
+        Artist artist = getById(id).get();
+        Set<Comic> comics = new HashSet<>(comicRepository.findAllById(comicIds.comicsIds()));
         artist.setComics(comics);
-        artistRepository.save(artist);
-        return artistMapper.artistToArtistResponse(artist);
+        return artistRepository.save(artist);
     }
 
-    @Override
-    public ArtistResponse removeComics(int id, ComicIdsRequest comicIds) {
-        Artist artist = findArtistById(id);
-        Set<Comic> comics = artist.getComics();
-        comicRepository.findAllById(comicIds.comicsIds()).forEach(comics::remove);
-        artist.setComics(comics);
-        artistRepository.save(artist);
-        return artistMapper.artistToArtistResponse(artist);
-    }
+//    @Override
+//    public Optional<Artist> removeComics(int id, ComicIdsRequest comicIds) {
+//        Artist artist = findArtistById(id);
+//        Set<Comic> comics = artist.getComics();
+//        comicRepository.findAllById(comicIds.comicsIds()).forEach(comics::remove);
+//        artist.setComics(comics);
+//        artistRepository.save(artist);
+//        return artistMapper.artistToArtistResponse(artist);
+//    }
 
     @Override
-    public ArtistResponse delete(int id) {
-        ArtistResponse response = artistMapper.artistToArtistResponse(findArtistById(id));
+    public Optional<Artist> delete(int id) {
+        Optional<Artist> artist = getById(id);
         artistRepository.deleteById(id);
-        return response;
+        return artist;
     }
-
-    private Artist findArtistById(int id){
-        return artistRepository.findById(id).orElseThrow(() ->
-                new NoSuchElementException(
-                        String.format("Artist with id %s doesn't exist", id)));
-    }
-
 }

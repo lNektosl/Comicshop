@@ -39,14 +39,14 @@ class ComicServiceImplTest {
 
     @Mock
     private ComicRepository comicRepository;
-    @Mock
-    private PublisherRepository publisherRepository;
-    @Mock
-    private ArtistRepository artistRepository;
-    @Mock
-    private AuthorRepository authorRepository;
-    @Mock
-    private SeriesRepository seriesRepository;
+//    @Mock
+//    private PublisherRepository publisherRepository;
+//    @Mock
+//    private ArtistRepository artistRepository;
+//    @Mock
+//    private AuthorRepository authorRepository;
+//    @Mock
+//    private SeriesRepository seriesRepository;
     @Mock
     private ComicMapper comicMapper;
 
@@ -54,35 +54,29 @@ class ComicServiceImplTest {
     private ComicServiceImpl comicService;
 
 
-    private Artist artist;
-    private Publisher publisher;
-    private Author author;
-    private Series series;
-    private ComicRequest comicRequest;
-    private ComicRequest comicRequest2;
     private ComicResponse comicResponse;
     private Comic comic;
 
     @BeforeEach
     void init(){
-        artist = Artist.builder()
+        Artist artist = Artist.builder()
                 .name("artist")
                 .build();
 
-        publisher = Publisher.builder()
+        Publisher publisher = Publisher.builder()
                 .name("publisher")
                 .build();
 
-        author = Author.builder()
+        Author author = Author.builder()
                 .name("author")
                 .build();
 
-        series = Series.builder()
+        Series series = Series.builder()
                 .id(1)
                 .name("series")
                 .build();
 
-        comicRequest = ComicRequest.builder()
+        ComicRequest comicRequest = ComicRequest.builder()
                 .name("Batman")
                 .amount(25)
                 .seriesId(1)
@@ -91,7 +85,7 @@ class ComicServiceImplTest {
                 .publisherId(1)
                 .build();
 
-        comicRequest2 = ComicRequest.builder()
+        ComicRequest comicRequest2 = ComicRequest.builder()
                 .name("Joker")
                 .amount(5)
                 .seriesId(1)
@@ -122,34 +116,9 @@ class ComicServiceImplTest {
                 .build();
     }
 
-
-    @Test
-    void getComicById_shouldBeSuccessful() {
-        when(comicMapper.comicToComicResponse(comic)).thenReturn(comicResponse);
-        when(comicRepository.findById(any())).thenReturn(Optional.of(comic));
-
-            ComicResponse actualResponse = comicService.getComicById(comic.getId());
-
-        assertEquals(comicResponse,actualResponse);
-
-
-    }
-
-    @Test
-    void saveComic_shouldBeSuccessful() {
-        when(publisherRepository.findById(any())).thenReturn(Optional.of(publisher));
-        when(seriesRepository.findById(any())).thenReturn(Optional.of(series));
-        when(comicMapper.comicRequestToComic(comicRequest)).thenReturn(comic);
-        when(comicMapper.comicToComicResponse(comic)).thenReturn(comicResponse);
-
-        assertEquals(comicResponse,comicService.saveComic(comicRequest));
-
-    }
-
     @Test
     void changeImg_shouldBeSuccessful() throws IOException {
         when(comicRepository.findById(anyInt())).thenReturn(Optional.of(comic));
-        when(comicMapper.comicToComicResponse(comicRepository.save(comic))).thenReturn(comicResponse);
 
         String path = "src/main/resources/images/1.jpg";
         String path2 = "src/main/resources/images/Test/Test.jpg";
@@ -161,21 +130,7 @@ class ComicServiceImplTest {
 
         assertTrue(Files.exists(Path.of("src/main/resources/images/Test/Test.jpg")));
 
-        //todo Поиск НОК и НОД
-
     }
-
-    @Test
-    void changeById_shouldBeSuccessful() {
-        when(publisherRepository.findById(any())).thenReturn(Optional.of(publisher));
-        when(seriesRepository.findById(any())).thenReturn(Optional.of(series));
-        when(comicRepository.findById(any())).thenReturn(Optional.of(comic));
-        when(comicMapper.comicToComicResponse(comic)).thenReturn(comicResponse);
-
-
-        assertEquals(comicResponse,comicService.changeById(comic.getId(),comicRequest2));
-    }
-
 
    @AfterAll
     static void Erase() throws IOException {

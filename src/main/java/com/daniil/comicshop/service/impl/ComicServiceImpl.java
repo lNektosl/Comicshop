@@ -5,7 +5,6 @@ import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.entity.Publisher;
 import com.daniil.comicshop.entity.Series;
-import com.daniil.comicshop.dto.request.ComicRequest;
 import com.daniil.comicshop.dto.response.ComicResponse;
 import com.daniil.comicshop.service.ComicService;
 import com.daniil.comicshop.mapper.ComicMapper;
@@ -27,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 
 @Service
@@ -41,36 +41,17 @@ public class ComicServiceImpl implements ComicService {
     private final ArtistRepository artistRepository;
 
     @Override
-    public ComicResponse getComicById(int id) {
-        Comic comic = comicRepository.findById(id).orElseThrow();
-        return comicMapper.comicToComicResponse(comic);
+    public Optional<Comic> getById(int id) {
+        return comicRepository.findById(id);
     }
 
     @Override
-    public ComicResponse saveComic(ComicRequest comicRequest) {
-
-        Comic comic = comicMapper.comicRequestToComic(comicRequest);
-
-        Publisher publisher = publisherRepository.findById(comicRequest.getPublisherId()).orElseThrow(() ->
-                new NoSuchElementException(String.format("Publisher with id %s doesn't exist", comicRequest.getSeriesId())));
-        if (comicRequest.getSeriesId() != 0) {
-            Series series = seriesRepository.findById(comicRequest.getSeriesId()).orElseThrow(() ->
-                    new NoSuchElementException(String.format("Series with id %s doesn't exist", comicRequest.getSeriesId())));
-            comic.setSeries(series);
-        }
-
-        comic.setPublisher(publisher);
-
-        setAuthorsAndArtists(comic,
-                artistRepository.findAllById(comicRequest.getArtistIds()),
-                authorRepository.findAllById(comicRequest.getAuthorIds()));
-
-
-        return comicMapper.comicToComicResponse(comic);
+    public Comic add(Comic comic) {
+        return comicRepository.save(comic);
     }
 
     @Override
-    public ComicResponse changeImg(int id, MultipartFile img) throws IOException {
+    public Comic changeImg(int id, MultipartFile img) throws IOException {
         Comic comic = comicRepository.findById(id).orElseThrow(() -> new NoSuchElementException(
                 String.format("Comic with id %s doesn't exist", id)
         ));
@@ -86,57 +67,23 @@ public class ComicServiceImpl implements ComicService {
                 + name.replace(" ", "_") + ".jpg"));
 
         comic.setImagePath(path + "/" + name.replace(" ", "_") + ".jpg");
-        return comicMapper.comicToComicResponse(comicRepository.save(comic));
+        return comicRepository.save(comic);
     }
 
     @Override
-    public ComicResponse deleteById(int id) {
-        ComicResponse comicResponse = comicMapper.comicToComicResponse(comicRepository.findById(id).orElseThrow());
+    public Optional<Comic> delete(int id) {
+        Optional<Comic> comic = comicRepository.findById(id);
         comicRepository.deleteById(id);
-        return comicResponse;
+        return comic;
     }
 
     @Override
-    public ComicResponse changeById(int id, ComicRequest request) {
-        Comic comic = comicRepository.findById(id).orElseThrow(() -> new NoSuchElementException(
-                String.format("Comic with id %s doesn't exist", id)
-        ));
-        comic.setName(request.getName());
-        comic.setAmount(request.getAmount());
-        comic.setDescription(request.getDescription());
-
-        comic.setPublisher(publisherRepository.findById(request.getPublisherId()).orElseThrow());
-        comic.setSeries(seriesRepository.findById(request.getPublisherId()).orElseThrow());
-
-        setAuthorsAndArtists(comic,
-                artistRepository.findAllById(request.getArtistIds()),
-                authorRepository.findAllById(request.getAuthorIds()));
-
-        return comicMapper.comicToComicResponse(comic);
+    public Comic change(Comic comic) {
+        return comicRepository.save(comic);
     }
 
     @Override
-    public List<ComicResponse> getAllComic() {
-        return comicRepository.findAll().stream()
-                .map(comicMapper::comicToComicResponse)
-                .toList();
-    }
-
-    private void setAuthorsAndArtists(Comic comic, List<Artist> artists, List<Author> authors) {
-
-        comic.setArtists(artists);
-        comic.setAuthors(authors);
-
-        Comic savedComic = comicRepository.save(comic);
-
-        for (Author author : authors) {
-            author.getComics().add(savedComic);
-            authorRepository.save(author);
-        }
-
-        for (Artist artist : artists) {
-            artist.getComics().add(savedComic);
-            artistRepository.save(artist);
-        }
+    public List<Comic> getAll() {
+        return comicRepository.findAll();
     }
 }

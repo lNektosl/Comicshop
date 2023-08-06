@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -68,7 +69,7 @@ public class Comic {
     private Series series;
 
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
 
 
     @Override
