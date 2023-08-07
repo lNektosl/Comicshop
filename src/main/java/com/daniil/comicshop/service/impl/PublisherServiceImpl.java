@@ -44,7 +44,9 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public Publisher changeName(Publisher publisher) {
-        return publisherRepository.save(publisher);
+        if (publisherRepository.findById(publisher.getId()).isPresent()){
+        return publisherRepository.save(publisher);}
+        throw new NoSuchElementException();
     }
 
     @Override
@@ -56,8 +58,8 @@ public class PublisherServiceImpl implements PublisherService {
     }
 
 //    @Override
-//    public Optional<Publisher> removeComics(int id, ComicIdsRequest comicIds) {
-//        Publisher publisher = findById(id);
+//    public Optional<Publisher> removeComics(int uuid, ComicIdsRequest comicIds) {
+//        Publisher publisher = findById(uuid);
 //        Set<Comic> comics = publisher.getComics();
 //        comicRepository.findAllById(comicIds.comicsIds()).forEach(comics::remove);
 //        publisher.setComics(comics);

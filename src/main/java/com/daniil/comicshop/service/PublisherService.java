@@ -12,6 +12,6 @@ public interface PublisherService {
     List<Publisher> getAll();
     Publisher changeName(Publisher publisher);
     Publisher changeComics(int id, ComicIdsRequest comicIds);
-//    Optional<Publisher> removeComics(int id, ComicIdsRequest comicIds);
+//    Optional<Publisher> removeComics(int uuid, ComicIdsRequest comicIds);
     Optional<Publisher> delete(int id);
 }

@@ -47,9 +47,9 @@ public class ArtistController {
     public Artist changeComics(@PathVariable int id, @RequestBody ComicIdsRequest comicsIds){
         return artistService.changeComics(id,comicsIds);
     }
-//    @PutMapping("/{id}/removeComics")
-//    public ArtistResponse removeComics(@PathVariable int id, @RequestBody ComicIdsRequest comicsIds){
-//        return artistService.removeComics(id,comicsIds);
+//    @PutMapping("/{uuid}/removeComics")
+//    public ArtistResponse removeComics(@PathVariable int uuid, @RequestBody ComicIdsRequest comicsIds){
+//        return artistService.removeComics(uuid,comicsIds);
 //    }
     @DeleteMapping("/{id}/delete")
     public Optional<Artist> deleteArtist(@PathVariable int id){

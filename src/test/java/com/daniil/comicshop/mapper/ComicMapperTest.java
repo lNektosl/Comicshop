@@ -25,22 +25,22 @@
 //    @BeforeEach
 //    void init(){
 //        artist = Artist.builder()
-//                .id(1)
+//                .uuid(1)
 //                .name("artist")
 //                .build();
 //
 //        publisher = Publisher.builder()
-//                .id(1)
+//                .uuid(1)
 //                .name("publisher")
 //                .build();
 //
 //        author = Author.builder()
-//                .id(1)
+//                .uuid(1)
 //                .name("author")
 //                .build();
 //
 //        series = Series.builder()
-//                .id(1)
+//                .uuid(1)
 //                .name("series")
 //                .build();
 //    }

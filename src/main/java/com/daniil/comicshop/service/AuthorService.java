@@ -12,6 +12,6 @@ public interface AuthorService {
     List<Author> getAll();
     Author changeName(Author author);
     Author changeComics(int id, ComicIdsRequest comicIds);
-//    Optional<Author> removeComics(int id, ComicIdsRequest comicIds);
+//    Optional<Author> removeComics(int uuid, ComicIdsRequest comicIds);
     Optional<Author> delete(int id);
 }

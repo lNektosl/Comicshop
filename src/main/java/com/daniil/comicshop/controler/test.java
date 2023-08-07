@@ -1,13 +1,16 @@
 package com.daniil.comicshop.controler;
 
 import com.daniil.comicshop.entity.Author;
+import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.entity.Publisher;
 import com.daniil.comicshop.entity.Series;
 import com.daniil.comicshop.repository.AuthorRepository;
+import com.daniil.comicshop.repository.ClientRepository;
 import com.daniil.comicshop.repository.ComicRepository;
 import com.daniil.comicshop.repository.PublisherRepository;
 import com.daniil.comicshop.repository.SeriesRepository;
+import com.daniil.comicshop.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +26,8 @@ public class test {
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
     private final SeriesRepository seriesRepository;
-
+    private final ClientService clientService;
+    private final ClientRepository clientRepository;
     @GetMapping("/comic")
     public List<Comic> test(){
         return comicRepository.findAll();
@@ -40,4 +44,6 @@ public class test {
     public List<Series> test5(){
         return seriesRepository.findAll();
     }
+    @GetMapping("/client")
+    public List<Client> test6(){return clientRepository.findAll();}
 }

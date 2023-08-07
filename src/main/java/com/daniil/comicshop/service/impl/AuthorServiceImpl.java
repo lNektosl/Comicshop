@@ -42,7 +42,9 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author changeName(Author author) {
-        return authorRepository.save(author);
+        if (authorRepository.findById(author.getId()).isPresent()){
+        return authorRepository.save(author);}
+        throw new NoSuchElementException();
     }
 
     @Override
@@ -55,8 +57,8 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
 //    @Override
-//    public Optional<Author> removeComics(int id, ComicIdsRequest comicIds) {
-//        Author author = findById(id);
+//    public Optional<Author> removeComics(int uuid, ComicIdsRequest comicIds) {
+//        Author author = findById(uuid);
 //        Set<Comic> comics = author.getComics();
 //        comicRepository.findAllById(comicIds.comicsIds()).forEach(comics::remove);
 //        author.setComics(comics);

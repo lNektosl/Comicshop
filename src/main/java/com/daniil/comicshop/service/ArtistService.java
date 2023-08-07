@@ -12,6 +12,6 @@ public interface ArtistService {
     List<Artist> getAll();
     Artist changeName(Artist artist);
     Artist changeComics(int id, ComicIdsRequest comicIds);
-//    Optional<Artist> removeComics(int id, ComicIdsRequest comicIds);
+//    Optional<Artist> removeComics(int uuid, ComicIdsRequest comicIds);
     Optional<Artist> delete(int id);
 }

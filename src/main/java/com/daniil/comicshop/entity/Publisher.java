@@ -31,13 +31,13 @@ public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "publisher_name")
     private String name;
 
     @OneToMany(mappedBy = "publisher")
-//    @OrderBy("id")
+//    @OrderBy("uuid")
 //    @JsonIgnore
     private Set<Comic> comics;
 }

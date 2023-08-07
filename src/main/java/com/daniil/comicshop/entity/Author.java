@@ -1,5 +1,6 @@
 package com.daniil.comicshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,9 +14,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -30,7 +33,7 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Cascade(CascadeType.ALL)
-    private int id;
+    private Integer id;
 
     @Column(name = "author_name")
     private String name;
@@ -42,6 +45,11 @@ public class Author {
 //    @JsonIgnore
 //    @ToString.Exclude
     private Set<Comic> comics;
+
+    @ManyToMany(mappedBy = "authors")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Client> clients;
 
     @Override
     public boolean equals(Object o) {

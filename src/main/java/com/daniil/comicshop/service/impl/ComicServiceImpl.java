@@ -53,7 +53,7 @@ public class ComicServiceImpl implements ComicService {
     @Override
     public Comic changeImg(int id, MultipartFile img) throws IOException {
         Comic comic = comicRepository.findById(id).orElseThrow(() -> new NoSuchElementException(
-                String.format("Comic with id %s doesn't exist", id)
+                String.format("Comic with uuid %s doesn't exist", id)
         ));
         String name = comic.getName();
         String path = "src/main/resources/images/" + name;
@@ -79,7 +79,9 @@ public class ComicServiceImpl implements ComicService {
 
     @Override
     public Comic change(Comic comic) {
-        return comicRepository.save(comic);
+        if (comicRepository.findById(comic.getId()).isPresent()){
+        return comicRepository.save(comic);}
+    throw new NoSuchElementException();
     }
 
     @Override

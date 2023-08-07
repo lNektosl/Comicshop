@@ -19,6 +19,7 @@ import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class Artist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Cascade(CascadeType.ALL)
-    private int id;
+    private Integer id;
 
     @Column(name = "artist_name")
     private String name;
@@ -47,6 +48,11 @@ public class Artist {
     @JsonIgnore
     @ToString.Exclude
     private Set<Comic> comics;
+
+    @ManyToMany(mappedBy = "artists")
+    @JsonIgnore
+    @ToString.Exclude
+    List<Client> clients;
 
     @Override
     public boolean equals(Object o) {

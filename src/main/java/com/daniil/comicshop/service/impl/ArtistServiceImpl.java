@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -38,7 +39,9 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public Artist changeName(Artist artist) {
-        return artistRepository.save(artist);
+        if (artistRepository.findById(artist.getId()).isPresent()){
+        return artistRepository.save(artist);}
+        throw new NoSuchElementException();
     }
 
     @Override
@@ -50,8 +53,8 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
 //    @Override
-//    public Optional<Artist> removeComics(int id, ComicIdsRequest comicIds) {
-//        Artist artist = findArtistById(id);
+//    public Optional<Artist> removeComics(int uuid, ComicIdsRequest comicIds) {
+//        Artist artist = findArtistById(uuid);
 //        Set<Comic> comics = artist.getComics();
 //        comicRepository.findAllById(comicIds.comicsIds()).forEach(comics::remove);
 //        artist.setComics(comics);
