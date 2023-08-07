@@ -1,10 +1,5 @@
 package com.daniil.comicshop.controler;
 
-import com.daniil.comicshop.entity.Author;
-import com.daniil.comicshop.entity.Client;
-import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.entity.Publisher;
-import com.daniil.comicshop.entity.Series;
 import com.daniil.comicshop.repository.AuthorRepository;
 import com.daniil.comicshop.repository.ClientRepository;
 import com.daniil.comicshop.repository.ComicRepository;
@@ -12,13 +7,14 @@ import com.daniil.comicshop.repository.PublisherRepository;
 import com.daniil.comicshop.repository.SeriesRepository;
 import com.daniil.comicshop.service.ClientService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/test")
 public class test {
@@ -29,21 +25,8 @@ public class test {
     private final ClientService clientService;
     private final ClientRepository clientRepository;
     @GetMapping("/comic")
-    public List<Comic> test(){
-        return comicRepository.findAll();
+    public String test(Model model){
+        model.addAttribute("comics", comicRepository.findAll());
+        return "index";
     }
-
-    @GetMapping("/publisher")
-    public List<Publisher> publishers(){
-        return publisherRepository.findAll();
-    }
-
-    @GetMapping("/author")
-    public List<Author> test4(){return authorRepository.findAll();}
-    @GetMapping("/series")
-    public List<Series> test5(){
-        return seriesRepository.findAll();
-    }
-    @GetMapping("/client")
-    public List<Client> test6(){return clientRepository.findAll();}
 }

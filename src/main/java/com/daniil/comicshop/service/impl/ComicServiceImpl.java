@@ -1,11 +1,6 @@
 package com.daniil.comicshop.service.impl;
 
-import com.daniil.comicshop.entity.Artist;
-import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.entity.Publisher;
-import com.daniil.comicshop.entity.Series;
-import com.daniil.comicshop.dto.response.ComicResponse;
 import com.daniil.comicshop.service.ComicService;
 import com.daniil.comicshop.mapper.ComicMapper;
 import com.daniil.comicshop.repository.ArtistRepository;
@@ -55,18 +50,18 @@ public class ComicServiceImpl implements ComicService {
         Comic comic = comicRepository.findById(id).orElseThrow(() -> new NoSuchElementException(
                 String.format("Comic with uuid %s doesn't exist", id)
         ));
-        String name = comic.getName();
-        String path = "src/main/resources/images/" + name;
-        path = path.replace(" ", "_");
-        Files.createDirectories(Paths.get(path));
+        String name = comic.getName().replace(" ","_");
+        String fPath = "src/main/resources/static/images/" + name;
+        String relPath = "/images/" + name;
+        Files.createDirectories(Paths.get(fPath));
 
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(img.getBytes());
         BufferedImage bufferedImage = ImageIO.read(byteArrayInputStream);
 
-        ImageIO.write(bufferedImage, "jpg", new File(path + "/"
-                + name.replace(" ", "_") + ".jpg"));
+        ImageIO.write(bufferedImage, "jpg", new File(fPath + "/"
+                + name + ".jpg"));
 
-        comic.setImagePath(path + "/" + name.replace(" ", "_") + ".jpg");
+        comic.setImagePath(relPath + "/" + name + ".jpg");
         return comicRepository.save(comic);
     }
 

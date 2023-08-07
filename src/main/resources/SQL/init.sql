@@ -22,7 +22,7 @@ CREATE TABLE comics
     comic_name   varchar(100),
     amount       integer,
     image        varchar(256)
-        DEFAULT 'src/main/resources/images/1.jpg',
+        DEFAULT '/images/1.jpg',
     publisher_id integer references publishers (id)
 );
 

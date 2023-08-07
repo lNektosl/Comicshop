@@ -95,24 +95,24 @@ class ComicServiceImplTest {
                 .build();
 
         comicResponse = ComicResponse.builder()
-                .name("Test")
+                .name("Test test")
                 .amount(25)
                 .seriesId(1)
                 .artistIds(List.of(1))
                 .authorIds(List.of(1))
                 .publisherId(1)
-                .imagePath("src/main/resources/images/1.jpg")
+                .imagePath("src/main/resources/static/images/1.jpg")
                 .build();
 
         comic = Comic.builder()
                 .id(1)
-                .name("Test")
+                .name("Test test")
                 .amount(25)
                 .series(series)
                 .publisher(publisher)
                 .artists(List.of(artist))
                 .authors(List.of(author))
-                .imagePath("src/main/resources/images/1.jpg")
+                .imagePath("src/main/resources/static/images/1.jpg")
                 .build();
     }
 
@@ -120,21 +120,21 @@ class ComicServiceImplTest {
     void changeImg_shouldBeSuccessful() throws IOException {
         when(comicRepository.findById(anyInt())).thenReturn(Optional.of(comic));
 
-        String path = "src/main/resources/images/1.jpg";
-        String path2 = "src/main/resources/images/Test/Test.jpg";
+        String path = "src/main/resources/static/images/1.jpg";
+        String path2 = "/images/Test_test/Test_test.jpg";
         MultipartFile multipartFile = new MockMultipartFile("test.jpg",new FileInputStream(path));
 
         comicService.changeImg(1,multipartFile);
 
         assertEquals(path2,comic.getImagePath());
 
-        assertTrue(Files.exists(Path.of("src/main/resources/images/Test/Test.jpg")));
+        assertTrue(Files.exists(Path.of("src/main/resources/static/images/Test_test/Test_test.jpg")));
 
     }
 
    @AfterAll
     static void Erase() throws IOException {
-        Files.delete(Path.of("src/main/resources/images/Test/Test.jpg"));
-        Files.delete(Path.of("src/main/resources/images/Test"));
+        Files.delete(Path.of("src/main/resources/static/images/Test_test/Test_test.jpg"));
+        Files.delete(Path.of("src/main/resources/static/images/Test_test"));
     }
 }
