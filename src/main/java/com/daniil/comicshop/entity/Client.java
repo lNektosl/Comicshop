@@ -1,13 +1,7 @@
 package com.daniil.comicshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,7 +27,10 @@ public class Client {
     @Column(name = "h_password")
     @ToString.Exclude
     private String password;
-
+    @Column(name = "address")
+    private String address;
+    @Column(name = "phone")
+    private String phone;
     @ManyToMany
     @JoinTable(
             name = "author_client",
@@ -57,4 +54,7 @@ public class Client {
             inverseJoinColumns = {@JoinColumn(name = "series_id")}
     )
     private List<Series> series;
+
+    @OneToMany(mappedBy = "client")
+    private List<Order>orders;
 }

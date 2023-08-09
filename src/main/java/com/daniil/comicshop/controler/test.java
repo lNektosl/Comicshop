@@ -24,9 +24,4 @@ public class test {
     private final SeriesRepository seriesRepository;
     private final ClientService clientService;
     private final ClientRepository clientRepository;
-    @GetMapping("/comic")
-    public String test(Model model){
-        model.addAttribute("comics", comicRepository.findAll());
-        return "index";
-    }
 }

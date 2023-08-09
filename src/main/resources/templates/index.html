@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" >
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
 </head>
 <body>
-<div class="container-fluid text-center">
+<header class="header">
+    <div class="header-img text-center"><p class="text-white"> Header img placeholder</p></div>
+    <div class="under-header-menu">
+        <div class="left-nav-btn">
+            <p>Личный кабинет</p>
+            <p>О нас</p>
+            <p>Корзина</p>
+        </div>
+    </div>
+</header>
+<div class="container container-fluid text-center">
     <h1>Comics</h1>
-    <ul class="list-group-item">
-        <li th:each="comic:${comics}">
-            <img th:src="@{${comic.imagePath}}" class="img img-thumbnail">
+    <ul>
+        <li class="list-inline-item col-3" th:each="comic:${comics}">
+            <img class="table-img img-thumbnail" th:src="@{${comic.imagePath}}">
             <br> [[${comic.name}]]
         </li>
     </ul>
 </div>
-
+<footer class="footer"> здесь Footer</footer>
 </body>
 </html>
