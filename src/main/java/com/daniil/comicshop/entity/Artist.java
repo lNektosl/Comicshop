@@ -33,20 +33,15 @@ public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Cascade(CascadeType.ALL)
     private Integer id;
 
     @Column(name = "artist_name")
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "artist_comic",
-            joinColumns = {@JoinColumn(name = "artist_id")},
-            inverseJoinColumns = {@JoinColumn(name = "comic_id")}
-    )
+    @ManyToMany(mappedBy = "artists")
     @JsonIgnore
     @ToString.Exclude
+    @Cascade(CascadeType.ALL)
     private Set<Comic> comics;
 
     @ManyToMany(mappedBy = "artists")

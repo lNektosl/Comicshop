@@ -1,20 +1,27 @@
 package com.daniil.comicshop.controler;
 
+import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.repository.AuthorRepository;
 import com.daniil.comicshop.repository.ClientRepository;
 import com.daniil.comicshop.repository.ComicRepository;
 import com.daniil.comicshop.repository.PublisherRepository;
 import com.daniil.comicshop.repository.SeriesRepository;
 import com.daniil.comicshop.service.ClientService;
+import com.daniil.comicshop.service.ComicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/test")
 public class test {
@@ -24,4 +31,14 @@ public class test {
     private final SeriesRepository seriesRepository;
     private final ClientService clientService;
     private final ClientRepository clientRepository;
+    private final ComicService comicService;
+
+    @GetMapping("comic")
+    public List<Comic> test(){
+        return comicService.getAll();
+    }
+    @PostMapping("comic")
+    public Comic comic(@RequestBody Comic comic){
+        return comicRepository.save(comic);
+    }
 }

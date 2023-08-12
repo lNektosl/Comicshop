@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
@@ -52,18 +53,22 @@ public class Comic {
     @Column(name = "amount")
     private int amount;
 
-    @ManyToMany(mappedBy = "comics")
-    @Cascade(CascadeType.MERGE)
+    @ManyToMany
+    @JoinTable(
+            name = "artist_comic",
+            joinColumns = {@JoinColumn(name = "comic_id")},
+            inverseJoinColumns = {@JoinColumn(name = "artist_id")}
+    )
     private List<Artist> artists;
 
-    @ManyToMany(mappedBy = "comics")
-    @JsonIgnore
-    @Cascade(CascadeType.MERGE)
+    @ManyToMany
+    @JoinTable(name = "author_comic",
+            joinColumns = {@JoinColumn(name = "comic_id")},
+            inverseJoinColumns = {@JoinColumn(name = "author_id")})
     private List<Author> authors;
 
     @ManyToOne
     @JoinColumn(name = "publisher_id",referencedColumnName = "id")
-    @JsonIgnore
     private Publisher publisher;
 
     @ManyToOne

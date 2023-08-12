@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comic</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <h1 class="text-center mt-1">[[${comic.name}]]</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 comic-image">
+                <img class="img-fluid" th:src="@{${comic.imagePath}}">
+                <br> [[${comic.description}]]
+            </div>
+            <div class="col-5">
+                <div>
+                    <h3>Авторы</h3>
+                    <p th:each="author:${comic.authors}">[[${author.name}]]</p>
+                </div>
+                <div>
+                    <h3>Художники</h3>
+                    <p th:each="artist:${comic.artists}">[[${artist.name}]]</p>
+                </div>
+                <h4 th:if="${comic.series} != null">[[${comic.series}]]</h4>
+                <div class="d-flex justify-content-between">
+                    <h4>[[${comic.publisher.name}]]</h4>
+                    <h4>Цена: [[${comic.price}]]</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-lg-5">
+            <div class="col text-center">
+                <a class="btn btn-info" th:href="@{${comic.id} + '/change'}">Изменить</a>
+                <a class="btn btn-danger" th:href="@{${comic.id} + '/delete'}">Удалить</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

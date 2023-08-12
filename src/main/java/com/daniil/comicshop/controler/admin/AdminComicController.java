@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -26,7 +27,7 @@ public class AdminComicController {
     @GetMapping("")
     private String comic(Model model){
         model.addAttribute("comics",comicService.getAll());
-        return "admin/comic-page";
+        return "admin/comic/comic-page";
     }
     @GetMapping("add")
     public String add(Model model){
@@ -35,28 +36,46 @@ public class AdminComicController {
         model.addAttribute("authors",authorService.getAll());
         model.addAttribute("artists", artistService.getAll());
         model.addAttribute("comic",new Comic());
-        return "admin/comic-form";
+        return "admin/comic/comic-form";
     }
     @PostMapping("add")
     public String add(Comic comic, MultipartFile img, RedirectAttributes ra){
-        System.out.println(comic.getArtists());
         Comic newComic = comicService.add(img,comic);
         ra.addFlashAttribute("newComic",newComic);
         return "redirect:/admin/comic";
     }
 
-    @GetMapping("{id}/change")
-    public String change(@PathVariable Integer id, Model model){
+    @GetMapping("{id}")
+    public String info(@PathVariable Integer id, Model model){
         Optional<Comic> comic = comicService.getById(id);
         if (comic.isPresent()){
             model.addAttribute("comic",comic.get());
-            return "admin/comic";
+            return "admin/comic/comic";
         }
         return "redirect:/admin/comic";
     }
     @GetMapping("{id}/delete")
     public String delete(@PathVariable Integer id,RedirectAttributes ra){
         ra.addFlashAttribute("deletedComics",comicService.delete(id).get());
+        return "redirect:/admin/comic";
+    }
+    @GetMapping("{id}/change")
+    public String change(@PathVariable Integer id, Model model){
+        Optional<Comic> comic= comicService.getById(id);
+        if (comic.isPresent()){
+            model.addAttribute("series",seriesService.getAll());
+            model.addAttribute("publishers",publisherService.getAll());
+            model.addAttribute("authors",authorService.getAll());
+            model.addAttribute("artists", artistService.getAll());
+            model.addAttribute("comic",comic.get());
+            return "admin/comic/admin-comic-changeForm";
+        }
+        return "redirect:/admin/comic";
+    }
+    @PostMapping("{id}/change")
+    public String change(MultipartFile img,Comic comic,RedirectAttributes ra) throws IOException {
+
+        ra.addFlashAttribute("updatedComic",comicService.change(img,comic));
         return "redirect:/admin/comic";
     }
 }
