@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://batyr.db.elephantsql.com:5432/ylxhseca
-    username: "ylxhseca"
-    password: "cDP-3Qdert-LCGXJGE9m9RQTYzID3s_B"
+    url: jdbc:postgresql://batyr.db.elephantsql.com:5432/ygsoxkii
+    username: "ygsoxkii"
+    password: "8NKZTa_ZUyXlyeyjBc1G2XTCiJZYRU5a"
 
   #    driver-class-name: org.postgresql.Driver
 #    url: jdbc:postgresql://localhost:5432/Comic_shop

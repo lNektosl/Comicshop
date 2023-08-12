@@ -42,8 +42,8 @@ public class Author {
     @JoinTable(name = "author_comic",
             joinColumns = {@JoinColumn(name = "author_id")},
             inverseJoinColumns = {@JoinColumn(name = "comic_id")})
-//    @JsonIgnore
-//    @ToString.Exclude
+    @JsonIgnore
+    @ToString.Exclude
     private Set<Comic> comics;
 
     @ManyToMany(mappedBy = "authors")

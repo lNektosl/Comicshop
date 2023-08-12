@@ -25,7 +25,6 @@ public class PublisherServiceImpl implements PublisherService {
 
     private final PublisherRepository publisherRepository;
     private final ComicRepository comicRepository;
-    private final PublisherMapper mapper;
 
     @Override
     public Publisher add(Publisher publisher) {

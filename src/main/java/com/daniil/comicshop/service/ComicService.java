@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface ComicService {
     Optional<Comic> getById(int id);
-    Comic add(Comic comic);
+    Comic add(MultipartFile img,Comic comic);
     Comic changeImg(int id, MultipartFile img) throws IOException;
     Optional<Comic> delete(int id);
     Comic change(Comic comic);

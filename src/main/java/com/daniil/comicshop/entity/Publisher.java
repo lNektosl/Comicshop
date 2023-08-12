@@ -10,10 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -37,7 +34,7 @@ public class Publisher {
     private String name;
 
     @OneToMany(mappedBy = "publisher")
-//    @OrderBy("uuid")
-//    @JsonIgnore
+    @JsonIgnore
+    @ToString.Exclude
     private Set<Comic> comics;
 }

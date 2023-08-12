@@ -34,8 +34,8 @@ public class Series {
     private String name;
 
     @OneToMany(mappedBy = "series")
-//    @JsonIgnore
-//    @ToString.Exclude
+    @JsonIgnore
+    @ToString.Exclude
     private Set<Comic> comics;
 
     @ManyToMany(mappedBy = "series")

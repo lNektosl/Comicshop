@@ -16,7 +16,8 @@ import java.util.UUID;
 @Builder
 public class Order {
     @Id
-    private UUID uuid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(name = "address")
     private String address;
     @Column(name ="phone")

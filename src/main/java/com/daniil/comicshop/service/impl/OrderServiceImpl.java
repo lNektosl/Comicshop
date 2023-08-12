@@ -1,7 +1,5 @@
 package com.daniil.comicshop.service.impl;
 
-
-import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.Order;
 import com.daniil.comicshop.repository.OrderRepository;
 import com.daniil.comicshop.service.OrderService;
@@ -20,13 +18,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order add(Order order) {
-        order.setUuid(UUID.randomUUID());
         return repository.save(order);
     }
 
     @Override
-    public Optional<Order> getById(UUID uuid) {
-        return repository.findById(uuid);
+    public Optional<Order> getById(Integer id) {
+        return repository.findById(id);
     }
 
     @Override
@@ -36,15 +33,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order change(Order order) {
-        if (repository.findById(order.getUuid()).isPresent()){
+        if (repository.findById(order.getId()).isPresent()){
             return repository.save(order);}
         throw new NoSuchElementException();
     }
 
     @Override
-    public Optional<Order> delete(UUID uuid) {
-        Optional<Order> order = repository.findById(uuid);
-        repository.deleteById(uuid);
+    public Optional<Order> delete(Integer id) {
+        Optional<Order> order = repository.findById(id);
+        repository.deleteById(id);
         return order;
     }
 }

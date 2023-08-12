@@ -2,30 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Generic comic shop name</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
 </head>
 <body>
-<header class="header">
-    <div class="header-img text-center"><p class="text-white"> Header img placeholder</p></div>
-    <div class="under-header-menu">
-        <div class="left-nav-btn">
-            <p>Личный кабинет</p>
-            <p>О нас</p>
-            <p>Корзина</p>
+
+<div class="container container-fluid" style="">
+    <header class="line-header">
+        <div class="text-center"><p class="text-white"> Header img placeholder</p></div>
+    </header>
+    <div class="ILMenu">
+        <nav>
+            <ul class="header-nav-btn">
+                <a>Кабинет</a>
+                <a>О нас</a>
+                <a>Корзина</a>
+                <a th:href="@{/admin}">Админ меню</a>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+<div>
+    <div class="container main-container text-center bg-dark">
+        <div class="sidenav mt-1" style="background-color: blueviolet">
+            <a>Топ 10 комиксов</a>
+            <a>Новый пступления</a>
+            <a>Авторы</a>
+            <a>Художники</a>
+        </div>
+        <div class="main-content" style="background-color: red">
+            <ul>
+                <li class="col-3 list-inline-item" th:each="comic:${comics}">
+                    <img class="table-img" th:src="@{${comic.imagePath}}">
+                    <br> [[${comic.name}]]
+                </li>
+            </ul>
         </div>
     </div>
-</header>
-<div class="container container-fluid text-center">
-    <h1>Comics</h1>
-    <ul>
-        <li class="list-inline-item col-3" th:each="comic:${comics}">
-            <img class="table-img img-thumbnail" th:src="@{${comic.imagePath}}">
-            <br> [[${comic.name}]]
-        </li>
-    </ul>
+    <   footer class="footer text-center"> здесь Footer</footer>
 </div>
-<footer class="footer"> здесь Footer</footer>
 </body>
 </html>

@@ -85,14 +85,3 @@ databaseChangeLog:
             sql: >
               ALTER TABLE comics
               ALTER COLUMN image SET DEFAULT '/images/1.jpg'
-
-  - changeSet:
-      id: 10
-      author: Daniil
-      changes:
-        - sql:
-           dbms: postgresql
-           sql: >
-             ALTER TABLE clients
-             ADD COLUMN phone varchar,
-             ADD COLUMN address varchar

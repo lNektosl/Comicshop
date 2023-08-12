@@ -44,7 +44,7 @@ public class Comic {
     @PrePersist
     public void defaultImgPath(){
         if(this.imagePath==null||this.imagePath.isEmpty())
-            this.imagePath = "src/main/resources/static/images/1.jpg";
+            this.imagePath = "/images/1.jpg";
     }
     @Column(name = "description")
     private String description;

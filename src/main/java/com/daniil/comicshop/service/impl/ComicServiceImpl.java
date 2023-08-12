@@ -41,8 +41,28 @@ public class ComicServiceImpl implements ComicService {
     }
 
     @Override
-    public Comic add(Comic comic) {
-        return comicRepository.save(comic);
+    public Comic add(MultipartFile img,Comic comic) {
+        comic = comicRepository.save(comic);
+        if(img != null && !img.isEmpty()){
+            try {
+                String name = comic.getName().replace(" ","_");
+                String fPath = "src/main/resources/static/images/" + name;
+                String relPath = "/images/" + name;
+                Files.createDirectories(Paths.get(fPath));
+
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(img.getBytes());
+                BufferedImage bufferedImage = ImageIO.read(byteArrayInputStream);
+
+                ImageIO.write(bufferedImage, "jpg", new File(fPath + "/"
+                        + name + ".jpg"));
+
+                comic.setImagePath(relPath + "/" + name + ".jpg");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return comicRepository.save(comic);
+        }
+        return comic;
     }
 
     @Override

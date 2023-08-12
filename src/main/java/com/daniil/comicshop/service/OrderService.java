@@ -8,8 +8,8 @@ import java.util.UUID;
 
 public interface OrderService {
     Order add(Order order);
-    Optional<Order> getById(UUID uuid);
+    Optional<Order> getById(Integer id);
     List<Order> getAll();
     Order change(Order order);
-    Optional<Order> delete(UUID uuid);
+    Optional<Order> delete(Integer id);
 }
