@@ -29,11 +29,6 @@ import java.util.Optional;
 public class ComicServiceImpl implements ComicService {
 
     private final ComicRepository comicRepository;
-    private final SeriesRepository seriesRepository;
-    private final ComicMapper comicMapper;
-    private final PublisherRepository publisherRepository;
-    private final AuthorRepository authorRepository;
-    private final ArtistRepository artistRepository;
 
     @Override
     public Optional<Comic> getById(int id) {
