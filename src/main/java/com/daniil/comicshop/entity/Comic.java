@@ -53,10 +53,12 @@ public class Comic {
     private int amount;
 
     @ManyToMany(mappedBy = "comics")
+    @Cascade(CascadeType.MERGE)
     private List<Artist> artists;
 
     @ManyToMany(mappedBy = "comics")
     @JsonIgnore
+    @Cascade(CascadeType.MERGE)
     private List<Author> authors;
 
     @ManyToOne

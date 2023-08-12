@@ -44,6 +44,7 @@ public class Author {
             inverseJoinColumns = {@JoinColumn(name = "comic_id")})
     @JsonIgnore
     @ToString.Exclude
+    @Cascade(CascadeType.ALL)
     private Set<Comic> comics;
 
     @ManyToMany(mappedBy = "authors")

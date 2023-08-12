@@ -147,3 +147,11 @@ textarea {
     color: #2196F3;
     display: block;
 }
+.comic-image{
+    margin-top: 15px;
+
+}
+.comic-image img{
+    width: 300px;
+    height: 400px;
+}

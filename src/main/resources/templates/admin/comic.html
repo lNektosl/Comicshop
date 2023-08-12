@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comic</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <h1 class="text-center mt-1">[[${comic.name}]]</h1>
+    <div class="container main-container">
+        <div class="container comic-image">
+            <img th:src="@{${comic.imagePath}}">
+            <br> [[${comic.description}]]
+        </div>
+
+        <p>[[${comic.authors}]]</p>
+    </div>
+    <a class="btn btn-danger" th:href="@{delete}"></a>
+</div>
+</body>
+</html>

@@ -11,7 +11,9 @@
 <p th:if="${newComic != null}" class="alert alert-success">
     Добавлен новый комикс [[${newComic.name}]]
 </p>
-
+<p th:if="${deletedComics != null}" class="alert alert-danger">
+    Комикс был удален [[${deletedComics.name}]]
+</p>
 <div class="container main-content">
     <h1 class="text-center" style="margin:15px 0 15px ">Комиксы</h1>
     <div class="ILMenu">
@@ -20,7 +22,7 @@
     </div>
     <ul>
         <li class="list-inline-item" th:each="comic:${comics}">
-            <a th:href="@{/}">
+            <a th:href="@{|comic/${comic.id}/change|}">
                 <img class="table-img" th:src="@{${comic.imagePath}}">
                 <br> [[${comic.name}]]
             </a>

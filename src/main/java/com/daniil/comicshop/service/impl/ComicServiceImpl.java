@@ -37,6 +37,7 @@ public class ComicServiceImpl implements ComicService {
 
     @Override
     public Comic add(MultipartFile img,Comic comic) {
+        System.out.println(comic.getArtists());
         comic = comicRepository.save(comic);
         if(img != null && !img.isEmpty()){
             try {
