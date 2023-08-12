@@ -19,7 +19,7 @@
         <input type="number" th:field="*{amount}" id="amount">
 
         <label for="price">Цена</label>
-        <input type="number" th:field="*{price}" id="price">
+        <input type="number" step="0.01" th:field="*{price}" id="price">
 
         <label for="artist">Художники</label>
         <select th:field="*{artists}" multiple="multiple" id="artist">

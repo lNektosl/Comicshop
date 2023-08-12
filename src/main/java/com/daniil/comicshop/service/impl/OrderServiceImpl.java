@@ -6,6 +6,7 @@ import com.daniil.comicshop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -18,6 +19,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order add(Order order) {
+        order.setDate(LocalDate.now());
         return repository.save(order);
     }
 

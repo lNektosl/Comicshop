@@ -1,4 +1,4 @@
-package com.daniil.comicshop.controler;
+package com.daniil.comicshop.controler.admin;
 
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.service.*;
@@ -12,15 +12,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/comic")
 @RequiredArgsConstructor
-public class AdminController {
+public class AdminComicController {
     private final ComicService comicService;
     private final ArtistService artistService;
     private final AuthorService authorService;
     private final PublisherService publisherService;
     private final SeriesService seriesService;
-    @GetMapping("comic")
+    @GetMapping("")
     private String comic(Model model){
         model.addAttribute("comics",comicService.getAll());
         return "admin/comic-page";

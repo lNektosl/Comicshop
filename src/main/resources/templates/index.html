@@ -25,18 +25,20 @@
 
 </div>
 <div>
-    <div class="container main-container text-center bg-dark">
-        <div class="sidenav mt-1" style="background-color: blueviolet">
+    <div class="container main-container">
+        <div class="sidenav col-2 mt-1">
             <a>Топ 10 комиксов</a>
             <a>Новый пступления</a>
             <a>Авторы</a>
             <a>Художники</a>
         </div>
-        <div class="main-content" style="background-color: red">
+        <div class="main-content">
             <ul>
-                <li class="col-3 list-inline-item" th:each="comic:${comics}">
-                    <img class="table-img" th:src="@{${comic.imagePath}}">
-                    <br> [[${comic.name}]]
+                <li class="col-3 list-inline-item text-center" th:each="comic:${comics}">
+                    <a class="comic-item">
+                        <img class="table-img" th:src="@{${comic.imagePath}}">
+                        <br> [[${comic.name}]]
+                    </a>
                 </li>
             </ul>
         </div>

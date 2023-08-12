@@ -35,6 +35,14 @@
 /*    color: #cc5747;*/
 /*}*/
 
+.comic-item {
+    text-align: center;
+    color: inherit;
+    text-decoration: none;
+    font-weight: 400;
+    display: block;
+}
+
 .form-container {
     max-width: 600px;
     margin: 0 auto;
@@ -113,6 +121,7 @@ textarea {
 .main-content {
     flex-grow: 4;
     padding-top: 15px;
+    flex-wrap: wrap;
 
 }
 

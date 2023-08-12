@@ -85,3 +85,22 @@ databaseChangeLog:
             sql: >
               ALTER TABLE comics
               ALTER COLUMN image SET DEFAULT '/images/1.jpg'
+  - changeSet:
+      id: 10
+      author: Daniil
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: >
+              ALTER TABLE orders
+              ADD COLUMN date date;
+  - changeSet:
+      id: 11
+      author: Daniil
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: >
+              ALTER TABLE comics
+              ALTER COLUMN price
+              SET DATA TYPE numeric(10, 2)

@@ -20,7 +20,7 @@
     </div>
     <ul>
         <li class="list-inline-item" th:each="comic:${comics}">
-            <a>
+            <a th:href="@{/}">
                 <img class="table-img" th:src="@{${comic.imagePath}}">
                 <br> [[${comic.name}]]
             </a>

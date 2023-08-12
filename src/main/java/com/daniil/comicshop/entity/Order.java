@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 @Data
@@ -33,5 +34,7 @@ public class Order {
             inverseJoinColumns = {@JoinColumn (name = "comic_id")}
     )
     private List<Comic> comics;
+    @Column(name = "date")
+    private LocalDate date;
 
 }
