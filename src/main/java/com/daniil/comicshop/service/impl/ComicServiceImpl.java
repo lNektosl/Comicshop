@@ -2,8 +2,6 @@ package com.daniil.comicshop.service.impl;
 
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.service.ComicService;
-import com.daniil.comicshop.repository.ArtistRepository;
-import com.daniil.comicshop.repository.AuthorRepository;
 import com.daniil.comicshop.repository.ComicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

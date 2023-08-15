@@ -4,7 +4,6 @@ import com.daniil.comicshop.entity.Order;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface OrderService {
     Order add(Order order);

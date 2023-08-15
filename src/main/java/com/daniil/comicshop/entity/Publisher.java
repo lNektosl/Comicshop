@@ -1,14 +1,9 @@
 package com.daniil.comicshop.entity;
 
-import com.daniil.comicshop.entity.Comic;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
-import java.util.List;
 import java.util.Set;
 
 

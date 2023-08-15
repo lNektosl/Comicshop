@@ -9,29 +9,13 @@
 <body>
 
 <div class="container container-fluid">
-    <header class="line-header">
-        <div class="text-center"><p class="text-white"> Header img placeholder</p></div>
-    </header>
-    <div class="ILMenu">
-        <nav>
-            <ul class="header-nav-btn">
-                <a>Кабинет</a>
-                <a>О нас</a>
-                <a>Корзина</a>
-                <a th:href="@{/admin}">Админ меню</a>
-            </ul>
-        </nav>
-    </div>
+    <div th:replace="fragments/header-fragment :: header"></div>
+    <div th:replace="fragments/header-fragment :: navMenu"></div>
 
 </div>
 <div>
     <div class="container main-container">
-        <div class="sidenav col-2 mt-1">
-            <a>Топ 10 комиксов</a>
-            <a>Новый пступления</a>
-            <a>Авторы</a>
-            <a>Художники</a>
-        </div>
+        <div th:replace="fragments/side-nav-fragment :: sideNav"></div>
         <div class="main-content">
             <ul>
                 <li class="col-3 list-inline-item text-center" th:each="comic:${comics}">

@@ -83,6 +83,7 @@ textarea {
     display: flex;
     justify-content: space-between;
     margin-inline: 200px;
+    list-style-type: none;
 }
 
 .ILMenu a {

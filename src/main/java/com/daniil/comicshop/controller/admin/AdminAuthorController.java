@@ -1,4 +1,4 @@
-package com.daniil.comicshop.controler.admin;
+package com.daniil.comicshop.controller.admin;
 
 import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.service.AuthorService;

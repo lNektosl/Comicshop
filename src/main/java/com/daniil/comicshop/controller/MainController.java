@@ -1,6 +1,5 @@
-package com.daniil.comicshop.controler;
+package com.daniil.comicshop.controller;
 
-import com.daniil.comicshop.repository.ComicRepository;
 import com.daniil.comicshop.service.ComicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

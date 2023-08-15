@@ -1,4 +1,4 @@
-package com.daniil.comicshop.controler;
+package com.daniil.comicshop.controller;
 
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.repository.AuthorRepository;
@@ -9,15 +9,11 @@ import com.daniil.comicshop.repository.SeriesRepository;
 import com.daniil.comicshop.service.ClientService;
 import com.daniil.comicshop.service.ComicService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

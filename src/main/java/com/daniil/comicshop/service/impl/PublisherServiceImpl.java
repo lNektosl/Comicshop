@@ -1,7 +1,6 @@
 package com.daniil.comicshop.service.impl;
 
 import com.daniil.comicshop.entity.Publisher;
-import com.daniil.comicshop.repository.ComicRepository;
 import com.daniil.comicshop.repository.PublisherRepository;
 import com.daniil.comicshop.service.PublisherService;
 import lombok.RequiredArgsConstructor;
