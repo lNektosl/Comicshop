@@ -1,8 +1,5 @@
 package com.daniil.comicshop.service.impl;
 
-import com.daniil.comicshop.dto.request.ComicIdsRequest;
-import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.entity.Publisher;
 import com.daniil.comicshop.entity.Series;
 import com.daniil.comicshop.repository.ComicRepository;
 import com.daniil.comicshop.repository.SeriesRepository;
@@ -17,7 +14,6 @@ import java.util.*;
 public class SeriesServiceImpl implements SeriesService {
 
     private final SeriesRepository seriesRepository;
-    private final ComicRepository comicRepository;
 
     @Override
     public Series add(Series series) {
@@ -35,18 +31,13 @@ public class SeriesServiceImpl implements SeriesService {
     }
 
     @Override
-    public Series changeName(Series series) {
-        if (seriesRepository.findById(series.getId()).isPresent()){
+    public Series change(Series series) {
+        Optional<Series> oldSeries = seriesRepository.findById(series.getId());
+        if (oldSeries.isPresent()){
+            oldSeries.get().getComics().removeAll(series.getComics());
+            oldSeries.get().getComics().forEach(series::removeComic);
             return seriesRepository.save(series);}
         throw new NoSuchElementException();
-    }
-
-    @Override
-    public Series changeComics(int id, ComicIdsRequest comicIds) {
-        Series series = getById(id).get();
-        Set<Comic> comics = new HashSet<>(comicRepository.findAllById(comicIds.comicsIds()));
-        series.setComics(comics);
-        return seriesRepository.save(series);
     }
 
     @Override

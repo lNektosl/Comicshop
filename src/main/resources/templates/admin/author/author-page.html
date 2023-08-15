@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<p th:if="${newAuthor != null}" class="alert alert-success">
+    Добавлен новый автор [[${newAuthor.name}]]
+</p>
+<p th:if="${deletedAuthor != null}" class="alert alert-danger">
+    Автор был удален [[${deletedAuthor.name}]]
+</p>
+<p th:if="${updatedAuthor != null}" class="alert alert-info">
+    Автор был обновлен [[${updatedAuthor.name}]]
+</p>
+<div class="container container-fluid">
+    <h1 class="text-center" style="margin:15px 0 15px ">Писатели</h1>
+    <div class="ILMenu">
+        <a th:href="@{author/add}">Добавить</a>
+        <a th:href="@{/admin}">Назад</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="author:${authors}">
+            <td th:text="${author.id}"></td>
+            <td><a th:href="@{'author/' + ${author.id}}">[[${author.name}]]</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

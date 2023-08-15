@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Publishers</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<p th:if="${newPublisher != null}" class="alert alert-success">
+    Добавлен новый издатель [[${newPublisher.name}]]
+</p>
+<p th:if="${deletedPublisher != null}" class="alert alert-danger">
+    Издатель был удален [[${deletedPublisher.name}]]
+</p>
+<p th:if="${updatedPublisher != null}" class="alert alert-info">
+    Издатель был обновлен [[${updatedPublisher.name}]]
+</p>
+<div class="container container-fluid">
+    <h1 class="text-center" style="margin:15px 0 15px ">Издатели</h1>
+    <div class="ILMenu">
+        <a th:href="@{publisher/add}">Добавить</a>
+        <a th:href="@{/admin}">Назад</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="publisher:${publishers}">
+            <td th:text="${publisher.id}"></td>
+            <td><a th:href="@{'publisher/' + ${publisher.id}}">[[${publisher.name}]]</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

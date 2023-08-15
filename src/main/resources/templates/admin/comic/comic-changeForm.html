@@ -42,15 +42,28 @@
 
         <label for="series">Серия</label>
         <select th:field="*{series}" id="series">
-            <option th:each="s:${series}" th:value="${series.id}" th:text="${s.name}"
+            <option value=""></option>
+            <option th:each="s:${series}" th:value="${s.id}" th:text="${s.name}"
                     th:selected="${comic.series != null and comic.series.id == s.id}"></option>
         </select>
         <label for="description">Описание</label>
         <textarea rows="5" id="description" th:field="*{description}" th:text="${comic.description}"></textarea>
 
         <button class="btn btn-success">Сохранить</button>
-        <a th:src="@{/admin}" class="btn btn-danger">Отменить</a>
+        <a th:href="@{/admin}" class="btn btn-danger">Отменить</a>
     </form>
 </div>
+<script>
+    var selectElement = document.querySelectorAll('select[multiple]');
+    selectElement.forEach(function (selectElement) {
+        selectElement.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            var option = e.target;
+            if (option.tagName === 'OPTION') {
+                option.selected = !option.selected;
+            }
+        });
+    });
+</script>
 </body>
 </html>

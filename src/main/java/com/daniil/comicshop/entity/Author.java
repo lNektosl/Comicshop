@@ -37,9 +37,12 @@ public class Author {
     @Column(name = "author_name")
     private String name;
 
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany
     @JsonIgnore
     @ToString.Exclude
+    @JoinTable(name = "author_comic",
+            joinColumns = {@JoinColumn(name = "author_id")},
+            inverseJoinColumns = {@JoinColumn(name = "comic_id")})
     @Cascade(CascadeType.ALL)
     private Set<Comic> comics;
 

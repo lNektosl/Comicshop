@@ -38,7 +38,12 @@ public class Artist {
     @Column(name = "artist_name")
     private String name;
 
-    @ManyToMany(mappedBy = "artists")
+    @ManyToMany
+    @JoinTable(
+            name = "artist_comic",
+            joinColumns = {@JoinColumn(name = "artist_id")},
+            inverseJoinColumns = {@JoinColumn(name = "comic_id")}
+    )
     @JsonIgnore
     @ToString.Exclude
     @Cascade(CascadeType.ALL)

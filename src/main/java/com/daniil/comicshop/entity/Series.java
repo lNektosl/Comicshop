@@ -1,19 +1,13 @@
 package com.daniil.comicshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 import java.util.Set;
@@ -33,7 +27,7 @@ public class Series {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "series")
+    @OneToMany(mappedBy = "series", cascade = CascadeType.ALL, orphanRemoval = false)
     @JsonIgnore
     @ToString.Exclude
     private Set<Comic> comics;
@@ -42,4 +36,9 @@ public class Series {
     @JsonIgnore
     @ToString.Exclude
     private List<Client> clients;
+
+    public void removeComic(Comic comic) {
+        comics.remove(comic);
+        comic.setSeries(null);
+    }
 }

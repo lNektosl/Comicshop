@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Author</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container text-center container-fluid">
+    <h2>Автор</h2>
+    <div class="main-container">
+        <div class="sidenav col-2 mt-1 bg-white">
+            <p>Id - [[${author.id}]]</p>
+            <p>Имя - [[${author.name}]]</p>
+        </div>
+        <div class="main-content">
+            <h2> Книги автора</h2>
+            <ul class="no-text-center">
+                <li class="col-3 list-inline-item text-center mt-2" th:each="comic:${author.comics}">
+                    <a th:href="@{'/admin/comic/' + ${comic.id}}" class="comic-item">
+                        <img class="table-img" th:src="@{${comic.imagePath}}">
+                        <br> [[${comic.name}]]
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <a class="btn btn-success" th:href="@{${author.id} + '/change'}"> Изменить</a>
+        <a class="btn btn-info" th:href="@{/admin/author}">Назад</a>
+        <a class="btn btn-danger" th:href="@{${author.id} + '/delete'}"> Удалить</a>
+    </div>
+</div>
+</body>
+</html>

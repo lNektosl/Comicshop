@@ -68,7 +68,7 @@ public class AdminComicController {
             model.addAttribute("authors",authorService.getAll());
             model.addAttribute("artists", artistService.getAll());
             model.addAttribute("comic",comic.get());
-            return "admin/comic/admin-comic-changeForm";
+            return "admin/comic/comic-changeForm";
         }
         return "redirect:/admin/comic";
     }

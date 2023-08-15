@@ -1,6 +1,5 @@
 package com.daniil.comicshop.service;
 
-import com.daniil.comicshop.dto.request.ComicIdsRequest;
 import com.daniil.comicshop.entity.Author;
 
 import java.util.List;
@@ -10,8 +9,6 @@ public interface AuthorService {
     Author add(Author author);
     Optional<Author> getById(int id);
     List<Author> getAll();
-    Author changeName(Author author);
-    Author changeComics(int id, ComicIdsRequest comicIds);
-//    Optional<Author> removeComics(int uuid, ComicIdsRequest comicIds);
+    Author change(Author author);
     Optional<Author> delete(int id);
 }
