@@ -104,3 +104,12 @@ databaseChangeLog:
               ALTER TABLE comics
               ALTER COLUMN price
               SET DATA TYPE numeric(10, 2)
+  - changeSet:
+      id: 12
+      author: Daniil
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: >
+              ALTER TABLE comics
+              ADD COLUMN Adding_date date

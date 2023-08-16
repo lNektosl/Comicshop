@@ -13,9 +13,10 @@
     <div class="ILMenu" th:fragment="navMenu">
         <nav>
             <ul class="header-nav-btn">
+                <li><a th:href="@{/}">Главная</a></li>
                 <li><a>Кабинет</a></li>
                 <li><a>О нас</a></li>
-                <li><a>Корзина</a></li>
+                <li><a th:href="@{/order}">Корзина</a></li>
                 <li><a th:href="@{/admin}">Админ меню</a></li>
             </ul>
         </nav>

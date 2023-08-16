@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <div th:replace="~{fragments/header-fragment :: header}"></div>
+    <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+    <div class="main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
+        <div class="cart-container">
+            <div th:if="${order.comics}">
+                <div th:each="item: ${order.comics}" class="row">
+                    <table class="table table-borderless">
+                        <tbody>
+                        <tr>
+                            <td><img style="max-width: 50px;max-height: 125px" th:src="@{${item.comic.imagePath}}"></td>
+                            <td>[[${item.comic.name}]]</td>
+                            <td>[[${item.amount}]]</td>
+                            <td>[[${item.comic.price}]]</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div th:unless="${order.comics}">
+                <p>Корзина пуста</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

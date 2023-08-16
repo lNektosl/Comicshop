@@ -1,10 +1,8 @@
 package com.daniil.comicshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,14 +23,12 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "uuid")
+    @JsonIgnore
+    @ToString.Exclude
     private Client client;
 
-    @ManyToMany
-    @JoinTable( name = "cart_item",
-            joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = {@JoinColumn (name = "comic_id")}
-    )
-    private List<Comic> comics;
+    @OneToMany(mappedBy = "order")
+    private List<CartItem> comics;
     @Column(name = "date")
     private LocalDate date;
 

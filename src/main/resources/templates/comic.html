@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <div th:replace="~{fragments/header-fragment :: header}"></div>
+    <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+    <div class="container main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
+        <div class="main-content">
+            <h1 class="text-center mt-1">[[${comic?.name}]]</h1>
+            <div class="row">
+                <div class="col-md-3 comic-image">
+                    <img class="img-fluid" th:src="@{${comic.imagePath}}">
+                    <br> [[${comic.description}]]
+                </div>
+                <div class="col-md-7">
+
+                    <h3>Авторы</h3>
+                    <p th:each="author:${comic.authors}">[[${author.name}]]</p>
+                    <h3>Художники</h3>
+                    <p th:each="artist:${comic.artists}">[[${artist.name}]]</p>
+                </div>
+                <h4 th:if="${comic.series} != null">[[${comic.series}]]</h4>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4>[[${comic.publisher.name}]]</h4>
+                    <h4 style="margin-right: 140px;">Цена: [[${comic.price}]]</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-lg-5">
+        <div class="col text-center">
+            <form th:action="@{/order/add}" th:object="${item}" method="post">
+                <input type="hidden" th:value="${comic.id}" th:attr="name='comic'">
+                <label for="amount">Кол-во</label>
+                <input id="amount" type="number" th:value="1" th:attr="name='amount'" min="1" required style="max-width: 150px">
+                <button class="buy-btn buy-btn-2">Купить</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

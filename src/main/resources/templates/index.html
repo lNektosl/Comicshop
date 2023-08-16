@@ -9,22 +9,36 @@
 <body>
 
 <div class="container container-fluid">
-    <div th:replace="fragments/header-fragment :: header"></div>
-    <div th:replace="fragments/header-fragment :: navMenu"></div>
+    <div th:replace="~{fragments/header-fragment :: header}"></div>
+    <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
 
 </div>
 <div>
     <div class="container main-container">
-        <div th:replace="fragments/side-nav-fragment :: sideNav"></div>
+        <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
         <div class="main-content">
             <ul>
                 <li class="col-3 list-inline-item text-center" th:each="comic:${comics}">
-                    <a class="comic-item">
+                    <a class="comic-item" th:href="'comic/' + ${comic.id}">
                         <img class="table-img" th:src="@{${comic.imagePath}}">
                         <br> [[${comic.name}]]
                     </a>
                 </li>
             </ul>
+            <div class="pagination">
+                <ul class="list-inline-item">
+                    <li th:classappend="${currentPage == 0} ? disabled">
+                        <a th:href="@{/(pageNum=0)}">&laquo;</a>
+                    </li>
+                    <li th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}"
+                        th:classappend="${pageNumber == currentPage} ? active">
+                        <a th:href="@{/(pageNum=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+                    </li>
+                    <li th:classappend="${currentPage == totalPages - 1} ? disabled">
+                        <a th:href="@{/(pageNum=${totalPages - 1})}">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <footer class="footer text-center"> здесь Footer</footer>

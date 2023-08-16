@@ -1,6 +1,8 @@
 package com.daniil.comicshop.service;
 
 import com.daniil.comicshop.entity.Comic;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -12,6 +14,6 @@ public interface ComicService {
     Comic add(MultipartFile img,Comic comic);
     Optional<Comic> delete(int id);
     Comic change(MultipartFile img,Comic comic) throws IOException;
+    Page<Comic> getPage(Integer pageNum);
     List<Comic> getAll();
-
 }

@@ -1,5 +1,6 @@
 package com.daniil.comicshop.controller;
 
+import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.service.ComicService;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +22,11 @@ public class ComicController {
     public String info(@PathVariable Integer id, Model model){
         Optional<Comic> comic = comicService.getById(id);
         if (comic.isPresent()) {
-            model.addAttribute("comic", comic);
+            model.addAttribute("comic", comic.get());
+            model.addAttribute("item", new CartItem());
             return "comic";
         }
-        return "redirect: index";
+        return "redirect: /";
     }
 
 }

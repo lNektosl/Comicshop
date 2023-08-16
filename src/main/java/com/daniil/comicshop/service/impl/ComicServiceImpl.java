@@ -4,6 +4,8 @@ import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.service.ComicService;
 import com.daniil.comicshop.repository.ComicRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -32,6 +35,7 @@ public class ComicServiceImpl implements ComicService {
 
     @Override
     public Comic add(MultipartFile img, Comic comic) {
+        comic.setDate(LocalDate.now());
         comic = comicRepository.save(comic);
         if (img != null && !img.isEmpty()) {
             try {
@@ -66,11 +70,14 @@ public class ComicServiceImpl implements ComicService {
     }
 
     @Override
-    public List<Comic> getAll() {
-        return comicRepository.findAll();
+    public Page<Comic> getPage(Integer pageNum) {
+        return comicRepository.findAll(PageRequest.of(pageNum,9));
     }
 
-    private Comic changeImg(Comic comic, MultipartFile img) throws IOException {
+    public List<Comic> getAll(){return comicRepository.findAll();}
+
+
+    private void changeImg(Comic comic, MultipartFile img) throws IOException {
         String name = comic.getName().replace(" ", "_");
         String fPath = "src/main/resources/static/images/" + name;
         String relPath = "/images/" + name;
@@ -83,6 +90,5 @@ public class ComicServiceImpl implements ComicService {
                 + name + ".jpg"));
 
         comic.setImagePath(relPath + "/" + name + ".jpg");
-        return comic;
     }
 }

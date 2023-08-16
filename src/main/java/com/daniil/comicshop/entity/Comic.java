@@ -1,16 +1,6 @@
 package com.daniil.comicshop.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +9,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,8 +34,8 @@ public class Comic {
 
     @PrePersist
     public void defaultImgPath(){
-        if(this.imagePath==null||this.imagePath.isEmpty())
-            this.imagePath = "/images/1.jpg";
+        if(this.imagePath==null||this.imagePath.isEmpty()){
+            this.imagePath = "/images/1.jpg";}
     }
     @Column(name = "description")
     private String description;
@@ -52,7 +43,7 @@ public class Comic {
     @Column(name = "amount")
     private int amount;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "artist_comic",
             joinColumns = {@JoinColumn(name = "comic_id")},
@@ -60,7 +51,7 @@ public class Comic {
     )
     private List<Artist> artists;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "author_comic",
             joinColumns = {@JoinColumn(name = "comic_id")},
             inverseJoinColumns = {@JoinColumn(name = "author_id")})
@@ -77,6 +68,8 @@ public class Comic {
     @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "adding_date")
+    private LocalDate date;
 
     @Override
     public boolean equals(Object o) {
