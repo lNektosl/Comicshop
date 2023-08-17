@@ -15,7 +15,7 @@
         <div class="cart-container">
             <div th:if="${order.comics}">
                 <div th:each="item: ${order.comics}" class="row">
-                    <table class="table table-borderless">
+                    <table class="table table-borderless" style="max-height: 600px;">
                         <tbody>
                         <tr>
                             <td><img style="max-width: 50px;max-height: 125px" th:src="@{${item.comic.imagePath}}"></td>
@@ -26,6 +26,7 @@
                         </tbody>
                     </table>
                 </div>
+                <a th:href="@{/order/save}" class="buy-btn buy-btn-2">Оплатить</a>
             </div>
             <div th:unless="${order.comics}">
                 <p>Корзина пуста</p>

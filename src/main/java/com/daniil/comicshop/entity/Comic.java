@@ -23,7 +23,6 @@ public class Comic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Cascade(CascadeType.ALL)
     private int id;
 
     @Column(name = "comic_name")

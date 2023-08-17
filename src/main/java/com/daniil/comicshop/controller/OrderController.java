@@ -24,18 +24,31 @@ public class OrderController {
     public String getCurrentOrder(Model model, HttpSession session) {
         Order order = (Order) session.getAttribute("order");
         model.addAttribute("order", order);
-        return "order";
+        return "order/order";
     }
 
     @PostMapping("/add")
-    public String addItem(RedirectAttributes ra, CartItem cartItem, HttpSession session) {
+    public String addItem(CartItem cartItem, HttpSession session) {
         Order order = (Order) session.getAttribute("order");
         cartItem.setOrder(order);
         if (order.getComics() == null) {
             order.setComics(new ArrayList<>());
         }
-        order.getComics().add(cartItem);
+        order = orderService.addItem(order,cartItem);
         session.setAttribute("order", order);
         return "redirect:/order";
+    }
+    @GetMapping("/save")
+    public String saveOrder(HttpSession session,Model model){
+        Order order = (Order) session.getAttribute("order");
+        System.out.println(order.getComics());
+        model.addAttribute("order",order);
+        return "order/add-form";
+    }
+    @PostMapping("/save")
+    public String saveOrder(Order order,HttpSession session){
+        orderService.add(order,(Order) session.getAttribute("order"));
+        session.setAttribute("order",new Order());
+        return "redirect:/";
     }
 }

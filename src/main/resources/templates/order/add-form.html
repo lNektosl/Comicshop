@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <div th:replace="~{fragments/header-fragment :: header}"></div>
+    <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+    <div class="main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
+        <form th:action="@{save}" th:object="${order}" method="post">
+
+            <label for="address">Адрес</label>
+            <input type="text" th:field="*{address}" id="address" required>
+
+            <label for="phone">Номер телефона</label>
+            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" th:field="*{phone}" id="phone" required>
+
+            <button class="btn btn-success">Сохранить</button>
+            <a th:href="@{/}" class="btn btn-danger">Отменить</a>
+
+
+        </form>
+    </div>
+</div>
+>
+</body>
+</html>

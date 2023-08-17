@@ -3,6 +3,7 @@ package com.daniil.comicshop.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,9 +28,10 @@ public class Order {
     @ToString.Exclude
     private Client client;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<CartItem> comics;
     @Column(name = "date")
     private LocalDate date;
+
 
 }

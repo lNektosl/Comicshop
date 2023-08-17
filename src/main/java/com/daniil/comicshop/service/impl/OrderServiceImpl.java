@@ -1,5 +1,6 @@
 package com.daniil.comicshop.service.impl;
 
+import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.entity.Order;
 import com.daniil.comicshop.repository.OrderRepository;
 import com.daniil.comicshop.service.OrderService;
@@ -17,9 +18,11 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository repository;
 
     @Override
-    public Order add(Order order) {
-        order.setDate(LocalDate.now());
-        return repository.save(order);
+    public Order add(Order order, Order attribute) {
+        attribute.setDate(LocalDate.now());
+        attribute.setAddress(order.getAddress());
+        attribute.setPhone(order.getPhone());
+        return repository.save(attribute);
     }
 
     @Override
@@ -34,8 +37,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order change(Order order) {
-        if (repository.findById(order.getId()).isPresent()){
-            return repository.save(order);}
+        if (repository.findById(order.getId()).isPresent()) {
+            return repository.save(order);
+        }
         throw new NoSuchElementException();
     }
 
@@ -43,6 +47,17 @@ public class OrderServiceImpl implements OrderService {
     public Optional<Order> delete(Integer id) {
         Optional<Order> order = repository.findById(id);
         repository.deleteById(id);
+        return order;
+    }
+
+    @Override
+    public Order addItem(Order order, CartItem item) {
+        if (order.getComics().contains(item)) {
+            order.getComics().get(order.getComics().indexOf(item))
+                    .add(item.getAmount());
+        } else {
+            order.getComics().add(item);
+        }
         return order;
     }
 }
