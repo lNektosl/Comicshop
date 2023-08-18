@@ -1,10 +1,14 @@
 package com.daniil.comicshop.service.impl;
 
 import com.daniil.comicshop.entity.CartItem;
+import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.entity.Order;
+import com.daniil.comicshop.repository.ClientInfoRepository;
 import com.daniil.comicshop.repository.OrderRepository;
 import com.daniil.comicshop.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,13 +20,22 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository repository;
+    private final ClientInfoRepository infoRepository;
 
     @Override
-    public Order add(Order order, Order attribute) {
-        attribute.setDate(LocalDate.now());
-        attribute.setAddress(order.getAddress());
-        attribute.setPhone(order.getPhone());
-        return repository.save(attribute);
+    public Order add(ClientInfo info, Order order) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withIgnorePaths("id")
+                .withIgnorePaths("title")
+                .withIgnoreCase();
+        if (!infoRepository.exists(Example.of(info, matcher))) {
+            info = infoRepository.save(info);
+        } else {
+            info = infoRepository.findOne(Example.of(info, matcher)).orElseThrow();
+        }
+        order.setDate(LocalDate.now());
+        order.setInfo(info);
+        return repository.save(order);
     }
 
     @Override

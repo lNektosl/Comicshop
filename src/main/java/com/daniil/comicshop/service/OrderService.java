@@ -1,13 +1,14 @@
 package com.daniil.comicshop.service;
 
 import com.daniil.comicshop.entity.CartItem;
+import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.entity.Order;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface OrderService {
-    Order add(Order order, Order attribute);
+    Order add(ClientInfo info, Order order);
     Optional<Order> getById(Integer id);
     List<Order> getAll();
     Order change(Order order);

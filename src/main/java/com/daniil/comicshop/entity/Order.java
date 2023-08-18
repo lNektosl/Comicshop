@@ -17,10 +17,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "address")
-    private String address;
-    @Column(name ="phone")
-    private String phone;
 
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "uuid")
@@ -33,5 +29,9 @@ public class Order {
     @Column(name = "date")
     private LocalDate date;
 
-
+    @ManyToOne
+    @JoinColumn(name = "client_info_id",referencedColumnName = "id")
+    @JsonIgnore
+    @ToString.Exclude
+    private ClientInfo info;
 }

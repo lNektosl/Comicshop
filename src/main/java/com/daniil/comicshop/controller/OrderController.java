@@ -1,6 +1,7 @@
 package com.daniil.comicshop.controller;
 
 import com.daniil.comicshop.entity.CartItem;
+import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.entity.Order;
 import com.daniil.comicshop.service.OrderService;
 import jakarta.servlet.http.HttpSession;
@@ -10,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 
@@ -40,14 +40,13 @@ public class OrderController {
     }
     @GetMapping("/save")
     public String saveOrder(HttpSession session,Model model){
-        Order order = (Order) session.getAttribute("order");
-        System.out.println(order.getComics());
-        model.addAttribute("order",order);
+
+        model.addAttribute("info",new ClientInfo());
         return "order/add-form";
     }
     @PostMapping("/save")
-    public String saveOrder(Order order,HttpSession session){
-        orderService.add(order,(Order) session.getAttribute("order"));
+    public String saveOrder(ClientInfo info,HttpSession session){
+        orderService.add(info,(Order) session.getAttribute("order"));
         session.setAttribute("order",new Order());
         return "redirect:/";
     }

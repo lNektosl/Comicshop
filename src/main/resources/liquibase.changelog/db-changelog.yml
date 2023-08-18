@@ -113,3 +113,53 @@ databaseChangeLog:
             sql: >
               ALTER TABLE comics
               ADD COLUMN Adding_date date
+
+  - changeSet:
+      id: 13
+      author: Daniil
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: >
+              ALTER TABLE orders
+              DROP COLUMN phone,
+              DROP COLUMN address,
+              ADD COLUMN user_info_id integer references user_info(id);
+              ALTER TABLE clients
+              DROP COLUMN phone,
+              DROP COLUMN address,
+              ADD COLUMN user_info_id integer references user_info(id);
+  - changeSet:
+      id: 14
+      author: Daniil
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: >
+              ALTER TABLE orders
+                  DROP COLUMN user_info_id,
+                  ADD COLUMN client_info_id integer references user_info (id);
+              ALTER TABLE clients
+                  DROP COLUMN user_info_id,
+                  ADD COLUMN client_info_id integer references user_info (id);
+              ALTER TABLE user_info
+              RENAME TO client_info;
+
+  - changeSet:
+      id: 15
+      author: Daniil
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: >
+              ALTER TABLE client_info
+              ALTER COLUMN country set DATA TYPE varchar(255);
+  - changeSet:
+      id: 16
+      author: Daniil
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: >
+              ALTER TABLE client_info
+              ADD COLUMN email varchar(255);

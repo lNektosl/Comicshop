@@ -12,19 +12,44 @@
     <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
     <div class="main-container">
         <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
-        <form th:action="@{save}" th:object="${order}" method="post">
+        <div class="form-container">
+            <form th:action="@{save}" th:object="${info}" method="post">
 
-            <label for="address">Адрес</label>
-            <input type="text" th:field="*{address}" id="address" required>
+                <label for="title">Title:</label>
+                <select id="title" th:field="*{title}">
+                    <option th:each="t : ${T(com.daniil.comicshop.entity.ClientInfo.title).values()}"
+                            th:value="${t}" th:text="${t}"></option>
+                </select>
 
-            <label for="phone">Номер телефона</label>
-            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" th:field="*{phone}" id="phone" required>
+                <label for="name">Имя:</label>
+                <input type="text" id="name" th:field="*{name}">
 
-            <button class="btn btn-success">Сохранить</button>
-            <a th:href="@{/}" class="btn btn-danger">Отменить</a>
+                <label for="familyName">Фамилия:</label>
+                <input type="text" id="familyName" th:field="*{familyName}">
 
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" th:field="*{phone}">
 
-        </form>
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{email}">
+
+                <label for="address">Адрес:</label>
+                <input type="text" id="address" th:field="*{address}">
+
+                <label for="city">Город:</label>
+                <input type="text" id="city" th:field="*{city}">
+
+                <label for="postalCode">Почтовый индекс:</label>
+                <input type="text" id="postalCode" th:field="*{postalCode}">
+
+                <label for="county">Страна:</label>
+                <input type="text" id="county" th:field="*{county}">
+
+                <button class="btn btn-success">Сохранить</button>
+                <a th:href="@{/}" class="btn btn-danger">Отменить</a>
+
+            </form>
+        </div>
     </div>
 </div>
 >

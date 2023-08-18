@@ -26,10 +26,6 @@ public class Client {
     @Column(name = "h_password")
     @ToString.Exclude
     private String password;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "phone")
-    private String phone;
     @ManyToMany
     @JoinTable(
             name = "author_client",
@@ -56,4 +52,8 @@ public class Client {
 
     @OneToMany(mappedBy = "client")
     private List<Order>orders;
+
+    @OneToOne
+    @JoinColumn(name = "client_info_id",referencedColumnName = "id")
+    private ClientInfo info;
 }
