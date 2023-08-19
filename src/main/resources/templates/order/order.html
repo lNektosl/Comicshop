@@ -28,7 +28,7 @@
                 </div>
                 <a th:href="@{/order/save}" class="buy-btn buy-btn-2">Оплатить</a>
             </div>
-            <div th:unless="${order.comics}">
+            <div th:unless="${order.comics}" class="text-center">
                 <p>Корзина пуста</p>
             </div>
         </div>

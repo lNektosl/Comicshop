@@ -1,4 +1,4 @@
-//package com.daniil.comicshop.service;
-//
-//public interface CartItemService {
-//}
+package com.daniil.comicshop.service;
+
+public interface CartItemService {
+}

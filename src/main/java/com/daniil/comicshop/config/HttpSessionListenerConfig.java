@@ -1,4 +1,4 @@
-package com.daniil.comicshop.configue;
+package com.daniil.comicshop.config;
 
 import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.Order;
@@ -14,9 +14,7 @@ public class HttpSessionListenerConfig implements HttpSessionListener {
     public void sessionCreated(HttpSessionEvent se) {
         if(se.getSession().getAttribute("order") == null){
             se.getSession().setAttribute("order",new Order());
-            System.out.println("moi");
         }
-        System.out.println("hi");
     }
 
     @Override

@@ -34,12 +34,12 @@ public class OrderController {
         if (order.getComics() == null) {
             order.setComics(new ArrayList<>());
         }
-        order = orderService.addItem(order,cartItem);
+        order = orderService.addItem(order, cartItem);
         session.setAttribute("order", order);
         return "redirect:/order";
     }
     @GetMapping("/save")
-    public String saveOrder(HttpSession session,Model model){
+    public String saveOrder(Model model){
 
         model.addAttribute("info",new ClientInfo());
         return "order/add-form";

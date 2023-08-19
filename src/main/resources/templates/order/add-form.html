@@ -14,7 +14,6 @@
         <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
         <div class="form-container">
             <form th:action="@{save}" th:object="${info}" method="post">
-
                 <label for="title">Title:</label>
                 <select id="title" th:field="*{title}">
                     <option th:each="t : ${T(com.daniil.comicshop.entity.ClientInfo.title).values()}"

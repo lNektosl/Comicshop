@@ -16,7 +16,7 @@ public class MainController {
     private final ComicService comicService;
 
     @GetMapping("/")
-    public String getMainPage(Model model, HttpSession session, @RequestParam(required = false,defaultValue = "0") Integer pageNum) {
+    public String getMainPage(Model model, @RequestParam(defaultValue = "0") Integer pageNum) {
         Page<Comic> page = comicService.getPage(pageNum);
         model.addAttribute("comics",page.getContent());
         model.addAttribute("currentPage", page);

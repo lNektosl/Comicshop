@@ -9,12 +9,13 @@
 <body>
 
 <div class="container container-fluid">
-    <div th:replace="~{fragments/header-fragment :: header}"></div>
-    <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
-
-</div>
-<div>
-    <div class="container main-container">
+    <div>
+        <div th:replace="~{fragments/header-fragment :: header}"></div>
+        <div class="ILMenu flex-column">
+            <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+        </div>
+    </div>
+    <div class=" main-container">
         <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
         <div class="main-content">
             <ul>

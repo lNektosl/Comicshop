@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
 </head>
 <body>
-    <header class="line-header" th:fragment="header">
-        <div class="text-center"><p class="text-white"> Header img placeholder</p></div>
-    </header>
-    <div class="ILMenu" th:fragment="navMenu">
-        <nav>
-            <ul class="header-nav-btn">
-                <li><a th:href="@{/}">Главная</a></li>
-                <li><a>Кабинет</a></li>
-                <li><a>О нас</a></li>
-                <li><a th:href="@{/order}">Корзина</a></li>
-                <li><a th:href="@{/admin}">Админ меню</a></li>
-            </ul>
-        </nav>
-    </div>
+<header class="line-header" th:fragment="header">
+    <div class="text-center"><p class="text-white"> Header img placeholder</p></div>
+</header>
+<div class="ILMenu" th:fragment="navMenu">
+    <nav>
+        <ul>
+            <a th:href="@{/}">Главная</a>
+            <a>Кабинет</a>
+            <a>О нас</a>
+            <a th:href="@{/order}">Корзина</a>
+            <a th:href="@{/admin}">Админ меню</a>
+        </ul>
+    </nav>
+</div>
 </body>
 </html>
