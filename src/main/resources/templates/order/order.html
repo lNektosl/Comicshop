@@ -12,27 +12,92 @@
     <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
     <div class="main-container">
         <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
-        <div class="cart-container">
+        <div class="cart-container text-center">
             <div th:if="${order.comics}">
-                <div th:each="item: ${order.comics}" class="row">
+                <form id="cart-form">
                     <table class="table table-borderless" style="max-height: 600px;">
-                        <tbody>
-                        <tr>
+                        <tbody id="comic-info">
+                        <tr th:each="item, iStat: ${order.comics}">
                             <td><img style="max-width: 50px;max-height: 125px" th:src="@{${item.comic.imagePath}}"></td>
                             <td>[[${item.comic.name}]]</td>
-                            <td>[[${item.amount}]]</td>
-                            <td>[[${item.comic.price}]]</td>
+                            <td>
+                                <input type="number" name="items[${iStat.index}].amount" min="1" th:value="${item.amount}"  oninput="updateTotal()">
+                            </td>
+                            <td class="comic-price">[[${item.comic.price}]]</td>
+                            <td style="display: none" class="comic-id" th:text="${item.comic.id}"></td> <!-- Скрытый элемент -->
                         </tr>
                         </tbody>
                     </table>
-                </div>
-                <a th:href="@{/order/save}" class="buy-btn buy-btn-2">Оплатить</a>
+                </form>
+                <div id="total-container" class="total-container">Total: 0</div>
             </div>
-            <div th:unless="${order.comics}" class="text-center">
-                <p>Корзина пуста</p>
-            </div>
+            <button type="button" class="buy-btn buy-btn-2" style="margin-bottom: 10px" onclick="submitCart()">Оплатить</button>
         </div>
     </div>
 </div>
+<script>
+
+    function updateTotal() {
+        var form = document.getElementById("cart-form");
+        var rows = form.querySelectorAll("#comic-info tr");
+
+        var total = 0;
+
+        rows.forEach(function(row) {
+            var input = row.querySelector("input[type='number']");
+            var amount = parseInt(input.value);
+            console.log(amount)
+            var price = parseFloat(row.querySelector(".comic-price").textContent);
+            console.log(price)
+            total += amount * price;
+
+        });
+
+        document.getElementById("total-container").textContent = "Total: " + total.toFixed(2);
+    }
+
+    function submitCart() {
+        var form = document.getElementById("cart-form");
+        var rows = form.querySelectorAll("#comic-info tr");
+
+        var data = [];
+
+        rows.forEach(function(row) {
+            var comicIdElement = row.querySelector(".comic-id");
+            var comicId = parseInt(comicIdElement.textContent);
+            var input = row.querySelector("input[type='number']");
+            var amount = input.value;
+
+
+
+            var item = {
+                comicId: parseInt(comicId),
+                amount: parseInt(amount)
+            };
+
+            data.push(item);
+        });
+
+        fetch("/order/confirm", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(function(response) {
+                if (response.ok) {
+                    window.location.href = '/order/save';
+                } else {
+                }
+            })
+            .catch(function(error) {
+            });
+    }
+</script>
+
 </body>
+<script>
+    updateTotal();
+</script>
 </html>

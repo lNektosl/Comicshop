@@ -16,8 +16,8 @@
             <form th:action="@{save}" th:object="${info}" method="post">
                 <label for="title">Title:</label>
                 <select id="title" th:field="*{title}">
-                    <option th:each="t : ${T(com.daniil.comicshop.entity.ClientInfo.title).values()}"
-                            th:value="${t}" th:text="${t}"></option>
+                    <option value="MR">MR</option>
+                    <option value="MRS">MRS</option>
                 </select>
 
                 <label for="name">Имя:</label>
