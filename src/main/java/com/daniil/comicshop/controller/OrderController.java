@@ -3,7 +3,6 @@ package com.daniil.comicshop.controller;
 import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.dto.CartItemRequest;
 import com.daniil.comicshop.entity.ClientInfo;
-import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.entity.Order;
 import com.daniil.comicshop.service.OrderService;
 import jakarta.servlet.http.HttpSession;
@@ -11,10 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,5 +70,15 @@ public class OrderController {
         orderService.add(info, (Order) session.getAttribute("order"));
         session.setAttribute("order", new Order());
         return "redirect:/";
+    }
+
+    @DeleteMapping("/remove")
+    public ResponseEntity<String> delete(@RequestParam Integer comicId,HttpSession session){
+        Order order = (Order) session.getAttribute("order");
+        order.getComics().stream()
+                .filter(item -> item.getComic().getId() == comicId)
+                .findFirst()
+                .ifPresent(itemToRemove -> order.getComics().remove(itemToRemove));
+        return ResponseEntity.ok("Comic was removed");
     }
 }
