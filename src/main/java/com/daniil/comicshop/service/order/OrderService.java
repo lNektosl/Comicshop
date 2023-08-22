@@ -1,4 +1,4 @@
-package com.daniil.comicshop.service;
+package com.daniil.comicshop.service.order;
 
 import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.entity.ClientInfo;

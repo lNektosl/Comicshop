@@ -2,7 +2,7 @@ package com.daniil.comicshop.controller;
 
 import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.service.ComicService;
+import com.daniil.comicshop.service.comic.ComicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

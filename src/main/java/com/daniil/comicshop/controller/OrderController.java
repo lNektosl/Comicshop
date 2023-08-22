@@ -4,7 +4,7 @@ import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.dto.CartItemRequest;
 import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.entity.Order;
-import com.daniil.comicshop.service.OrderService;
+import com.daniil.comicshop.service.order.OrderService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +39,7 @@ public class OrderController {
         cartItem.setOrder(order);
         if (order.getComics() == null) {
             order.setComics(new ArrayList<>());
+            System.out.println("cart created");
         }
         order = orderService.addItem(order, cartItem);
         session.setAttribute("order", order);
@@ -67,8 +68,10 @@ public class OrderController {
 
     @PostMapping("/save")
     public String saveOrder(ClientInfo info, HttpSession session) {
-        orderService.add(info, (Order) session.getAttribute("order"));
-        session.setAttribute("order", new Order());
+        Order order = (Order) session.getAttribute("order");
+        orderService.add(info, order);
+        order.getComics().clear();
+        session.setAttribute("order",order);
         return "redirect:/";
     }
 

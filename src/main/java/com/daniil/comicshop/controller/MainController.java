@@ -1,8 +1,7 @@
 package com.daniil.comicshop.controller;
 
 import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.service.ComicService;
-import jakarta.servlet.http.HttpSession;
+import com.daniil.comicshop.service.comic.ComicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

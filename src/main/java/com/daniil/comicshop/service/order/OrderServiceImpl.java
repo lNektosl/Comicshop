@@ -1,11 +1,11 @@
-package com.daniil.comicshop.service.impl;
+package com.daniil.comicshop.service.order;
 
 import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.entity.Order;
 import com.daniil.comicshop.repository.ClientInfoRepository;
 import com.daniil.comicshop.repository.OrderRepository;
-import com.daniil.comicshop.service.OrderService;
+import com.daniil.comicshop.service.order.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;

@@ -1,4 +1,4 @@
-package com.daniil.comicshop.service;
+package com.daniil.comicshop.service.publisher;
 
 import com.daniil.comicshop.entity.Publisher;
 

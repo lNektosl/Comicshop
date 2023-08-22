@@ -1,7 +1,7 @@
-package com.daniil.comicshop.service.impl;
+package com.daniil.comicshop.service.comic;
 
 import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.service.ComicService;
+import com.daniil.comicshop.service.comic.ComicService;
 import com.daniil.comicshop.repository.ComicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

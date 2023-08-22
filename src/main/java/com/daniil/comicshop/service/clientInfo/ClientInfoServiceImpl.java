@@ -1,8 +1,8 @@
-package com.daniil.comicshop.service.impl;
+package com.daniil.comicshop.service.clientInfo;
 
 import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.repository.ClientInfoRepository;
-import com.daniil.comicshop.service.ClientInfoService;
+import com.daniil.comicshop.service.clientInfo.ClientInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

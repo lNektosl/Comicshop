@@ -1,11 +1,11 @@
-package com.daniil.comicshop.service.impl;
+package com.daniil.comicshop.service.client;
 
 import com.daniil.comicshop.entity.Artist;
 import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.Series;
 import com.daniil.comicshop.repository.ClientRepository;
-import com.daniil.comicshop.service.ClientService;
+import com.daniil.comicshop.service.client.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;

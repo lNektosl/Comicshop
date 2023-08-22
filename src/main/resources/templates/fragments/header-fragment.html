@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -12,13 +13,12 @@
 </header>
 <div class="ILMenu" th:fragment="navMenu">
     <nav>
-        <ul>
-            <a th:href="@{/}">Главная</a>
-            <a>Кабинет</a>
-            <a>О нас</a>
-            <a th:href="@{/order}">Корзина</a>
-            <a th:href="@{/admin}">Админ меню</a>
-        </ul>
+        <a th:href="@{/}">Главная</a>
+        <a>Кабинет</a>
+        <a>О нас</a>
+        <a th:href="@{/order}">Корзина</a>
+        <a th:href="@{/admin}">Админ меню</a>
+        <a th:href="@{/}" sec:authorize="isAuthenticated()" >Выход</a>
     </nav>
 </div>
 </body>

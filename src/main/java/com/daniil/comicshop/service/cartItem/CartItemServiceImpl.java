@@ -1,6 +1,6 @@
-package com.daniil.comicshop.service.impl;
+package com.daniil.comicshop.service.cartItem;
 
-import com.daniil.comicshop.service.CartItemService;
+import com.daniil.comicshop.service.cartItem.CartItemService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

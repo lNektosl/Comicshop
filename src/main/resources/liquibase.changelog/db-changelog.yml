@@ -163,3 +163,13 @@ databaseChangeLog:
             sql: >
               ALTER TABLE client_info
               ADD COLUMN email varchar(255);
+
+  - changeSet:
+      id: 17
+      author: Daniil
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: >
+              ALTER TABLE clients
+              ADD COLUMN role varchar(10) default USER

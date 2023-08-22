@@ -1,4 +1,4 @@
-package com.daniil.comicshop.service;
+package com.daniil.comicshop.service.comic;
 
 import com.daniil.comicshop.entity.Comic;
 import org.springframework.data.domain.Page;
