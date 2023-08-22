@@ -19,13 +19,16 @@ import java.util.UUID;
 public class Client {
     @Id
     private UUID uuid;
-    @Column(name = "client_name")
-    private String name;
-    @Column(name = "email")
+    @Column(name = "login", nullable = false)
+    private String login;
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "h_password")
+    @Column(name = "h_password", nullable = false)
     @ToString.Exclude
     private String password;
+    @Column(name = "role")
+    private String role;
+
     @ManyToMany
     @JoinTable(
             name = "author_client",
@@ -51,9 +54,16 @@ public class Client {
     private List<Series> series;
 
     @OneToMany(mappedBy = "client")
-    private List<Order>orders;
+    private List<Order> orders;
 
     @OneToOne
-    @JoinColumn(name = "client_info_id",referencedColumnName = "id")
+    @JoinColumn(name = "client_info_id", referencedColumnName = "id")
     private ClientInfo info;
+
+    @PrePersist
+    public void defaultRole() {
+        if (this.role == null || this.role.isEmpty()) {
+            this.role = "USER";
+        }
+    }
 }

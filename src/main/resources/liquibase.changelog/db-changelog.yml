@@ -173,3 +173,14 @@ databaseChangeLog:
             sql: >
               ALTER TABLE clients
               ADD COLUMN role varchar(10) default USER
+
+  - changeSet:
+      id: 18
+      author: Daniil
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: >
+              ALTER TABLE clients
+              RENAME COLUMN client_name
+              TO login
