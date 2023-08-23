@@ -19,7 +19,7 @@
         <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
         <div class="main-content">
             <ul>
-                <li class="col-3 list-inline-item text-center" th:each="comic:${comics}">
+                <li class="col-md-3 list-inline-item text-center" th:each="comic:${comics}">
                     <a class="comic-item" th:href="'comic/' + ${comic.id}">
                         <img class="table-img" th:src="@{${comic.imagePath}}">
                         <br> [[${comic.name}]]

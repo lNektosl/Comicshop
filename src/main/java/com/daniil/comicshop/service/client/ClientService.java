@@ -12,6 +12,8 @@ import java.util.UUID;
 
 public interface ClientService {
     Optional<Client> getById(UUID id);
+    Optional<Client> getByLogin(String login);
+    Boolean checkCreds(Client client);
     List<Client> getAll();
     Client add(Client client);
     Client change(Client client);

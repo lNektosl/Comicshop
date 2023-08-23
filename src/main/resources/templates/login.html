@@ -18,7 +18,7 @@
         <div class="main-content">
 
             <div class="form-container">
-                <h1>Авторизация пользователя</h1>
+                <h1>Авторизация</h1>
                 <form th:action="@{/login}" method="post">
 
                     <label for="name">Имя</label>
@@ -30,7 +30,7 @@
                     <button class="login-btn">Войти</button>
                     <div class="flex" style="display: flex; justify-content: space-between; align-items: center;">
                         <a th:href="@{/}" style="text-decoration: none">Отменить</a>
-                        <a th:href="@{/}" style="text-decoration: none">Регистрация</a>
+                        <a th:href="@{/register}" style="text-decoration: none">Регистрация</a>
                     </div>
                 </form>
             </div>

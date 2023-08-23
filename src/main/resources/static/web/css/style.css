@@ -153,8 +153,8 @@ textarea {
     margin-top: 15px;
 }
 
-ul.no-text-center,
-ul.no-text-center li {
+.no-text-center,
+.no-text-center li {
     text-align: left !important;
 }
 
@@ -247,3 +247,5 @@ ul.no-text-center li {
     text-align: center;
     color: white;
 }
+
+

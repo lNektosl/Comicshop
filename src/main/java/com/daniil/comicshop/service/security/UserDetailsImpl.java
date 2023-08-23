@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.UUID;
 
 @Service
 @Getter
@@ -22,6 +23,8 @@ public class UserDetailsImpl implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.<GrantedAuthority>singletonList(new SimpleGrantedAuthority("ROLE_"+client.getRole()));
     }
+
+    public UUID getUuid(){return client.getUuid();}
 
     @Override
     public String getPassword() {

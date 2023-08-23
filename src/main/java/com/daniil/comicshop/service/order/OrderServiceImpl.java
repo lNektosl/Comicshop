@@ -24,6 +24,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order add(ClientInfo info, Order order) {
+        System.out.println(order.getComics());
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withIgnorePaths("id")
                 .withIgnorePaths("title")

@@ -20,9 +20,11 @@
 <div class="container main-content">
     <h1 class="text-center" style="margin:15px 0 15px ">Комиксы</h1>
     <div class="ILMenu">
-    <a th:href="@{comic/add}">Добавить</a>
-    <a th:href="@{/admin}">Назад</a>
+        <a th:href="@{comic/add}">Добавить</a>
+        <a th:href="@{/admin}">Назад</a>
+        <a th:href="@{/}">Главная</a>
     </div>
+    <div style="margin-top:10px ">
     <ul>
         <li class="list-inline-item" th:each="comic:${comics}">
             <a th:href="@{'comic/' + ${comic.id}}">
@@ -31,6 +33,7 @@
             </a>
         </li>
     </ul>
+    </div>
 </div>
 </body>
 </html>

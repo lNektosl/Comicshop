@@ -32,7 +32,7 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/", "/order", "/order/**", "webjars/**",
-                                "images/**", "web/**", "/comic", "/comic/**").permitAll()
+                                "images/**", "web/**", "/comic", "/comic/**","/register").permitAll()
                         .requestMatchers("/admin", "/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

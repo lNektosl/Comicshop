@@ -5,9 +5,10 @@ import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.Series;
 import com.daniil.comicshop.repository.ClientRepository;
-import com.daniil.comicshop.service.client.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,20 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Optional<Client> getById(UUID id) {
         return clientRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Client> getByLogin(String login) {
+        return clientRepository.findByLogin(login);
+    }
+
+    @Override
+    public Boolean checkCreds(Client client) {
+        ExampleMatcher matcher = ExampleMatcher.matchingAny()
+                .withIgnorePaths("uuid", "password",
+                        "role", "authors", "artists", "series", "orders", "info")
+                .withIgnoreCase("login");
+        return clientRepository.exists(Example.of(client,matcher));
     }
 
     @Override

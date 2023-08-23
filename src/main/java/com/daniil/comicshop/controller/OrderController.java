@@ -39,7 +39,6 @@ public class OrderController {
         cartItem.setOrder(order);
         if (order.getComics() == null) {
             order.setComics(new ArrayList<>());
-            System.out.println("cart created");
         }
         order = orderService.addItem(order, cartItem);
         session.setAttribute("order", order);
@@ -70,8 +69,7 @@ public class OrderController {
     public String saveOrder(ClientInfo info, HttpSession session) {
         Order order = (Order) session.getAttribute("order");
         orderService.add(info, order);
-        order.getComics().clear();
-        session.setAttribute("order",order);
+        session.setAttribute("order",new Order());
         return "redirect:/";
     }
 

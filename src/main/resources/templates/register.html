@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <div>
+        <div th:replace="~{fragments/header-fragment :: header}"></div>
+        <div class="ILMenu flex-column">
+            <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+        </div>
+    </div>
+    <div class=" main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
+        <div class="main-content">
+            <div class="form-container">
+                <p th:if="${error} != null" class="alert alert-danger">Пользователь с таким логином или Email уже существует</p>
+                <h1>Регистрация пользователя</h1>
+                <form th:object="${client}" th:action="@{/register}" method="post">
+                    <label for="login">Логин</label>
+                    <input type="text" th:field="*{login}" id="login" class="input-field" required>
+                    <label for="password">Пароль</label>
+                    <input type="password" th:field="*{password}" id="password" class="input-field" required>
+                    <label for="email">Email</label>
+                    <input type="email" th:field="*{email}" id="email" class="input-field" required>
+
+                    <button class="login-btn" style="background-color: darkgreen">Зарегистрироваться</button>
+                    <div style="align-items: center;">
+                    <a th:href="@{/}" style="text-decoration: none">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
