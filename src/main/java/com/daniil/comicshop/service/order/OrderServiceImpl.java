@@ -1,10 +1,13 @@
 package com.daniil.comicshop.service.order;
 
 import com.daniil.comicshop.entity.CartItem;
+import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.entity.Order;
 import com.daniil.comicshop.repository.ClientInfoRepository;
+import com.daniil.comicshop.repository.ClientRepository;
 import com.daniil.comicshop.repository.OrderRepository;
+import com.daniil.comicshop.service.client.ClientService;
 import com.daniil.comicshop.service.order.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
@@ -21,10 +24,29 @@ import java.util.Optional;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository repository;
     private final ClientInfoRepository infoRepository;
+    private final ClientRepository clientRepository;
 
     @Override
     public Order add(ClientInfo info, Order order) {
-        System.out.println(order.getComics());
+        info = getInfo(info, order);
+        order.setInfo(info);
+        return repository.save(order);
+    }
+
+    @Override
+    public Order addWithClient(ClientInfo info, Order order, Client client) {
+        info = getInfo(info, order);
+        order.setClient(client);
+        order.setInfo(info);
+        repository.save(order);
+        if (client.getInfo() == null) {
+            client.setInfo(info);
+            clientRepository.save(client);
+        }
+        return order;
+    }
+
+    private ClientInfo getInfo(ClientInfo info, Order order) {
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withIgnorePaths("id")
                 .withIgnorePaths("title")
@@ -35,8 +57,7 @@ public class OrderServiceImpl implements OrderService {
             info = infoRepository.findOne(Example.of(info, matcher)).orElseThrow();
         }
         order.setDate(LocalDate.now());
-        order.setInfo(info);
-        return repository.save(order);
+        return info;
     }
 
     @Override

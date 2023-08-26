@@ -56,7 +56,7 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Order> orders;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "client_info_id", referencedColumnName = "id")
     private ClientInfo info;
 
