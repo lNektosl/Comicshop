@@ -54,6 +54,7 @@ public class Client {
     private List<Series> series;
 
     @OneToMany(mappedBy = "client")
+    @OrderBy("date")
     private List<Order> orders;
 
     @OneToOne(cascade = CascadeType.MERGE)

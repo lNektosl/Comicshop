@@ -14,8 +14,8 @@
 <div class="ILMenu" th:fragment="navMenu">
     <nav>
         <a th:href="@{/}">Главная</a>
-        <a>Кабинет</a>
-        <a th:href="@{/login}">О нас</a>
+        <a th:href="@{/cabinet}">Кабинет</a>
+        <a>О нас</a>
         <a th:href="@{/order}">Корзина</a>
         <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')" >Админ меню</a>
         <a th:href="@{/logout}" sec:authorize="isAuthenticated()" >Выход</a>

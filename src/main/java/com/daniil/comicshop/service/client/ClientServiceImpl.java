@@ -3,6 +3,7 @@ package com.daniil.comicshop.service.client;
 import com.daniil.comicshop.entity.Artist;
 import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Client;
+import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.entity.Series;
 import com.daniil.comicshop.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
@@ -63,6 +64,12 @@ public class ClientServiceImpl implements ClientService {
         Optional<Client> client = clientRepository.findById(id);
         clientRepository.deleteById(id);
         return client;
+    }
+
+    @Override
+    public Client changeInfo(Client client, ClientInfo info) {
+        client.setInfo(info);
+        return clientRepository.save(client);
     }
 
     @Override

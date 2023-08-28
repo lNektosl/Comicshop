@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <div>
+        <div th:replace="~{fragments/header-fragment :: header}"></div>
+        <div class="ILMenu flex-column">
+            <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+        </div>
+    </div>
+    <div class=" main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: cabinetSideNav}"></div>
+        <div class="main-content">
+            <div style="margin-top: 20px">
+                <div class="border cabinet-info">
+                    <a class="cabinet-string-link">История заказов</a>
+                    <div th:if="${#lists.isEmpty(orders)}">
+                        <p>История заказов пуста</p>
+                    </div>
+                    <table class="table" th:unless="${#lists.isEmpty(orders)}">
+                        <thead>
+                        <tr>
+                            <td> Номер заказа</td>
+                            <td> Дата заказа</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order: ${orders}">
+                            <td><a th:href="'orders/' + ${order.id}">[[${order.id}]]</a></td>
+                            <td>[[${order.date}]]</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

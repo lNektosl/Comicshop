@@ -247,5 +247,41 @@ textarea {
     text-align: center;
     color: white;
 }
+.cabinet-info{
+    margin-left: 20px;
+}
+.cabinet-info ul{
+    list-style: none;
+}
+.cabinet-string-link{
+    font-size: large;
+    color: #333333;
+    text-decoration: none;
+}
+.cabinet-string-link:hover{
+    font-size: larger;
+    color: #337ab7;
+    font-weight: bold;
+}
+.table-img-mini{
+    height: 150px;
+    width: 100px;
+    padding-left: -5px;
+}
+.comic-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+.sidenav-string-link a{
+    font-size: large;
+    color: #333333;
+    text-decoration: none;
+}
+.sidenav-string-link a:hover{
+    font-size: larger;
+    color: #337ab7;
+    font-weight: bold;
+}
+
 
 
