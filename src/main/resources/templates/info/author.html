@@ -27,7 +27,7 @@
             </div>
             <div>
                 <ul>
-                    <li class="col-md-3 list-inline-item text-center" th:each="comic:${author.comics}">
+                    <li class="col-md-3 list-inline-item text-center" th:each="comic:${comics}">
                         <div class="row">
                             <div class="comic-image">
                                 <a class="comic-item" th:href="'/comic/' + ${comic.id}">
@@ -40,6 +40,20 @@
                         </div>
                     </li>
                 </ul>
+                <div class="pagination">
+                    <ul class="list-inline-item">
+                        <li th:classappend="${currentPage == 0} ? disabled">
+                            <a th:href="@{${author.id} + '?pageNum=0'}">&laquo;</a>
+                        </li>
+                        <li th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}"
+                            th:classappend="${pageNumber == currentPage} ? active">
+                            <a th:href="@{${author.id} + '?pageNum=' + ${pageNumber}}" th:text="${pageNumber + 1}"></a>
+                        </li>
+                        <li th:classappend="${currentPage == totalPages - 1} ? disabled">
+                            <a th:href="@{${author.id} + '?pageNum=' + ${totalPages - 1}}">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

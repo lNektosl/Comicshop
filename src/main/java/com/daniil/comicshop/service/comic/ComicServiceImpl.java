@@ -1,11 +1,13 @@
 package com.daniil.comicshop.service.comic;
 
+import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.service.comic.ComicService;
 import com.daniil.comicshop.repository.ComicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -72,6 +74,11 @@ public class ComicServiceImpl implements ComicService {
     @Override
     public Page<Comic> getPage(Integer pageNum) {
         return comicRepository.findAll(PageRequest.of(pageNum,9));
+    }
+
+    @Override
+    public Page<Comic> getPageByAuthor(Author author, Pageable pageable) {
+        return comicRepository.getComicByAuthors(author,pageable);
     }
 
     public List<Comic> getAll(){return comicRepository.findAll();}
