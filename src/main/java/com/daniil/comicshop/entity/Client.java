@@ -29,7 +29,7 @@ public class Client {
     @Column(name = "role")
     private String role;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "author_client",
             joinColumns = {@JoinColumn(name = "client_uuid")},
@@ -37,7 +37,7 @@ public class Client {
     )
     private List<Author> authors;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "artist_client",
             joinColumns = {@JoinColumn(name = "client_uuid")},
@@ -45,7 +45,7 @@ public class Client {
     )
     private List<Artist> artists;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "series_client",
             joinColumns = {@JoinColumn(name = "client_uuid")},

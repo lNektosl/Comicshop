@@ -32,7 +32,8 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/", "/order", "/order/**", "webjars/**",
-                                "images/**", "web/**", "/comic", "/comic/**","/register").permitAll()
+                                "images/**", "web/**", "/comic", "/comic/**", "/register", "/author",
+                                "/author/**").permitAll()
                         .requestMatchers("/admin", "/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -51,14 +52,16 @@ public class WebSecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     private final ClientRepository clientRepository;
+
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl(clientRepository);
     }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());

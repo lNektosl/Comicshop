@@ -20,10 +20,16 @@
         <div class="main-content">
             <ul>
                 <li class="col-md-3 list-inline-item text-center" th:each="comic:${comics}">
-                    <a class="comic-item" th:href="'comic/' + ${comic.id}">
-                        <img class="table-img" th:src="@{${comic.imagePath}}">
-                        <br> [[${comic.name}]]
-                    </a>
+                    <div class="row">
+                        <div class="comic-image">
+                            <a class="comic-item" th:href="'comic/' + ${comic.id}">
+                                <div style="padding-top: 5px">
+                                    <img class="table-img" th:src="@{${comic.imagePath}}">
+                                    <br> [[${comic.name}]]
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </li>
             </ul>
             <div class="pagination">

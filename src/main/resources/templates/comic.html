@@ -26,7 +26,10 @@
                 <div class="col-md-7">
 
                     <h3>Авторы</h3>
-                    <p th:each="author:${comic.authors}">[[${author.name}]]</p>
+                    <p th:each="author:${comic.authors}">
+                        <a style="text-decoration: none; color: #333333"
+                           th:href="@{'/author/' + ${author.id}}">[[${author.name}]]</a>
+                    </p>
                     <h3>Художники</h3>
                     <p th:each="artist:${comic.artists}">[[${artist.name}]]</p>
                 </div>
@@ -43,7 +46,8 @@
             <form th:action="@{/order/add}" th:object="${item}" method="post">
                 <input type="hidden" th:value="${comic.id}" th:attr="name='comic'">
                 <label for="amount">Кол-во</label>
-                <input id="amount" type="number" th:value="1" th:attr="name='amount'" min="1" required style="max-width: 150px">
+                <input id="amount" type="number" th:value="1" th:attr="name='amount'" min="1" required
+                       style="max-width: 150px">
                 <button class="buy-btn buy-btn-2">Купить</button>
             </form>
         </div>

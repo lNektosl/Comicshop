@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Author page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+
+<div class="container container-fluid">
+    <div>
+        <div th:replace="~{fragments/header-fragment :: header}"></div>
+        <div class="ILMenu flex-column">
+            <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+        </div>
+    </div>
+    <div class=" main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
+        <div class="main-content">
+            <div class="d-inline-flex">
+                <h1>[[${author.name}]]</h1>
+                <a th:if="${favorite == false}" th:href="@{'/author/' + ${author.id} + '/toggle'}"
+                   class="favorite-button">&#x1f90d;</a>
+                <a th:if="${favorite == true}" th:href="@{'/author/' + ${author.id} + '/toggle'}"
+                   class="favorite-button">&#x2764;</a>
+            </div>
+            <div>
+                <ul>
+                    <li class="col-md-3 list-inline-item text-center" th:each="comic:${author.comics}">
+                        <div class="row">
+                            <div class="comic-image">
+                                <a class="comic-item" th:href="'/comic/' + ${comic.id}">
+                                    <div style="padding-top: 5px">
+                                        <img class="table-img" th:src="@{${comic.imagePath}}">
+                                        <br> [[${comic.name}]]
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

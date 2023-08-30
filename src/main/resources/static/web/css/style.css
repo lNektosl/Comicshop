@@ -4,7 +4,7 @@
 
 .line-header {
     margin: 0;
-    background-color: gray;
+    height: 250px;
 }
 
 .line-header::after {
@@ -18,7 +18,7 @@
 
 .ILMenu {
     text-align: center;
-    margin-top: -20px;
+
     background-color: RGB(237, 247, 230);
     border-radius: 15px;
     align-items: center;
@@ -150,7 +150,8 @@ textarea {
     display: block;
 }
 .comic-image{
-    margin-top: 15px;
+    margin-top: 30px;
+
 }
 
 .no-text-center,
@@ -281,6 +282,14 @@ textarea {
     font-size: larger;
     color: #337ab7;
     font-weight: bold;
+}
+.favorite-button {
+    background: none;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 15px;
 }
 
 

@@ -21,6 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
+
     @Override
     public Optional<Client> getById(UUID id) {
         return clientRepository.findById(id);
@@ -37,7 +38,7 @@ public class ClientServiceImpl implements ClientService {
                 .withIgnorePaths("uuid", "password",
                         "role", "authors", "artists", "series", "orders", "info")
                 .withIgnoreCase("login");
-        return clientRepository.exists(Example.of(client,matcher));
+        return clientRepository.exists(Example.of(client, matcher));
     }
 
     @Override
@@ -48,14 +49,15 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client add(Client client) {
         client.setUuid(UUID.nameUUIDFromBytes(client.getEmail().getBytes()));
-        client.setPassword(BCrypt.hashpw(client.getPassword(),BCrypt.gensalt()));
+        client.setPassword(BCrypt.hashpw(client.getPassword(), BCrypt.gensalt()));
         return clientRepository.save(client);
     }
 
     @Override
     public Client change(Client client) {
-        if (clientRepository.findById(client.getUuid()).isPresent()){
-        return clientRepository.save(client);}
+        if (clientRepository.findById(client.getUuid()).isPresent()) {
+            return clientRepository.save(client);
+        }
         throw new NoSuchElementException();
     }
 
@@ -73,30 +75,27 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client addSeries(UUID id, Series series) {
-        Optional<Client> client = clientRepository.findById(id);
-        if (client.isPresent()){
-            client.get().getSeries().add(series);
-            return clientRepository.save(client.get());}
-        throw new NoSuchElementException();
+    public Client addSeries(Client client, Series series) {
+        client.getSeries().add(series);
+        return clientRepository.save(client);
     }
 
-    @Override
-    public Client addAuthor(UUID id, Author author) {
-        Optional<Client> client = clientRepository.findById(id);
-        if (client.isPresent()){
-            client.get().getAuthors().add(author);
-            return clientRepository.save(client.get());}
-        throw new NoSuchElementException();
-    }
+    public Boolean toggleAuthor(Client client, Author author) {
+        List<Author> authors = client.getAuthors();
 
+        if (authors.contains(author)) {
+            authors.remove(author);
+        } else {
+            authors.add(author);
+        }
+
+        clientRepository.save(client);
+        return authors.contains(author);
+    }
     @Override
-    public Client addArtist(UUID id, Artist artist) {
-        Optional<Client> client = clientRepository.findById(id);
-        if (client.isPresent()){
-            client.get().getArtists().add(artist);
-            return clientRepository.save(client.get());}
-        throw new NoSuchElementException();
+    public Client addArtist(Client client, Artist artist) {
+        client.getArtists().add(artist);
+        return clientRepository.save(client);
     }
 
 }

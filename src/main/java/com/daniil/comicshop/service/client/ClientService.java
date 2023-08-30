@@ -20,7 +20,7 @@ public interface ClientService {
     Client change(Client client);
     Optional<Client> delete(UUID id);
     Client changeInfo(Client client, ClientInfo info);
-    Client addSeries(UUID id, Series series);
-    Client addAuthor(UUID id, Author author);
-    Client addArtist(UUID id, Artist artist);
+    Boolean toggleAuthor(Client client,Author author);
+    Client addSeries(Client client, Series series);
+    Client addArtist(Client client, Artist artist);
 }

@@ -17,10 +17,10 @@
     <div class=" main-container">
         <div th:replace="~{fragments/side-nav-fragment :: cabinetSideNav}"></div>
         <div class="main-content">
-            <h1 class="text-center">Список авторов</h1>
+            <h1 class="text-center">Список художников</h1>
             <div style="margin-top: 20px">
                 <div class="border cabinet-info">
-                    <a class="cabinet-string-link">Избранные авторы</a>
+                    <a class="cabinet-string-link">Избранные художников</a>
                     <div th:if="${#lists.isEmpty(artists)}">
                         <p>Пока нет избранных художников</p>
                     </div>
