@@ -21,6 +21,6 @@ public interface ClientService {
     Optional<Client> delete(UUID id);
     Client changeInfo(Client client, ClientInfo info);
     Boolean toggleAuthor(Client client,Author author);
-    Client addSeries(Client client, Series series);
-    Client addArtist(Client client, Artist artist);
+    Boolean toggleArtist(Client client,Artist artist);
+    Boolean toggleSeries(Client client,Series series);
 }

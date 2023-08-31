@@ -33,7 +33,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/", "/order", "/order/**", "webjars/**",
                                 "images/**", "web/**", "/comic", "/comic/**", "/register", "/author",
-                                "/author/**").permitAll()
+                                "/author/**","/artist","/series","/artist/**","/series/**").permitAll()
                         .requestMatchers("/admin", "/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

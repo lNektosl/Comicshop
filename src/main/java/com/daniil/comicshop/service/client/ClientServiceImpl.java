@@ -74,12 +74,6 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.save(client);
     }
 
-    @Override
-    public Client addSeries(Client client, Series series) {
-        client.getSeries().add(series);
-        return clientRepository.save(client);
-    }
-
     public Boolean toggleAuthor(Client client, Author author) {
         List<Author> authors = client.getAuthors();
 
@@ -92,10 +86,33 @@ public class ClientServiceImpl implements ClientService {
         clientRepository.save(client);
         return authors.contains(author);
     }
+
     @Override
-    public Client addArtist(Client client, Artist artist) {
-        client.getArtists().add(artist);
-        return clientRepository.save(client);
+    public Boolean toggleArtist(Client client, Artist artist) {
+        List<Artist> artists = client.getArtists();
+
+        if (artists.contains(artist)) {
+            artists.remove(artist);
+        } else {
+            artists.add(artist);
+        }
+
+        clientRepository.save(client);
+        return artists.contains(artist);
+    }
+
+    @Override
+    public Boolean toggleSeries(Client client, Series series) {
+        List<Series> seriesList = client.getSeries();
+
+        if (seriesList.contains(series)) {
+            seriesList.remove(series);
+        } else {
+            seriesList.add(series);
+        }
+
+        clientRepository.save(client);
+        return seriesList.contains(series);
     }
 
 }

@@ -1,7 +1,9 @@
 package com.daniil.comicshop.service.comic;
 
+import com.daniil.comicshop.entity.Artist;
 import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Comic;
+import com.daniil.comicshop.entity.Series;
 import com.daniil.comicshop.service.comic.ComicService;
 import com.daniil.comicshop.repository.ComicRepository;
 import lombok.RequiredArgsConstructor;
@@ -79,6 +81,16 @@ public class ComicServiceImpl implements ComicService {
     @Override
     public Page<Comic> getPageByAuthor(Author author, Pageable pageable) {
         return comicRepository.getComicByAuthors(author,pageable);
+    }
+
+    @Override
+    public Page<Comic> getPageByArtist(Artist artist, Pageable pageable) {
+        return comicRepository.getComicByArtists(artist,pageable);
+    }
+
+    @Override
+    public Page<Comic> getPageBySeries(Series series, Pageable pageable) {
+        return comicRepository.getComicBySeries(series,pageable);
     }
 
     public List<Comic> getAll(){return comicRepository.findAll();}

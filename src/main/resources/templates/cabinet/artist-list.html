@@ -26,7 +26,8 @@
                     </div>
                     <div th:unless="${#lists.isEmpty(artists)}">
                         <ul th:each="artist : ${artists}" style="margin-top: 15px">
-                            <li><a class="cabinet-string-link">[[${artist.name}]]</a></li>
+                            <li><a th:href="@{'/artist/' + ${artist.id}}"
+                                   class="cabinet-string-link">[[${artist.name}]]</a></li>
                             <div class="comic-list border">
                                 <ul th:each="comic : ${artist.comics}" class="d-inline-flex" style="margin-top: 15px">
                                     <li>

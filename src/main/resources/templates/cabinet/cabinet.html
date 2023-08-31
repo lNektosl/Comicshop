@@ -28,7 +28,8 @@
                     </div>
                     <div th:unless="${#lists.isEmpty(client.authors)}">
                         <ul th:each="author : ${client.authors}" style="margin-top: 15px" th:if="${authorStat.index<3}">
-                            <li><a class="cabinet-string-link">[[${author.name}]]</a></li>
+                            <li><a th:href="@{'/author/' + ${author.id}}"
+                                   class="cabinet-string-link">[[${author.name}]]</a></li>
                             <ul th:each="comic : ${author.comics}"
                                 th:if="${comicStat.index < 5}"
                                 class="d-inline-flex"
@@ -55,7 +56,8 @@
                     <div th:unless="${#lists.isEmpty(client.artists)}">
                         <ul th:each="artist : ${client.artists}" style="margin-top: 15px"
                             th:if="${artistStat.index<3}">
-                            <li><a class="cabinet-string-link">[[${artist.name}]]</a></li>
+                            <li><a th:href="@{'/artist/' + ${artist.id}}"
+                                   class="cabinet-string-link">[[${artist.name}]]</a></li>
                             <ul th:each="comic : ${artist.comics}"
                                 th:if="${comicStat.index < 5}"
                                 class="d-inline-flex"
@@ -81,9 +83,10 @@
                         <p>Пока нет избранных серий</p>
                     </div>
                     <div th:unless="${#lists.isEmpty(client.series)}">
-                        <ul style="margin-top: 15px" th:if="${seriesStat.index<3}">
-                            <li><a class="cabinet-string-link">[[${series.name}]]</a></li>
-                            <ul th:each="comic : ${series.comics}"
+                        <ul style="margin-top: 15px" th:each="ser : ${client.series}"  th:if="${serStat.index<3}">
+                            <li><a th:href="@{'/series/' + ${ser.id}}"
+                                   class="cabinet-string-link">[[${ser.name}]]</a></li>
+                            <ul th:each="comic : ${ser.comics}"
                                 th:if="${comicStat.index < 5}"
                                 class="d-inline-flex"
                                 style="margin-top: 15px">
