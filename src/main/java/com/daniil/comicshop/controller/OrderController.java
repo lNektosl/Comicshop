@@ -5,7 +5,6 @@ import com.daniil.comicshop.dto.CartItemRequest;
 import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.entity.Order;
-import com.daniil.comicshop.repository.ClientRepository;
 import com.daniil.comicshop.service.client.ClientService;
 import com.daniil.comicshop.service.order.OrderService;
 import jakarta.servlet.http.HttpSession;
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,11 +55,18 @@ public class OrderController {
     @PostMapping("/confirm")
     public ResponseEntity<String> confirmOrder(HttpSession session,
                                                @RequestBody List<CartItemRequest> items) {
+        BigDecimal total;
         Order order = (Order) session.getAttribute("order");
         order.getComics().forEach(item -> items.stream()
                 .filter(request -> item.getComic().getId() == request.comicId())
                 .findFirst()
                 .ifPresent(request -> item.setAmount(request.amount())));
+
+        total= order.getComics().stream()
+                .map(item -> BigDecimal.valueOf(item.getAmount()).multiply(item.getComic().getPrice()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        order.setTotal(total);
         session.setAttribute("order", order);
         return ResponseEntity.ok("Data received successfully");
     }

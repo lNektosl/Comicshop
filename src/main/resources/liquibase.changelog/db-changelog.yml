@@ -184,3 +184,10 @@ databaseChangeLog:
               ALTER TABLE clients
               RENAME COLUMN client_name
               TO login
+  - changeSet:
+      id: 19
+      author: Daniil
+      changes:
+        - sql:
+            ALTER TABLE orders
+            ADD COLUMN total money

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 @Data
@@ -34,4 +35,7 @@ public class Order {
     @JsonIgnore
     @ToString.Exclude
     private ClientInfo info;
+
+    @Column(name="total")
+    private BigDecimal total;
 }
