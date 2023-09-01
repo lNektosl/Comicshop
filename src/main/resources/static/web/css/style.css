@@ -125,7 +125,6 @@ textarea {
     flex-grow: 4;
     padding-top: 15px;
     flex-wrap: wrap;
-
 }
 .main-container {
     padding-top: 45px;
@@ -291,6 +290,16 @@ textarea {
     margin-top: 10px;
     margin-left: 15px;
 }
-
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 275px;
+}
+.footer-img img {
+    max-height: 30px;
+    max-width: 30px;
+}
 
 

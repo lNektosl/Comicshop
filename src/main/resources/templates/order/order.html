@@ -39,10 +39,12 @@
                 <div id="total-container" class="total-container">Total: 0</div>
             </div>
             <button id="buyButton" type="button" class="buy-btn buy-btn-2" style="margin-bottom: 10px"
-                    onclick="submitCart()">Оплатить</button>
+                    onclick="submitCart()">Оплатить
+            </button>
         </div>
     </div>
 </div>
+<div th:replace="~{fragments/footer-fragment::footer}"></div>
 
 <script th:inline="javascript">
     function updateTotal() {
@@ -50,7 +52,7 @@
         var rows = form.querySelectorAll("#comic-info tr");
         var total = 0;
 
-        rows.forEach(function(row) {
+        rows.forEach(function (row) {
             var input = row.querySelector("input[type='number']");
             var amount = parseInt(input.value);
             var price = parseFloat(row.querySelector(".comic-price").textContent);
@@ -68,23 +70,23 @@
     }
 
 
-    function deleteById(row,comicId) {
-        var param ="?comicId=" + encodeURIComponent(comicId);
-        var url ="/order/remove" + param;
-        fetch(url,{
-            method:'DELETE',
+    function deleteById(row, comicId) {
+        var param = "?comicId=" + encodeURIComponent(comicId);
+        var url = "/order/remove" + param;
+        fetch(url, {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-            .then(function (response){
-          if (response.ok){
-              row.remove();
-              updateTotal();
-              return response.text();
-          }
-        })
-            .then(function (text){
+            .then(function (response) {
+                if (response.ok) {
+                    row.remove();
+                    updateTotal();
+                    return response.text();
+                }
+            })
+            .then(function (text) {
                 console.log(text);
 
             })
@@ -96,12 +98,11 @@
 
         var data = [];
 
-        rows.forEach(function(row) {
+        rows.forEach(function (row) {
             var comicIdElement = row.querySelector(".comic-id");
             var comicId = parseInt(comicIdElement.textContent);
             var input = row.querySelector("input[type='number']");
             var amount = input.value;
-
 
 
             var item = {
@@ -119,17 +120,16 @@
             },
             body: JSON.stringify(data)
         })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.ok) {
                     window.location.href = '/order/save';
                 } else {
                 }
             })
-            .catch(function(error) {
+            .catch(function (error) {
             });
     }
 </script>
-
 </body>
 <script>
     updateTotal();

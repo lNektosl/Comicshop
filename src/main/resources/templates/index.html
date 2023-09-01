@@ -7,48 +7,49 @@
     <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
 </head>
 <body>
-
-<div class="container container-fluid">
-    <div>
-        <div th:replace="~{fragments/header-fragment :: header}"></div>
-        <div class="ILMenu flex-column">
-            <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+<div class="">
+    <div class="container container-fluid">
+        <div>
+            <div th:replace="~{fragments/header-fragment :: header}"></div>
+            <div class="ILMenu flex-column">
+                <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+            </div>
         </div>
-    </div>
-    <div class=" main-container">
-        <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
-        <div class="main-content">
-            <ul>
-                <li class="col-md-3 list-inline-item text-center" th:each="comic:${comics}">
-                    <div class="row">
-                        <div class="comic-image">
-                            <a class="comic-item" th:href="'comic/' + ${comic.id}">
-                                <div style="padding-top: 5px">
-                                    <img class="table-img" th:src="@{${comic.imagePath}}">
-                                    <br> [[${comic.name}]]
-                                </div>
-                            </a>
+        <div class=" main-container">
+            <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
+            <div class="main-content">
+                <ul>
+                    <li class="col-md-3 list-inline-item text-center" th:each="comic:${comics}">
+                        <div class="row">
+                            <div class="comic-image">
+                                <a class="comic-item" th:href="'comic/' + ${comic.id}">
+                                    <div style="padding-top: 5px">
+                                        <img class="table-img" th:src="@{${comic.imagePath}}">
+                                        <br> [[${comic.name}]]
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="pagination">
-                <ul class="list-inline-item">
-                    <li th:classappend="${currentPage == 0} ? disabled">
-                        <a th:href="@{/(pageNum=0)}">&laquo;</a>
-                    </li>
-                    <li th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}"
-                        th:classappend="${pageNumber == currentPage} ? active">
-                        <a th:href="@{/(pageNum=${pageNumber})}" th:text="${pageNumber + 1}"></a>
-                    </li>
-                    <li th:classappend="${currentPage == totalPages - 1} ? disabled">
-                        <a th:href="@{/(pageNum=${totalPages - 1})}">&raquo;</a>
                     </li>
                 </ul>
+                <div class="pagination">
+                    <ul class="list-inline-item">
+                        <li th:classappend="${currentPage == 0} ? disabled">
+                            <a th:href="@{/(pageNum=0)}">&laquo;</a>
+                        </li>
+                        <li th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}"
+                            th:classappend="${pageNumber == currentPage} ? active">
+                            <a th:href="@{/(pageNum=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+                        </li>
+                        <li th:classappend="${currentPage == totalPages - 1} ? disabled">
+                            <a th:href="@{/(pageNum=${totalPages - 1})}">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <footer class="footer text-center"> здесь Footer</footer>
+    <div th:replace="~{fragments/footer-fragment::footer}"></div>
 </div>
 </body>
 </html>
