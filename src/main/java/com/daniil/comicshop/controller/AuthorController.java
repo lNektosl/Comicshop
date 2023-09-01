@@ -50,7 +50,7 @@ public class AuthorController {
                 isFavorite = client.get().getAuthors().contains(author.get());
             }
             model.addAttribute("favorite", isFavorite);
-            return "info/author";
+            return "details/author";
         }
         return "redirect:/cabinet/authors";
     }

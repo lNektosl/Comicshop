@@ -50,7 +50,7 @@ public class ArtistController {
                 isFavorite = client.get().getArtists().contains(artist.get());
             }
             model.addAttribute("favorite", isFavorite);
-            return "info/artist";
+            return "details/artist";
         }
         return "redirect:/cabinet/artists";
     }

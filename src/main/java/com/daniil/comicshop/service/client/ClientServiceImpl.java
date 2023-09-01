@@ -5,6 +5,7 @@ import com.daniil.comicshop.entity.Author;
 import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.ClientInfo;
 import com.daniil.comicshop.entity.Series;
+import com.daniil.comicshop.repository.ClientInfoRepository;
 import com.daniil.comicshop.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
+    private final ClientInfoRepository infoRepository;
 
     @Override
     public Optional<Client> getById(UUID id) {
@@ -70,6 +72,14 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client changeInfo(Client client, ClientInfo info) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withIgnorePaths("id")
+                .withIgnoreCase();
+        if (!infoRepository.exists(Example.of(info, matcher))) {
+            info = infoRepository.save(info);
+        } else {
+            info = infoRepository.findOne(Example.of(info, matcher)).orElseThrow();
+        }
         client.setInfo(info);
         return clientRepository.save(client);
     }

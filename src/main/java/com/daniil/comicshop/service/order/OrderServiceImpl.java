@@ -49,7 +49,6 @@ public class OrderServiceImpl implements OrderService {
     private ClientInfo getInfo(ClientInfo info, Order order) {
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withIgnorePaths("id")
-                .withIgnorePaths("title")
                 .withIgnoreCase();
         if (!infoRepository.exists(Example.of(info, matcher))) {
             info = infoRepository.save(info);

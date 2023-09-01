@@ -119,7 +119,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="order, orderStat : ${client.orders}" th:if="${orderStat.index < 5}">
-                            <td><a th:href="'order/' + ${order.id}">[[${order.id}]]</a></td>
+                            <td><a th:href="'cabinet/orders/' + ${order.id}">[[${order.id}]]</a></td>
                             <td>[[${order.date}]]</td>
                         </tr>
                         </tbody>

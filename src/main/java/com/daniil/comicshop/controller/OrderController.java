@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,11 @@ public class OrderController {
 
     @GetMapping
     public String getCurrentOrder(Model model, HttpSession session) {
+        if (session.getAttribute("order")==null){
+            Order newOrder = new Order();
+            newOrder.setComics(new ArrayList<>());
+            session.setAttribute("order",newOrder);
+        }
         Order order = (Order) session.getAttribute("order");
         model.addAttribute("order", order);
         return "order/order";
@@ -83,11 +89,10 @@ public class OrderController {
             Client client = clientService.getByLogin(name).orElseThrow();
             if (client.getInfo() != null) {
                 model.addAttribute("info", client.getInfo());
-                return "order/add-form";
             }
         }
         model.addAttribute("info", new ClientInfo());
-        return "order/add-form";
+        return "order/clientInfo-form";
     }
 
     @PostMapping("/save")

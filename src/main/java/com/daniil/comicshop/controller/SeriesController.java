@@ -50,7 +50,7 @@ public class SeriesController {
                 isFavorite = client.get().getSeries().contains(series.get());
             }
             model.addAttribute("favorite", isFavorite);
-            return "info/series";
+            return "details/series";
         }
         return "redirect:/cabinet/series";
     }

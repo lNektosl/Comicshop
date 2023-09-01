@@ -17,7 +17,7 @@
                 <form id="cart-form">
                     <table class="table table-borderless" style="max-height: 600px;">
                         <tbody id="comic-info">
-                        <tr th:each="item, iStat: ${order.comics}">
+                        <tr class="border-bottom" th:each="item, iStat: ${order.comics}">
                             <td><img style="max-width: 50px;max-height: 125px" th:src="@{${item.comic.imagePath}}"></td>
                             <td>[[${item.comic.name}]]</td>
                             <td style="max-width: 20px">
