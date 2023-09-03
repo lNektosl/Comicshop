@@ -1,11 +1,14 @@
 package com.daniil.comicshop.controller;
 
-import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.dto.CartItemRequest;
+import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.ClientInfo;
+import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.entity.Order;
+import com.daniil.comicshop.mapper.CartItemMapper;
 import com.daniil.comicshop.service.client.ClientService;
+import com.daniil.comicshop.service.comic.ComicService;
 import com.daniil.comicshop.service.order.OrderService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,8 @@ public class OrderController {
     private final OrderService orderService;
     private final ClientService clientService;
 
+    private final CartItemMapper mapper;
+
     @GetMapping
     public String getCurrentOrder(Model model, HttpSession session) {
         if (session.getAttribute("order")==null){
@@ -47,15 +51,18 @@ public class OrderController {
     }
 
     @PostMapping("/add")
-    public String addItem(CartItem cartItem, HttpSession session) {
+    public ResponseEntity<String> addItem(@RequestBody CartItemRequest cartItemRequest, HttpSession session) {
         Order order = (Order) session.getAttribute("order");
-        cartItem.setOrder(order);
+
+        CartItem cartItem = mapper.toCartItem(cartItemRequest);
+
+
         if (order.getComics() == null) {
             order.setComics(new ArrayList<>());
         }
         order = orderService.addItem(order, cartItem);
         session.setAttribute("order", order);
-        return "redirect:/order";
+        return ResponseEntity.ok("Comic added");
     }
 
     @PostMapping("/confirm")
