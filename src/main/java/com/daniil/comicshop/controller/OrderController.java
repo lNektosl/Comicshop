@@ -4,11 +4,9 @@ import com.daniil.comicshop.dto.CartItemRequest;
 import com.daniil.comicshop.entity.CartItem;
 import com.daniil.comicshop.entity.Client;
 import com.daniil.comicshop.entity.ClientInfo;
-import com.daniil.comicshop.entity.Comic;
 import com.daniil.comicshop.entity.Order;
 import com.daniil.comicshop.mapper.CartItemMapper;
 import com.daniil.comicshop.service.client.ClientService;
-import com.daniil.comicshop.service.comic.ComicService;
 import com.daniil.comicshop.service.order.OrderService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -96,6 +94,7 @@ public class OrderController {
             Client client = clientService.getByLogin(name).orElseThrow();
             if (client.getInfo() != null) {
                 model.addAttribute("info", client.getInfo());
+                return "order/clientInfo-form";
             }
         }
         model.addAttribute("info", new ClientInfo());
@@ -109,11 +108,11 @@ public class OrderController {
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
             String name = SecurityContextHolder.getContext().getAuthentication().getName();
             Client client = clientService.getByLogin(name).orElseThrow();
-            orderService.addWithClient(info,order,client);
+            orderService.saveWithClient(info,order,client);
             session.setAttribute("order", new Order());
             return "redirect:/";
         }
-        orderService.add(info, order);
+        orderService.save(info, order);
         session.setAttribute("order", new Order());
         return "redirect:/";
     }

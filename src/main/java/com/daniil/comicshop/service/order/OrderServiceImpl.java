@@ -27,17 +27,19 @@ public class OrderServiceImpl implements OrderService {
     private final ClientRepository clientRepository;
 
     @Override
-    public Order add(ClientInfo info, Order order) {
+    public Order save(ClientInfo info, Order order) {
         info = getInfo(info, order);
         order.setInfo(info);
+        order.getComics().forEach(item->item.setOrder(order));
         return repository.save(order);
     }
 
     @Override
-    public Order addWithClient(ClientInfo info, Order order, Client client) {
+    public Order saveWithClient(ClientInfo info, Order order, Client client) {
         info = getInfo(info, order);
         order.setClient(client);
         order.setInfo(info);
+        order.getComics().forEach(item -> item.setOrder(order));
         repository.save(order);
         if (client.getInfo() == null) {
             client.setInfo(info);

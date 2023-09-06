@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderService {
-    Order add(ClientInfo info, Order order);
-    Order addWithClient(ClientInfo info, Order order, Client client);
+    Order save(ClientInfo info, Order order);
+    Order saveWithClient(ClientInfo info, Order order, Client client);
     Optional<Order> getById(Integer id);
     List<Order> getAll();
     Order change(Order order);

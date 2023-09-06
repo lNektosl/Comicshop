@@ -42,8 +42,13 @@
                 <label for="postalCode">Почтовый индекс:</label>
                 <input type="text" id="postalCode" th:field="*{postalCode}">
 
-                <label for="county">Страна:</label>
-                <input type="text" id="county" th:field="*{county}">
+                <label for="country">Страна:</label>
+                <select id="country" th:field="*{country}">
+                    <option value="US">США</option>
+                    <option value="FI">Финляндия</option>
+                    <option value="CA">Канада</option>
+                    <option value="RU">Россия</option>
+                </select>
 
                 <button class="btn btn-success">Сохранить</button>
                 <a th:href="@{/cabinet}" class="btn btn-danger">Отменить</a>

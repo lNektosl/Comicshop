@@ -30,7 +30,7 @@ public class ClientInfo {
     @Column(name ="postal_code")
     private String postalCode;
     @Column(name ="country")
-    private String county;
+    private String country;
     @Column(name ="phone")
     private String phone;
 
