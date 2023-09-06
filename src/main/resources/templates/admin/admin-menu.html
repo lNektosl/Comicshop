@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>admin-Menu</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid text-center">
+
+    <h1 style="margin-top: 10px">Меню администратора</h1>
+    <div class="ILMenu flex-column" style="margin-top: 10px">
+        <a th:href="@{admin/comic}">Комиксы</a>
+        <a th:href="@{admin/author}">Авторы</a>
+        <a th:href="@{admin/artist}">Художники</a>
+        <a th:href="@{admin/publisher}">Издатели</a>
+        <a th:href="@{admin/series}">Серии</a>
+        <a th:href="@{admin/register}">Регистрация</a>
+        <a th:href="@{/}">На главную</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,13 +1,7 @@
 package com.daniil.comicshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -26,13 +21,23 @@ public class Series {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "series")
+    @OneToMany(mappedBy = "series", cascade = CascadeType.ALL, orphanRemoval = false)
     @JsonIgnore
     @ToString.Exclude
-    private List<Comic> comics;
+    private Set<Comic> comics;
+
+    @ManyToMany(mappedBy = "series")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Client> clients;
+
+    public void removeComic(Comic comic) {
+        comics.remove(comic);
+        comic.setSeries(null);
+    }
 }

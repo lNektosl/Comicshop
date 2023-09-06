@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Artists</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<p th:if="${newArtist != null}" class="alert alert-success">
+    Добавлен новый художник [[${newArtist.name}]]
+</p>
+<p th:if="${deletedArtist != null}" class="alert alert-danger">
+    Художник был удален [[${deletedArtist.name}]]
+</p>
+<p th:if="${updatedArtist != null}" class="alert alert-info">
+    Художник был обновлен [[${updatedArtist.name}]]
+</p>
+<div class="container container-fluid">
+    <h1 class="text-center" style="margin:15px 0 15px ">Художники</h1>
+    <div class="ILMenu">
+        <a th:href="@{artist/add}">Добавить</a>
+        <a th:href="@{/admin}">Назад</a>
+        <a th:href="@{/}">Главная</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="artist:${artists}">
+            <td th:text="${artist.id}"></td>
+            <td><a th:href="@{'artist/' + ${artist.id}}">[[${artist.name}]]</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

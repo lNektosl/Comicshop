@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seriess</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<p th:if="${newSeries != null}" class="alert alert-success">
+    Добавлена новая серия [[${newSeries.name}]]
+</p>
+<p th:if="${deletedSeries != null}" class="alert alert-danger">
+    Серия была удалена [[${deletedSeries.name}]]
+</p>
+<p th:if="${updatedSeries != null}" class="alert alert-info">
+    Серия была обновлена [[${updatedSeries.name}]]
+</p>
+<div class="container container-fluid">
+    <h1 class="text-center" style="margin:15px 0 15px ">Серии</h1>
+    <div class="ILMenu">
+        <a th:href="@{series/add}">Добавить</a>
+        <a th:href="@{/admin}">Назад</a>
+        <a th:href="@{/}">Главная</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="series:${seriess}">
+            <td th:text="${series.id}"></td>
+            <td><a th:href="@{'series/' + ${series.id}}">[[${series.name}]]</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

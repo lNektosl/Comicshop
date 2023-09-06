@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Change+artist</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="form-container">
+    <h1>Добавление художника</h1>
+    <form th:action="@{add}" th:object="${artist}" method="post">
+
+        <label for="name">Имя</label>
+        <input type="text" th:field="*{name}" th:text="${artist.name}" id="name">
+
+        <button class="btn btn-success">Сохранить</button>
+        <a th:href="@{/admin/artist}" class="btn btn-danger">Отменить</a>
+
+
+    </form>
+</div>
+</body>
+</html>

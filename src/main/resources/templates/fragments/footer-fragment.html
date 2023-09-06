@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="footer" th:fragment="footer">
+    <p>Daniil Bulatov &#169</p>
+    <div class="row justify-content-center align-items-center footer-img">
+        <div class="col-auto">
+            <a href="https://github.com/lNektosl"> <img th:src="@{/web/img/footer/gitHub.png}"></a>
+        </div>
+        <div class="col-auto">
+            <a href="https://www.linkedin.com/in/daniil-bulatov-93196a256/"><img
+                    th:src="@{/web/img/footer/LinkedIn.png}"></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

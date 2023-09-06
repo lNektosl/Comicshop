@@ -1,16 +1,6 @@
 package com.daniil.comicshop.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +8,10 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @Entity
@@ -30,7 +23,6 @@ public class Comic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Cascade(CascadeType.ALL)
     private int id;
 
     @Column(name = "comic_name")
@@ -41,25 +33,53 @@ public class Comic {
 
     @PrePersist
     public void defaultImgPath(){
-        if(this.imagePath==null||this.imagePath.isEmpty())
-            this.imagePath = "src/main/resources/images/1.jpg";
+        if(this.imagePath==null||this.imagePath.isEmpty()){
+            this.imagePath = "/images/1.jpg";}
     }
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "amount")
     private int amount;
 
-    @ManyToMany(mappedBy = "comics")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "artist_comic",
+            joinColumns = {@JoinColumn(name = "comic_id")},
+            inverseJoinColumns = {@JoinColumn(name = "artist_id")}
+    )
     private List<Artist> artists;
 
-    @ManyToMany(mappedBy = "comics")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "author_comic",
+            joinColumns = {@JoinColumn(name = "comic_id")},
+            inverseJoinColumns = {@JoinColumn(name = "author_id")})
     private List<Author> authors;
 
     @ManyToOne
     @JoinColumn(name = "publisher_id",referencedColumnName = "id")
-    @JsonIgnore
     private Publisher publisher;
 
     @ManyToOne
     @JoinColumn(name = "series_id",referencedColumnName = "id")
     private Series series;
+
+    @Column(name = "price")
+    private BigDecimal price;
+
+    @Column(name = "adding_date")
+    private LocalDate date;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comic comic = (Comic) o;
+        return id == comic.id && name.equals(comic.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 }

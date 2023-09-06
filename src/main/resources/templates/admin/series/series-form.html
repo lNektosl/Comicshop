@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Change+series</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="form-container">
+    <h1>Добавление серии</h1>
+    <form th:action="@{add}" th:object="${series}" method="post">
+
+        <label for="name">Название</label>
+        <input type="text" th:field="*{name}" th:text="${series.name}" id="name">
+
+        <button class="btn btn-success">Сохранить</button>
+        <a th:href="@{/admin/series}" class="btn btn-danger">Отменить</a>
+
+
+    </form>
+</div>
+</body>
+</html>

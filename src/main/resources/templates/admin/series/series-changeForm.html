@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="form-container">
+    <h1>Изменение серии</h1>
+    <form th:action="@{change}" th:object="${series}" method="post">
+
+        <input type="number" th:field="*{id}" hidden>
+
+        <label for="name">Название</label>
+        <input type="text" th:field="*{name}" th:text="${series.name}" id="name">
+
+        <label for="comics">Комиксы</label>
+        <select th:field="*{comics}" multiple="multiple" id="comics">
+            <option th:each="comic:${series.comics}"
+                    th:value="${comic.id}"
+                    th:text="${comic.name}">
+            </option>
+        </select>
+
+        <button class="btn btn-success">Сохранить</button>
+        <a th:href="@{/admin/series}" class="btn btn-danger">Отменить</a>
+    </form>
+</div>
+<script>
+    var selectElement = document.getElementById('comics');
+    selectElement.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        var option = e.target;
+        if (option.tagName === 'OPTION') {
+            option.selected = !option.selected;
+        }
+    });
+</script>
+</body>
+</html>

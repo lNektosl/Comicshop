@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Change form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="form-container">
+    <h1>Добавление комикса</h1>
+    <form th:action="@{change}" th:object="${comic}" method="post" enctype="multipart/form-data">
+        <input type="number" th:field="*{id}" th:text="${comic.id}" hidden>
+        <input type="file" name="img" accept="image/*">
+
+        <label for="name">Название комикса</label>
+        <input type="text" th:field="*{name}" id="name" th:text="${comic.name}">
+
+        <label for="amount"> Количество</label>
+        <input type="number" th:field="*{amount}" id="amount" th:text="${comic.amount}">
+
+        <label for="price">Цена</label>
+        <input type="number" step="0.01" th:field="*{price}" id="price" th:text="${comic.price}">
+
+        <label for="artist">Художники</label>
+        <select th:field="*{artists}" multiple="multiple" id="artist">
+            <option th:each="artist :${artists}" th:value="${artist.id}" th:text="${artist.name}"
+                    th:selected="${comic.artists.contains(artist)}"></option>
+        </select>
+
+        <label for="author">Авторы</label>
+        <select th:field="*{authors}" multiple="multiple" id="author">
+            <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}"
+                    th:selected="${comic.authors.contains(author)}"></option>
+        </select>
+
+        <label for="publisher">Издательство</label>
+        <select th:field="*{publisher}" id="publisher">
+            <option th:each="publisher:${publishers}" th:value="${publisher.id}" th:text="${publisher.name}"
+                    th:selected="${comic.publisher.id == publisher.id}"></option>
+        </select>
+
+        <label for="series">Серия</label>
+        <select th:field="*{series}" id="series">
+            <option value=""></option>
+            <option th:each="s:${series}" th:value="${s.id}" th:text="${s.name}"
+                    th:selected="${comic.series != null and comic.series.id == s.id}"></option>
+        </select>
+        <label for="description">Описание</label>
+        <textarea rows="5" id="description" th:field="*{description}" th:text="${comic.description}"></textarea>
+
+        <button class="btn btn-success">Сохранить</button>
+        <a th:href="@{/admin}" class="btn btn-danger">Отменить</a>
+    </form>
+</div>
+<script>
+    var selectElement = document.querySelectorAll('select[multiple]');
+    selectElement.forEach(function (selectElement) {
+        selectElement.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            var option = e.target;
+            if (option.tagName === 'OPTION') {
+                option.selected = !option.selected;
+            }
+        });
+    });
+</script>
+</body>
+</html>

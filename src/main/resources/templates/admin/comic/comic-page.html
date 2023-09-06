@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comics</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+
+<p th:if="${newComic != null}" class="alert alert-success">
+    Добавлен новый комикс [[${newComic.name}]]
+</p>
+<p th:if="${deletedComics != null}" class="alert alert-danger">
+    Комикс был удален [[${deletedComics.name}]]
+</p>
+<p th:if="${updatedComic != null}" class="alert alert-info">
+    Комикс был обновлен [[${updatedComic.name}]]
+</p>
+<div class="container main-content">
+    <h1 class="text-center" style="margin:15px 0 15px ">Комиксы</h1>
+    <div class="ILMenu">
+        <a th:href="@{comic/add}">Добавить</a>
+        <a th:href="@{/admin}">Назад</a>
+        <a th:href="@{/}">Главная</a>
+    </div>
+    <div style="margin-top:10px ">
+    <ul>
+        <li class="list-inline-item" th:each="comic:${comics}">
+            <a th:href="@{'comic/' + ${comic.id}}">
+                <img class="table-img" th:src="@{${comic.imagePath}}">
+                <br> [[${comic.name}]]
+            </a>
+        </li>
+    </ul>
+    </div>
+</div>
+</body>
+</html>
