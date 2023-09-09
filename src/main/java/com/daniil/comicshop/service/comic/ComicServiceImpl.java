@@ -19,10 +19,12 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -54,20 +56,25 @@ public class ComicServiceImpl implements ComicService {
 
 
     @Override
-    public Optional<Comic> delete(int id) {
+    public Optional<Comic> delete(int id) throws IOException {
         Optional<Comic> comic = comicRepository.findById(id);
+        if (comic.isPresent() && !Objects.equals(comic.get().getImagePath(),"/images/1.jpg")) {
+            Path imgPath = Path.of("src/main/resources/static" +  comic.get().getImagePath());
+            Files.delete(imgPath);
+            Files.delete(imgPath.getParent());
+        }
         comicRepository.deleteById(id);
         return comic;
     }
 
     @Override
-    public Comic change(MultipartFile img,Comic comic) throws IOException {
+    public Comic change(MultipartFile img, Comic comic) throws IOException {
         if (comicRepository.findById(comic.getId()).isPresent()) {
             Comic oldComic = comicRepository.findById(comic.getId()).get();
-            if (img!=null && !img.isEmpty()){
+            if (img != null && !img.isEmpty()) {
                 System.out.println("hi");
-                changeImg(comic,img);
-            }else comic.setImagePath(oldComic.getImagePath());
+                changeImg(comic, img);
+            } else comic.setImagePath(oldComic.getImagePath());
             return comicRepository.save(comic);
         }
         throw new NoSuchElementException();
@@ -75,25 +82,27 @@ public class ComicServiceImpl implements ComicService {
 
     @Override
     public Page<Comic> getPage(Integer pageNum) {
-        return comicRepository.findAll(PageRequest.of(pageNum,9));
+        return comicRepository.findAll(PageRequest.of(pageNum, 9));
     }
 
     @Override
     public Page<Comic> getPageByAuthor(Author author, Pageable pageable) {
-        return comicRepository.getComicByAuthors(author,pageable);
+        return comicRepository.getComicByAuthors(author, pageable);
     }
 
     @Override
     public Page<Comic> getPageByArtist(Artist artist, Pageable pageable) {
-        return comicRepository.getComicByArtists(artist,pageable);
+        return comicRepository.getComicByArtists(artist, pageable);
     }
 
     @Override
     public Page<Comic> getPageBySeries(Series series, Pageable pageable) {
-        return comicRepository.getComicBySeries(series,pageable);
+        return comicRepository.getComicBySeries(series, pageable);
     }
 
-    public List<Comic> getAll(){return comicRepository.findAll();}
+    public List<Comic> getAll() {
+        return comicRepository.findAll();
+    }
 
 
     private void changeImg(Comic comic, MultipartFile img) throws IOException {

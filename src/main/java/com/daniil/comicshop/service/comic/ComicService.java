@@ -16,7 +16,7 @@ import java.util.Optional;
 public interface ComicService {
     Optional<Comic> getById(int id);
     Comic add(MultipartFile img,Comic comic);
-    Optional<Comic> delete(int id);
+    Optional<Comic> delete(int id) throws IOException;
     Comic change(MultipartFile img,Comic comic) throws IOException;
     Page<Comic> getPage(Integer pageNum);
     Page<Comic> getPageByAuthor(Author author, Pageable pageable);

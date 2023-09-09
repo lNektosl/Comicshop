@@ -1,14 +1,14 @@
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://batyr.db.elephantsql.com:5432/ygsoxkii
-    username: "ygsoxkii"
-    password: "8NKZTa_ZUyXlyeyjBc1G2XTCiJZYRU5a"
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://batyr.db.elephantsql.com:5432/ygsoxkii
+#    username: "ygsoxkii"
+#    password: "8NKZTa_ZUyXlyeyjBc1G2XTCiJZYRU5a"
 
-  #    driver-class-name: org.postgresql.Driver
-#    url: jdbc:postgresql://localhost:5432/Comic_shop
-#    username: postgres
-#    password: 1
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/Comic_shop
+    username: postgres
+    password: 1
 
   liquibase:
     change-log: classpath:liquibase.changelog/db-changelog.yml
@@ -16,5 +16,5 @@ spring:
 server:
   servlet:
     session:
-      timeout: 30m
+      timeout: 60m
       tracking-modes: cookie

@@ -23,7 +23,7 @@ CREATE TABLE comics
     amount       integer,
     image        varchar(256)
         DEFAULT '/images/1.jpg',
-    publisher_id integer references publishers (id),
+    publisher_id integer references publishers (id)
 );
 
 

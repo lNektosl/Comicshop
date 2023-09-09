@@ -59,7 +59,7 @@ public class AdminComicController {
         return "redirect:/admin/comic";
     }
     @GetMapping("{id}/delete")
-    public String delete(@PathVariable Integer id,RedirectAttributes ra){
+    public String delete(@PathVariable Integer id,RedirectAttributes ra) throws IOException {
         ra.addFlashAttribute("deletedComics",comicService.delete(id).get());
         return "redirect:/admin/comic";
     }
