@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+
+<div class="container container-fluid">
+    <div>
+        <div th:replace="~{fragments/header-fragment :: header}"></div>
+        <div class="ILMenu flex-column">
+            <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+        </div>
+    </div>
+    <div class=" main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: cabinetSideNav}"></div>
+        <div class="main-content">
+            <table class="table table-borderless" style="max-height: 600px;">
+                <tbody id="comic-info">
+                <tr th:each="item: ${order.comics}" class="border-bottom">
+                    <td>
+                        <a th:href="'/comic/' + ${item.comic.id}">
+                            <img style="max-width: 50px;max-height: 125px" th:src="@{${item.comic.imagePath}}">
+                        </a>
+                    </td>
+                    <td>[[${item.comic.name}]]</td>
+                    <td>[[${item.amount}]]</td>
+                    <td class="comic-price">[[${item.comic.price}]]</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <th style="text-align:right">Итого: </th>
+                    <td>[[${order.total}]]</td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footer-fragment::footer}"></div>
+</body>
+</html>

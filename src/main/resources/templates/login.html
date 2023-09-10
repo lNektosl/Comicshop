@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <div>
+        <div th:replace="~{fragments/header-fragment :: header}"></div>
+        <div class="ILMenu flex-column">
+            <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+        </div>
+    </div>
+    <div class=" main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
+        <div class="main-content">
+
+            <div class="form-container">
+                <h1>Авторизация</h1>
+                <form th:action="@{/login}" method="post">
+
+                    <label for="name">Имя</label>
+                    <input class="input-field" type="text" id="name" name="username">
+
+                    <label for="password">Пароль</label>
+                    <input class="input-field" type="password" id="password" name="password">
+
+                    <button class="login-btn">Войти</button>
+                    <div class="flex" style="display: flex; justify-content: space-between; align-items: center;">
+                        <a th:href="@{/}" style="text-decoration: none">Отменить</a>
+                        <a th:href="@{/register}" style="text-decoration: none">Регистрация</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footer-fragment::footer}"></div>
+
+</body>
+</html>

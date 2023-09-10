@@ -7,13 +7,17 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
 
+import java.util.ArrayList;
+
 
 @WebListener
 public class HttpSessionListenerConfig implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         if(se.getSession().getAttribute("order") == null){
-            se.getSession().setAttribute("order",new Order());
+            Order order = new Order();
+            order.setComics(new ArrayList<>());
+            se.getSession().setAttribute("order",order);
         }
     }
 

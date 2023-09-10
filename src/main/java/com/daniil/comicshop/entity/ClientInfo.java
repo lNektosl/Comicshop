@@ -12,14 +12,11 @@ import lombok.Data;
 @Entity
 @Table(name = "client_info")
 public class ClientInfo {
-    public enum title{
-        MR,MRS
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "title")
-    private title title;
+    private String title;
     @Column(name ="given_name")
     private String name;
     @Column(name ="family_name")
@@ -33,11 +30,8 @@ public class ClientInfo {
     @Column(name ="postal_code")
     private String postalCode;
     @Column(name ="country")
-    private String county;
+    private String country;
     @Column(name ="phone")
     private String phone;
 
-    public String getEnumValue(){
-        return this.title.name();
-    }
 }

@@ -13,5 +13,15 @@
     <a>Авторы</a>
     <a>Художники</a>
 </div>
+<div class="sidenav col-2 mt-1 sidenav-string-link" th:fragment="cabinetSideNav">
+    <h5>Избранное</h5>
+    <a th:href="@{/cabinet/authors}">Авторы</a>
+    <a th:href="@{/cabinet/artists}">Художники</a>
+    <a th:href="@{/cabinet/series}">Серии</a>
+    <br>
+    <a th:href="@{/cabinet/orders}">История заказов</a>
+    <br>
+    <a th:href="@{/cabinet/info}">Изменение личных данных</a>
+</div>
 </body>
 </html>

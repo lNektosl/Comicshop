@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 @Data
@@ -18,7 +19,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "client_id", referencedColumnName = "uuid")
     @JsonIgnore
     @ToString.Exclude
@@ -34,4 +35,7 @@ public class Order {
     @JsonIgnore
     @ToString.Exclude
     private ClientInfo info;
+
+    @Column(name="total")
+    private BigDecimal total;
 }

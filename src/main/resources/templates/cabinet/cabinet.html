@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <div>
+        <div th:replace="~{fragments/header-fragment :: header}"></div>
+        <div class="ILMenu flex-column">
+            <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+        </div>
+    </div>
+    <div class=" main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: cabinetSideNav}"></div>
+        <div class="main-content">
+            <h1 class="text-center">Личный кабинет</h1>
+
+            <!-- Авторы -->
+            <div style="margin-top: 20px">
+                <div class="border cabinet-info">
+                    <a th:href="@{/cabinet/authors}" class="cabinet-string-link">Избранные авторы</a>
+                    <div th:if="${#lists.isEmpty(client.authors)}">
+                        <p>Пока нет избранных авторов</p>
+                    </div>
+                    <div th:unless="${#lists.isEmpty(client.authors)}">
+                        <ul th:each="author : ${client.authors}" style="margin-top: 15px" th:if="${authorStat.index<3}">
+                            <li><a th:href="@{'/author/' + ${author.id}}"
+                                   class="cabinet-string-link">[[${author.name}]]</a></li>
+                            <ul th:each="comic : ${author.comics}"
+                                th:if="${comicStat.index < 5}"
+                                class="d-inline-flex"
+                                style="margin-top: 15px">
+                                <li>
+                                    <a th:href="'comic/' + ${comic.id}" style="text-decoration: none; color: #333333">
+                                        <img class="table-img-mini" th:src="@{${comic.imagePath}}">
+                                        <br>[[${comic.name}]]
+                                    </a>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Художники -->
+            <div style="margin-top: 20px">
+                <div class="border cabinet-info">
+                    <a th:href="@{/cabinet/artists}" class="cabinet-string-link">Избранные художники</a>
+                    <div th:if="${#lists.isEmpty(client.artists)}">
+                        <p>Пока нет избранных художников</p>
+                    </div>
+                    <div th:unless="${#lists.isEmpty(client.artists)}">
+                        <ul th:each="artist : ${client.artists}" style="margin-top: 15px"
+                            th:if="${artistStat.index<3}">
+                            <li><a th:href="@{'/artist/' + ${artist.id}}"
+                                   class="cabinet-string-link">[[${artist.name}]]</a></li>
+                            <ul th:each="comic : ${artist.comics}"
+                                th:if="${comicStat.index < 5}"
+                                class="d-inline-flex"
+                                style="margin-top: 15px">
+                                <li>
+                                    <a th:href="'comic/' + ${comic.id}" style="text-decoration: none; color: #333333">
+                                        <img class="table-img-mini" th:src="@{${comic.imagePath}}">
+                                        <br>[[${comic.name}]]
+                                    </a>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Серии -->
+            <div style="margin-top: 20px">
+                <div class="border cabinet-info">
+                    <a th:href="@{/cabinet/series}" class="cabinet-string-link">Избранные серии</a>
+                    <div th:if="${#lists.isEmpty(client.series)}">
+                        <p>Пока нет избранных серий</p>
+                    </div>
+                    <div th:unless="${#lists.isEmpty(client.series)}">
+                        <ul style="margin-top: 15px" th:each="ser : ${client.series}"  th:if="${serStat.index<3}">
+                            <li><a th:href="@{'/series/' + ${ser.id}}"
+                                   class="cabinet-string-link">[[${ser.name}]]</a></li>
+                            <ul th:each="comic : ${ser.comics}"
+                                th:if="${comicStat.index < 5}"
+                                class="d-inline-flex"
+                                style="margin-top: 15px">
+                                <li>
+                                    <a th:href="'comic/' + ${comic.id}"
+                                       style="text-decoration: none; color: #333333">
+                                        <img class="table-img-mini" th:src="@{${comic.imagePath}}">
+                                        <br>[[${comic.name}]]
+                                    </a>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- История заказов -->
+            <div style="margin-top: 20px">
+                <div class="border cabinet-info">
+                    <a th:href="@{/cabinet/orders}" class="cabinet-string-link">История заказов</a>
+                    <div th:if="${#lists.isEmpty(client.orders)}">
+                        <p>История заказов пуста</p>
+                    </div>
+                    <table class="table" th:unless="${#lists.isEmpty(client.orders)}">
+                        <thead>
+                        <tr>
+                            <td> Номер заказа</td>
+                            <td> Дата заказа</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order, orderStat : ${client.orders}" th:if="${orderStat.index < 5}">
+                            <td><a th:href="'cabinet/orders/' + ${order.id}">[[${order.id}]]</a></td>
+                            <td>[[${order.date}]]</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footer-fragment::footer}"></div>
+</body>
+</html>

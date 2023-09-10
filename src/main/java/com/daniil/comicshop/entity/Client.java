@@ -19,14 +19,17 @@ import java.util.UUID;
 public class Client {
     @Id
     private UUID uuid;
-    @Column(name = "client_name")
-    private String name;
-    @Column(name = "email")
+    @Column(name = "login", nullable = false)
+    private String login;
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "h_password")
+    @Column(name = "h_password", nullable = false)
     @ToString.Exclude
     private String password;
-    @ManyToMany
+    @Column(name = "role")
+    private String role;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "author_client",
             joinColumns = {@JoinColumn(name = "client_uuid")},
@@ -34,7 +37,7 @@ public class Client {
     )
     private List<Author> authors;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "artist_client",
             joinColumns = {@JoinColumn(name = "client_uuid")},
@@ -42,7 +45,7 @@ public class Client {
     )
     private List<Artist> artists;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "series_client",
             joinColumns = {@JoinColumn(name = "client_uuid")},
@@ -51,9 +54,17 @@ public class Client {
     private List<Series> series;
 
     @OneToMany(mappedBy = "client")
-    private List<Order>orders;
+    @OrderBy("date")
+    private List<Order> orders;
 
-    @OneToOne
-    @JoinColumn(name = "client_info_id",referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "client_info_id", referencedColumnName = "id")
     private ClientInfo info;
+
+    @PrePersist
+    public void defaultRole() {
+        if (this.role == null || this.role.isEmpty()) {
+            this.role = "USER";
+        }
+    }
 }

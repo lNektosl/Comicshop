@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <div>
+        <div th:replace="~{fragments/header-fragment :: header}"></div>
+        <div class="ILMenu flex-column">
+            <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+        </div>
+    </div>
+    <div class=" main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: cabinetSideNav}"></div>
+        <div class="main-content">
+            <h1 class="text-center">Список серий</h1>
+            <div style="margin-top: 20px">
+                <div class="border cabinet-info">
+                    <a class="cabinet-string-link">Избранные серии</a>
+                    <div th:if="${#lists.isEmpty(series)}">
+                        <p>Пока нет избранных серий</p>
+                    </div>
+                    <div th:unless="${#lists.isEmpty(series)}">
+                        <ul th:each="s : ${series}" style="margin-top: 15px">
+                            <li><a th:href="@{'/series/' + ${s.id}}"
+                                   class="cabinet-string-link">[[${s.name}]]</a>
+                            </li>
+                            <div class="comic-list border">
+                                <ul th:each="comic : ${s.comics}" class="d-inline-flex" style="margin-top: 15px">
+                                    <li>
+                                        <a th:href="'comic/' + ${comic.id}"
+                                           style="text-decoration: none; color: #333333">
+                                            <img class="table-img-mini" th:src="@{${comic.imagePath}}">
+                                            <br>[[${comic.name}]]
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footer-fragment::footer}"></div>
+
+</body>
+</html>

@@ -17,37 +17,94 @@
     <div class="container main-container">
         <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
         <div class="main-content">
+            <p id="successMessage" class="alert alert-success" style="display: none">Комикс успешно добавлен в корзину</p>
             <h1 class="text-center mt-1">[[${comic?.name}]]</h1>
             <div class="row">
                 <div class="col-md-3 comic-image">
                     <img class="img-fluid" th:src="@{${comic.imagePath}}">
-                    <br> [[${comic.description}]]
                 </div>
-                <div class="col-md-7">
-
-                    <h3>Авторы</h3>
-                    <p th:each="author:${comic.authors}">[[${author.name}]]</p>
-                    <h3>Художники</h3>
-                    <p th:each="artist:${comic.artists}">[[${artist.name}]]</p>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h3>Авторы</h3>
+                            <p th:each="author:${comic.authors}">
+                                <a style="text-decoration: none; color: #333333"
+                                   th:href="@{'/author/' + ${author.id}}">[[${author.name}]]</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <h3>Художники</h3>
+                            <p th:each="artist:${comic.artists}">
+                                <a style="text-decoration: none; color: #333333"
+                                   th:href="@{'/artist/' + ${artist.id}}">[[${artist.name}]]</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-md-12">
+                            <p th:text="${comic.description}"></p>
+                        </div>
+                    </div>
                 </div>
-                <h4 th:if="${comic.series} != null">[[${comic.series}]]</h4>
-                <div class="d-flex justify-content-between align-items-center">
-                    <h4>[[${comic.publisher.name}]]</h4>
-                    <h4 style="margin-right: 140px;">Цена: [[${comic.price}]]</h4>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4>[[${comic.publisher.name}]]</h4>
+                        <h4 th:if="${comic.series != null}">
+                            <a style="text-decoration: none; color: #333333"
+                               th:href="@{'/series/' + ${comic.series.id}}">[[${comic.series.name}]]</a>
+                        </h4>
+                        <h4 style="margin-right: 140px;">Цена: [[${comic.price}]]</h4>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-lg-5">
-        <div class="col text-center">
-            <form th:action="@{/order/add}" th:object="${item}" method="post">
-                <input type="hidden" th:value="${comic.id}" th:attr="name='comic'">
-                <label for="amount">Кол-во</label>
-                <input id="amount" type="number" th:value="1" th:attr="name='amount'" min="1" required style="max-width: 150px">
-                <button class="buy-btn buy-btn-2">Купить</button>
-            </form>
+        <div class="row mt-lg-5">
+            <div class="col text-center">
+                <form>
+                    <input type="hidden" th:value="${comic.id}" th:attr="name='comic'" id="comicId">
+                    <label for="amount">Кол-во</label>
+                    <input id="amount" type="number" th:value="1" th:attr="name='amount'" min="1" required
+                           style="max-width: 150px">
+                    <button class="buy-btn buy-btn-2" onclick="add()">Купить</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+<div th:replace="~{fragments/footer-fragment::footer}"></div>
+
+<script>
+    function add() {
+        event.preventDefault();
+
+        var comicId = document.getElementById("comicId").value;
+        var amount = document.getElementById("amount").value;
+
+        var item = {
+            comicId: parseInt(comicId),
+            amount: parseInt(amount)
+        }
+
+        fetch("/order/add",{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(item)
+        })
+            .then(function (response){
+                if (response.ok){
+                    var successMessage = document.getElementById("successMessage");
+                    successMessage.style.display = "block"
+
+                    setTimeout(function (){
+                        successMessage.style.display = "none";
+                    },2000)
+                }else{
+
+                }
+            })
+            .catch(function (error){})
+
+    }
+</script>
 </body>
 </html>

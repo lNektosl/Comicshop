@@ -15,15 +15,17 @@
             <p>Имя - [[${series.name}]]</p>
         </div>
         <div class="main-content">
-            <h2> Книги Серии</h2>
-            <ul class="no-text-center">
-                <li class="col-3 list-inline-item text-center mt-2" th:each="comic:${series.comics}">
-                    <a th:href="@{'/admin/comic/' + ${comic.id}}" class="comic-item">
-                        <img class="table-img" th:src="@{${comic.imagePath}}">
-                        <br> [[${comic.name}]]
-                    </a>
-                </li>
-            </ul>
+            <div class="row no-text-center">
+                <h2 style="margin-left: 2em">Книги:</h2>
+                <ul>
+                    <li class="col-md-3 list-inline-item text-center mt-2" th:each="comic:${series.comics}">
+                        <a th:href="@{'/admin/comic/' + ${comic.id}}" class="comic-item">
+                            <img class="table-img" th:src="@{${comic.imagePath}}">
+                            <br> [[${comic.name}]]
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <div>

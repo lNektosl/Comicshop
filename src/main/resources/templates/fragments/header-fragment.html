@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,17 +9,20 @@
 </head>
 <body>
 <header class="line-header" th:fragment="header">
-    <div class="text-center"><p class="text-white"> Header img placeholder</p></div>
+    <div class="text-center" style="margin-top:20px; max-height: 300px">
+        <img class="img-fluid" style="height: 240px;width: 100%"
+             th:src="@{/web/img/header/header.png}">
+    </div>
 </header>
 <div class="ILMenu" th:fragment="navMenu">
     <nav>
-        <ul>
-            <a th:href="@{/}">Главная</a>
-            <a>Кабинет</a>
-            <a>О нас</a>
-            <a th:href="@{/order}">Корзина</a>
-            <a th:href="@{/admin}">Админ меню</a>
-        </ul>
+        <a th:href="@{/}">Главная</a>
+        <a th:href="@{/cabinet}">Кабинет</a>
+        <a>О нас</a>
+        <a th:href="@{/login}" sec:authorize="isAnonymous()">Вход</a>
+        <a th:href="@{/logout}" sec:authorize="isAuthenticated()" >Выход</a>
+        <a th:href="@{/order}">Корзина</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')" >Админ меню</a>
     </nav>
 </div>
 </body>

@@ -4,7 +4,7 @@
 
 .line-header {
     margin: 0;
-    background-color: gray;
+    height: 250px;
 }
 
 .line-header::after {
@@ -18,7 +18,7 @@
 
 .ILMenu {
     text-align: center;
-    margin-top: -20px;
+
     background-color: RGB(237, 247, 230);
     border-radius: 15px;
     align-items: center;
@@ -125,7 +125,6 @@ textarea {
     flex-grow: 4;
     padding-top: 15px;
     flex-wrap: wrap;
-
 }
 .main-container {
     padding-top: 45px;
@@ -150,11 +149,12 @@ textarea {
     display: block;
 }
 .comic-image{
-    margin-top: 15px;
+    margin-top: 30px;
+
 }
 
-ul.no-text-center,
-ul.no-text-center li {
+.no-text-center,
+.no-text-center li {
     text-align: left !important;
 }
 
@@ -224,3 +224,82 @@ ul.no-text-center li {
     pointer-events: none;
     opacity: 0.5;
 }
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-btn{
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #337ab7;
+    text-align: center;
+    color: white;
+}
+.cabinet-info{
+    margin-left: 20px;
+}
+.cabinet-info ul{
+    list-style: none;
+}
+.cabinet-string-link{
+    font-size: large;
+    color: #333333;
+    text-decoration: none;
+}
+.cabinet-string-link:hover{
+    font-size: larger;
+    color: #337ab7;
+    font-weight: bold;
+}
+.table-img-mini{
+    height: 150px;
+    width: 100px;
+    padding-left: -5px;
+}
+.comic-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+.sidenav-string-link a{
+    font-size: large;
+    color: #333333;
+    text-decoration: none;
+}
+.sidenav-string-link a:hover{
+    font-size: larger;
+    color: #337ab7;
+    font-weight: bold;
+}
+.favorite-button {
+    background: none;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 275px;
+}
+.footer-img img {
+    max-height: 30px;
+    max-width: 30px;
+}
+
+

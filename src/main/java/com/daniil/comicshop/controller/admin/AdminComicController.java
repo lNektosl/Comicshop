@@ -1,9 +1,12 @@
 package com.daniil.comicshop.controller.admin;
 
 import com.daniil.comicshop.entity.Comic;
-import com.daniil.comicshop.service.*;
+import com.daniil.comicshop.service.artist.ArtistService;
+import com.daniil.comicshop.service.author.AuthorService;
+import com.daniil.comicshop.service.comic.ComicService;
+import com.daniil.comicshop.service.publisher.PublisherService;
+import com.daniil.comicshop.service.series.SeriesService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +59,7 @@ public class AdminComicController {
         return "redirect:/admin/comic";
     }
     @GetMapping("{id}/delete")
-    public String delete(@PathVariable Integer id,RedirectAttributes ra){
+    public String delete(@PathVariable Integer id,RedirectAttributes ra) throws IOException {
         ra.addFlashAttribute("deletedComics",comicService.delete(id).get());
         return "redirect:/admin/comic";
     }

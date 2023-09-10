@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/web/css/style.css}">
+</head>
+<body>
+<div class="container container-fluid">
+    <div th:replace="~{fragments/header-fragment :: header}"></div>
+    <div th:replace="~{fragments/header-fragment :: navMenu}"></div>
+    <div class="main-container">
+        <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
+        <div class="form-container">
+            <form th:action="@{save}" th:object="${info}" method="post">
+                <label for="title">Title:</label>
+                <select id="title" th:field="*{title}">
+                    <option value="MR">MR</option>
+                    <option value="MRS">MRS</option>
+                </select>
+
+                <label for="name">Имя:</label>
+                <input type="text" id="name" th:field="*{name}">
+
+                <label for="familyName">Фамилия:</label>
+                <input type="text" id="familyName" th:field="*{familyName}">
+
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" th:field="*{phone}">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{email}">
+
+                <label for="address">Адрес:</label>
+                <input type="text" id="address" th:field="*{address}">
+
+                <label for="city">Город:</label>
+                <input type="text" id="city" th:field="*{city}">
+
+                <label for="postalCode">Почтовый индекс:</label>
+                <input type="text" id="postalCode" th:field="*{postalCode}">
+
+                <label for="country">Страна:</label>
+                <select id="country" th:field="*{country}">
+                    <option value="US">США</option>
+                    <option value="FI">Финляндия</option>
+                    <option value="CA">Канада</option>
+                    <option value="RU">Россия</option>
+                </select>
+
+                <button class="btn btn-success">Продолжить</button>
+                <a th:href="@{/}" class="btn btn-danger">Отменить</a>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footer-fragment::footer}"></div>
+</body>
+</html>

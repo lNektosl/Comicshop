@@ -1,7 +1,7 @@
 package com.daniil.comicshop.controller.admin;
 
 import com.daniil.comicshop.entity.Publisher;
-import com.daniil.comicshop.service.PublisherService;
+import com.daniil.comicshop.service.publisher.PublisherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
