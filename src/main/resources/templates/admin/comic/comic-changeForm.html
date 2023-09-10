@@ -10,7 +10,7 @@
 <div class="form-container">
     <h1>Добавление комикса</h1>
     <form th:action="@{change}" th:object="${comic}" method="post" enctype="multipart/form-data">
-        <input type="number" th:field="*{id}" th:text="${comic.id}" hidden>
+        <input type="number" th:field="*{id}" hidden>
         <input type="file" name="img" accept="image/*">
 
         <label for="name">Название комикса</label>
