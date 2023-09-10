@@ -23,7 +23,7 @@ public class Series {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "series_name")
     private String name;
 
     @OneToMany(mappedBy = "series", cascade = CascadeType.ALL, orphanRemoval = false)

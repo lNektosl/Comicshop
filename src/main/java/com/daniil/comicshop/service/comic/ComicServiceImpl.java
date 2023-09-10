@@ -72,7 +72,6 @@ public class ComicServiceImpl implements ComicService {
         if (comicRepository.findById(comic.getId()).isPresent()) {
             Comic oldComic = comicRepository.findById(comic.getId()).get();
             if (img != null && !img.isEmpty()) {
-                System.out.println("hi");
                 changeImg(comic, img);
             } else comic.setImagePath(oldComic.getImagePath());
             return comicRepository.save(comic);
@@ -106,7 +105,7 @@ public class ComicServiceImpl implements ComicService {
 
 
     private void changeImg(Comic comic, MultipartFile img) throws IOException {
-        String name = comic.getName().replace(" ", "_");
+        String name = comic.getName().replace(" ", "_").replace(":", "-");
         String fPath = "src/main/resources/static/images/" + name;
         String relPath = "/images/" + name;
         Files.createDirectories(Paths.get(fPath));
