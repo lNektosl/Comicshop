@@ -54,7 +54,10 @@ public class OrderController {
 
         CartItem cartItem = mapper.toCartItem(cartItemRequest);
 
-
+        if (order == null){
+            order = new Order();
+            order.setComics(new ArrayList<>());
+        }
         if (order.getComics() == null) {
             order.setComics(new ArrayList<>());
         }

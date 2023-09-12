@@ -14,7 +14,7 @@
         <input type="number" th:field="*{id}" hidden>
 
         <label for="name">Имя</label>
-        <input type="text" th:field="*{name}" th:text="${author.name}" id="name">
+        <input type="text" th:field="*{name}" th:text="${author.name}" id="name" required>
 
         <label for="comics">Комиксы</label>
         <select th:field="*{comics}" multiple="multiple" id="comics">

@@ -12,7 +12,7 @@
     <form th:action="@{add}" th:object="${series}" method="post">
 
         <label for="name">Название</label>
-        <input type="text" th:field="*{name}" th:text="${series.name}" id="name">
+        <input type="text" th:field="*{name}" th:text="${series.name}" id="name" required>
 
         <button class="btn btn-success">Сохранить</button>
         <a th:href="@{/admin/series}" class="btn btn-danger">Отменить</a>
