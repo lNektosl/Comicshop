@@ -89,12 +89,12 @@ ______________________________________
 ______
 Если мы перейдем на страницу автора/художника/серии, то мы сможем увидеть все комиксы написанные им
 
-<img height="450" src="src/main/resources/static/doc/author-page.png" width="300"/>
+<img height="300" src="src/main/resources/static/doc/author-page.png" width="450"/>
 
 Так-же рядом с именем мы можем видеть серое сердечко. При нажатии на него аутентифицированный пользователь
 добавляет его в избранное и сердечко изменяет цвет на красное
 
-<img height="450" src="src/main/resources/static/doc/folowed.png" width="300"/>
+<img height="300" src="src/main/resources/static/doc/folowed.png" width="450"/>
 
 В противном случае пользователь отправляется на страницу аутентификации
 ______
@@ -111,17 +111,17 @@ ______
    3) серии
 3) изменять личные данные
 
-<img height="450" src="src/main/resources/static/doc/folowed_author.png" width="300"/>
+<img height="300" src="src/main/resources/static/doc/folowed_author.png" width="450"/>
 
 При нажатии на "Избранные авторы" пользователь может увидеть всех авторов и их комиксов,
 которых он отслеживает, а при нажатии на имя автора он перейдет на страницу автора. Это нужно, тк на самой странице не 
 отображается больше трех авторов/художников/серий и их 4-х комиксов
 
 В личном кабинете
-<img height="450" src="src/main/resources/static/doc/author_in_cabinet.png" width="300"/>
+<img height="300" src="src/main/resources/static/doc/author_in_cabinet.png" width="450"/>
 
 На странице отслеживаемых авторов
-<img height="450" src="src/main/resources/static/doc/in_folowed_authors.png" width="300"/>
+<img height="300" src="src/main/resources/static/doc/in_folowed_authors.png" width="450"/>
 _____
 
 После аутентификации в роли ADMIN в верхнем навигационном меню появляется кнопка "Админ меню"
