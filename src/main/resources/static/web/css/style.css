@@ -269,7 +269,7 @@ textarea {
     padding-left: -5px;
 }
 .comic-list {
-    max-height: 200px;
+    max-height: 220px;
     overflow-y: auto;
 }
 .sidenav-string-link a{

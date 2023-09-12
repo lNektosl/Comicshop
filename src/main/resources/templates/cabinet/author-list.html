@@ -29,13 +29,15 @@
                             <li><a th:href="@{'/author/' + ${author.id}}"
                                    class="cabinet-string-link">[[${author.name}]]</a></li>
                             <div class="comic-list border">
-                                <ul th:each="comic : ${author.comics}" class="d-inline-flex" style="margin-top: 15px">
-                                    <li>
-                                        <a th:href="'comic/' + ${comic.id}"
+                                <ul  class="d-inline-flex " style="margin-top: 15px; max-width: 900px">
+                                    <li th:each="comic : ${author.comics}">
+                                        <div style="width: 150px; margin-left: 15px">
+                                        <a th:href="'/comic/' + ${comic.id}"
                                            style="text-decoration: none; color: #333333">
                                             <img class="table-img-mini" th:src="@{${comic.imagePath}}">
                                             <br>[[${comic.name}]]
                                         </a>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>

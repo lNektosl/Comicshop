@@ -31,7 +31,7 @@
                             <li><a th:href="@{'/author/' + ${author.id}}"
                                    class="cabinet-string-link">[[${author.name}]]</a></li>
                             <ul th:each="comic : ${author.comics}"
-                                th:if="${comicStat.index < 5}"
+                                th:if="${comicStat.index < 4}"
                                 class="d-inline-flex"
                                 style="margin-top: 15px">
                                 <li>
