@@ -60,7 +60,7 @@ ______________________________________
 
 После клика на любой из комиксов вы попадаете в меню комикса
 
-<img height="300" src="src/main/resources/static/doc/comic-page.png" width="450"/>
+<img height="300" src="src/main/resources/static/doc/comic-page.png" width="500"/>
 
  1 - ссылка на автора
  2 - ссылка на художника
@@ -70,37 +70,39 @@ ______________________________________
 
 При переходе на вкладку корзины мы можем увидеть все добавленные в нее комиксы, стоимость каждого, а так-же общую стоимость
 
-<img height="300" src="src/main/resources/static/doc/cart.png" width="450"/>
+<img height="300" src="src/main/resources/static/doc/cart.png" width="500"/>
 
 Здесь мы можем совершать изменения над сущностями в корзине
 
 После клика на кнопку оплатить применяются все изменения в кол-ве комиксов и происходит переход на странницу заполнения
 личной информации
 
-<img height="300" src="src/main/resources/static/doc/unautenficated.png" width="450"/>
+<img height="300" src="src/main/resources/static/doc/unautenficated.png" width="500"/>
 не аутентифицированный пользователь или пользователь с не заполненной информацией
 
-<img height="300" src="src/main/resources/static/doc/autheticated.png" width="450"/>
+______
+
+<img height="300" src="src/main/resources/static/doc/autheticated.png" width="500"/>
 аутентифицированный пользователь с заполненной информацией
 
 При нажатии на кнопку продолжить происходит сохранение заказа и пользовательской информации если ее еще нет в бд.
-В противном случае она находится и подставляется в заказ. В дальнейшем будет происходить переход на систему оплаты 
+В противном случае она находится и подставляется в заказ. В дальнейшем будет происходить переход на систему оплаты
 и передача туда необходимой информации.
 ______
 Если мы перейдем на страницу автора/художника/серии, то мы сможем увидеть все комиксы написанные им
 
-<img height="300" src="src/main/resources/static/doc/author-page.png" width="450"/>
+<img height="300" src="src/main/resources/static/doc/author-page.png" width="500"/>
 
 Так-же рядом с именем мы можем видеть серое сердечко. При нажатии на него аутентифицированный пользователь
 добавляет его в избранное и сердечко изменяет цвет на красное
 
-<img height="300" src="src/main/resources/static/doc/folowed.png" width="450"/>
+<img height="300" src="src/main/resources/static/doc/folowed.png" width="500"/>
 
 В противном случае пользователь отправляется на страницу аутентификации
 ______
 Аутентификация происходит при нажатии на кнопку "Вход" или "Кабинет"
 
-<img height="300" src="src/main/resources/static/doc/login.png" width="450"/>
+<img height="300" src="src/main/resources/static/doc/login.png" width="500"/>
 Здесь нужно аутентифицироваться или перейти на страницу регистрации
 
 В личном кабинете можно
@@ -111,17 +113,17 @@ ______
    3) серии
 3) изменять личные данные
 
-<img height="300" src="src/main/resources/static/doc/folowed_author.png" width="450"/>
+<img height="300" src="src/main/resources/static/doc/folowed_author.png" width="500"/>
 
 При нажатии на "Избранные авторы" пользователь может увидеть всех авторов и их комиксов,
 которых он отслеживает, а при нажатии на имя автора он перейдет на страницу автора. Это нужно, тк на самой странице не 
 отображается больше трех авторов/художников/серий и их 4-х комиксов
 
 В личном кабинете
-<img height="300" src="src/main/resources/static/doc/author_in_cabinet.png" width="450"/>
+<img height="300" src="src/main/resources/static/doc/author_in_cabinet.png" width="500"/>
 
 На странице отслеживаемых авторов
-<img height="300" src="src/main/resources/static/doc/in_folowed_authors.png" width="450"/>
+<img height="300" src="src/main/resources/static/doc/in_folowed_authors.png" width="500"/>
 _____
 
 После аутентификации в роли ADMIN в верхнем навигационном меню появляется кнопка "Админ меню"
