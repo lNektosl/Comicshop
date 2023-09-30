@@ -21,37 +21,37 @@
                     <option value="MRS">MRS</option>
                 </select>
 
-                <label for="name">Имя:</label>
+                <label for="name">Firstname:</label>
                 <input type="text" id="name" th:field="*{name}">
 
-                <label for="familyName">Фамилия:</label>
+                <label for="familyName">Lastname:</label>
                 <input type="text" id="familyName" th:field="*{familyName}">
 
-                <label for="phone">Телефон:</label>
+                <label for="phone">Phone:</label>
                 <input type="tel" id="phone" th:field="*{phone}">
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" th:field="*{email}">
 
-                <label for="address">Адрес:</label>
+                <label for="address">Address:</label>
                 <input type="text" id="address" th:field="*{address}">
 
-                <label for="city">Город:</label>
+                <label for="city">City:</label>
                 <input type="text" id="city" th:field="*{city}">
 
-                <label for="postalCode">Почтовый индекс:</label>
+                <label for="postalCode">Postal index:</label>
                 <input type="text" id="postalCode" th:field="*{postalCode}">
 
-                <label for="country">Страна:</label>
+                <label for="country">Country:</label>
                 <select id="country" th:field="*{country}">
-                    <option value="US">США</option>
-                    <option value="FI">Финляндия</option>
-                    <option value="CA">Канада</option>
-                    <option value="RU">Россия</option>
+                    <option value="US">USA</option>
+                    <option value="FI">Finland</option>
+                    <option value="CA">Canada</option>
+                    <option value="RU">Russia</option>
                 </select>
 
-                <button class="btn btn-success">Сохранить</button>
-                <a th:href="@{/cabinet}" class="btn btn-danger">Отменить</a>
+                <button class="btn btn-success">Save</button>
+                <a th:href="@{/cabinet}" class="btn btn-danger">Cancel</a>
 
             </form>
         </div>

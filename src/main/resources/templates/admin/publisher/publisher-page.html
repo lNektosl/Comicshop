@@ -8,20 +8,20 @@
 </head>
 <body>
 <p th:if="${newPublisher != null}" class="alert alert-success">
-    Добавлен новый издатель [[${newPublisher.name}]]
+   new publisher added [[${newPublisher.name}]]
 </p>
 <p th:if="${deletedPublisher != null}" class="alert alert-danger">
-    Издатель был удален [[${deletedPublisher.name}]]
+    Publisher was deleted [[${deletedPublisher.name}]]
 </p>
 <p th:if="${updatedPublisher != null}" class="alert alert-info">
-    Издатель был обновлен [[${updatedPublisher.name}]]
+    Publisher was changed [[${updatedPublisher.name}]]
 </p>
 <div class="container container-fluid">
-    <h1 class="text-center" style="margin:15px 0 15px ">Издатели</h1>
+    <h1 class="text-center" style="margin:15px 0 15px ">Publishers</h1>
     <div class="ILMenu">
-        <a th:href="@{publisher/add}">Добавить</a>
-        <a th:href="@{/admin}">Назад</a>
-        <a th:href="@{/}">Главная</a>
+        <a th:href="@{publisher/add}">Add</a>
+        <a th:href="@{/admin}">Back</a>
+        <a th:href="@{/}">Home</a>
     </div>
     <table class="table table-bordered">
         <thead>

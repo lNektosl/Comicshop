@@ -8,15 +8,15 @@
 </head>
 <body>
 <div class="form-container">
-    <h1>Изменение издателя</h1>
+    <h1>Change publisher</h1>
     <form th:action="@{change}" th:object="${publisher}" method="post">
 
         <input type="number" th:field="*{id}" hidden>
 
-        <label for="name">Имя</label>
+        <label for="name">Name</label>
         <input type="text" th:field="*{name}" th:text="${publisher.name}" id="name" required>
 
-        <label for="comics">Комиксы</label>
+        <label for="comics">Comics</label>
         <select th:field="*{comics}" multiple="multiple" id="comics">
             <option th:each="comic:${publisher.comics}"
                     th:value="${comic.id}"
@@ -24,8 +24,8 @@
             </option>
         </select>
 
-        <button class="btn btn-success">Сохранить</button>
-        <a th:href="@{/admin/publisher}" class="btn btn-danger">Отменить</a>
+        <button class="btn btn-success">Save</button>
+        <a th:href="@{/admin/publisher}" class="btn btn-danger">Cancel</a>
     </form>
 </div>
 <script>

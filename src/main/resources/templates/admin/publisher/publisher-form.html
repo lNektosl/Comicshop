@@ -8,14 +8,14 @@
 </head>
 <body>
 <div class="form-container">
-    <h1>Добавление издателя</h1>
+    <h1>Add publisher</h1>
     <form th:action="@{add}" th:object="${publisher}" method="post">
 
-        <label for="name">Имя</label>
+        <label for="name">Name</label>
         <input type="text" th:field="*{name}" th:text="${publisher.name}" id="name" required>
 
-        <button class="btn btn-success">Сохранить</button>
-        <a th:href="@{/admin/publisher}" class="btn btn-danger">Отменить</a>
+        <button class="btn btn-success">Save</button>
+        <a th:href="@{/admin/publisher}" class="btn btn-danger">Cancel</a>
 
 
     </form>

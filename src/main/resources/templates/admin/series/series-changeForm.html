@@ -8,15 +8,15 @@
 </head>
 <body>
 <div class="form-container">
-    <h1>Изменение серии</h1>
+    <h1>Change series</h1>
     <form th:action="@{change}" th:object="${series}" method="post">
 
         <input type="number" th:field="*{id}" hidden>
 
-        <label for="name">Название</label>
+        <label for="name">Name</label>
         <input type="text" th:field="*{name}" th:text="${series.name}" id="name" required>
 
-        <label for="comics">Комиксы</label>
+        <label for="comics">Comics</label>
         <select th:field="*{comics}" multiple="multiple" id="comics">
             <option th:each="comic:${series.comics}"
                     th:value="${comic.id}"
@@ -24,8 +24,8 @@
             </option>
         </select>
 
-        <button class="btn btn-success">Сохранить</button>
-        <a th:href="@{/admin/series}" class="btn btn-danger">Отменить</a>
+        <button class="btn btn-success">Save</button>
+        <a th:href="@{/admin/series}" class="btn btn-danger">Cancel</a>
     </form>
 </div>
 <script>

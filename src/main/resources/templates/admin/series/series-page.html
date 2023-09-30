@@ -8,20 +8,20 @@
 </head>
 <body>
 <p th:if="${newSeries != null}" class="alert alert-success">
-    Добавлена новая серия [[${newSeries.name}]]
+    New series added [[${newSeries.name}]]
 </p>
 <p th:if="${deletedSeries != null}" class="alert alert-danger">
-    Серия была удалена [[${deletedSeries.name}]]
+    Series was deleted [[${deletedSeries.name}]]
 </p>
 <p th:if="${updatedSeries != null}" class="alert alert-info">
-    Серия была обновлена [[${updatedSeries.name}]]
+    Series was changed [[${updatedSeries.name}]]
 </p>
 <div class="container container-fluid">
-    <h1 class="text-center" style="margin:15px 0 15px ">Серии</h1>
+    <h1 class="text-center" style="margin:15px 0 15px ">Series</h1>
     <div class="ILMenu">
-        <a th:href="@{series/add}">Добавить</a>
-        <a th:href="@{/admin}">Назад</a>
-        <a th:href="@{/}">Главная</a>
+        <a th:href="@{series/add}">Add</a>
+        <a th:href="@{/admin}">Back</a>
+        <a th:href="@{/}">Home</a>
     </div>
     <table class="table table-bordered">
         <thead>

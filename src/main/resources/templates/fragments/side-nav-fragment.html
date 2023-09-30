@@ -8,20 +8,23 @@
 </head>
 <body>
 <div class="sidenav col-2 mt-1" th:fragment="sideNav">
-    <a>Топ 10 комиксов</a>
-    <a>Новые пступления</a>
-    <a>Авторы</a>
-    <a>Художники</a>
+    <p>PLACEHOLDER</p>
+    <div class="border">
+    <a>Top 10</a>
+    <a>New</a>
+    <a>Authors</a>
+    <a>Artists</a>
+    </div>
 </div>
 <div class="sidenav col-2 mt-1 sidenav-string-link" th:fragment="cabinetSideNav">
     <h5>Избранное</h5>
-    <a th:href="@{/cabinet/authors}">Авторы</a>
-    <a th:href="@{/cabinet/artists}">Художники</a>
-    <a th:href="@{/cabinet/series}">Серии</a>
+    <a th:href="@{/cabinet/authors}">Authors</a>
+    <a th:href="@{/cabinet/artists}">Artists</a>
+    <a th:href="@{/cabinet/series}">Series</a>
     <br>
-    <a th:href="@{/cabinet/orders}">История заказов</a>
+    <a th:href="@{/cabinet/orders}">Order history</a>
     <br>
-    <a th:href="@{/cabinet/info}">Изменение личных данных</a>
+    <a th:href="@{/cabinet/info}">Changing personal data</a>
 </div>
 </body>
 </html>

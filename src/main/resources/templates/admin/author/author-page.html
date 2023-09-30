@@ -8,20 +8,20 @@
 </head>
 <body>
 <p th:if="${newAuthor != null}" class="alert alert-success">
-    Добавлен новый автор [[${newAuthor.name}]]
+   New author added [[${newAuthor.name}]]
 </p>
 <p th:if="${deletedAuthor != null}" class="alert alert-danger">
-    Автор был удален [[${deletedAuthor.name}]]
+    Author was deleted [[${deletedAuthor.name}]]
 </p>
 <p th:if="${updatedAuthor != null}" class="alert alert-info">
-    Автор был обновлен [[${updatedAuthor.name}]]
+    Author was changed [[${updatedAuthor.name}]]
 </p>
 <div class="container container-fluid">
     <h1 class="text-center" style="margin:15px 0 15px ">Писатели</h1>
     <div class="ILMenu">
-        <a th:href="@{author/add}">Добавить</a>
-        <a th:href="@{/admin}">Назад</a>
-        <a th:href="@{/}">Главная</a>
+        <a th:href="@{author/add}">Add</a>
+        <a th:href="@{/admin}">Back</a>
+        <a th:href="@{/}">Home</a>
     </div>
     <table class="table table-bordered">
         <thead>

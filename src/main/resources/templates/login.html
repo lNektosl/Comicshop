@@ -18,19 +18,19 @@
         <div class="main-content">
 
             <div class="form-container">
-                <h1>Авторизация</h1>
+                <h1>Authorisation</h1>
                 <form th:action="@{/login}" method="post">
 
-                    <label for="name">Имя</label>
+                    <label for="name">Name</label>
                     <input class="input-field" type="text" id="name" name="username">
 
-                    <label for="password">Пароль</label>
+                    <label for="password">Password</label>
                     <input class="input-field" type="password" id="password" name="password">
 
-                    <button class="login-btn">Войти</button>
+                    <button class="login-btn">Log in</button>
                     <div class="flex" style="display: flex; justify-content: space-between; align-items: center;">
-                        <a th:href="@{/}" style="text-decoration: none">Отменить</a>
-                        <a th:href="@{/register}" style="text-decoration: none">Регистрация</a>
+                        <a th:href="@{/}" style="text-decoration: none">Cancel</a>
+                        <a th:href="@{/register}" style="text-decoration: none">Registration</a>
                     </div>
                 </form>
             </div>

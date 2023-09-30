@@ -16,13 +16,13 @@
 </header>
 <div class="ILMenu" th:fragment="navMenu">
     <nav>
-        <a th:href="@{/}">Главная</a>
-        <a th:href="@{/cabinet}">Кабинет</a>
-        <a>О нас</a>
-        <a th:href="@{/login}" sec:authorize="isAnonymous()">Вход</a>
-        <a th:href="@{/logout}" sec:authorize="isAuthenticated()" >Выход</a>
-        <a th:href="@{/order}">Корзина</a>
-        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')" >Админ меню</a>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/cabinet}">Cabinet</a>
+        <a>About us</a>
+        <a th:href="@{/login}" sec:authorize="isAnonymous()">Log in</a>
+        <a th:href="@{/logout}" sec:authorize="isAuthenticated()" >Log out</a>
+        <a th:href="@{/order}">Cart</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')" >Admin menu</a>
     </nav>
 </div>
 </body>

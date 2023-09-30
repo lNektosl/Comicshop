@@ -8,15 +8,15 @@
 </head>
 <body>
 <div class="container text-center container-fluid">
-    <h2>Издатель</h2>
+    <h2>Publisher</h2>
     <div class="main-container">
         <div class="sidenav col-2 mt-1 bg-white">
             <p>Id - [[${publisher.id}]]</p>
-            <p>Имя - [[${publisher.name}]]</p>
+            <p>Name - [[${publisher.name}]]</p>
         </div>
         <div class="main-content">
             <div class="row no-text-center">
-                <h2 style="margin-left: 2em">Книги:</h2>
+                <h2 style="margin-left: 2em">Comics:</h2>
                 <ul>
                     <li class="col-md-3 list-inline-item text-center mt-2" th:each="comic:${publisher.comics}">
                         <a th:href="@{'/admin/comic/' + ${comic.id}}" class="comic-item">
@@ -29,9 +29,9 @@
         </div>
     </div>
     <div>
-        <a class="btn btn-success" th:href="@{${publisher.id} + '/change'}"> Изменить</a>
-        <a class="btn btn-info" th:href="@{/admin/publisher}">Назад</a>
-        <a class="btn btn-danger" th:href="@{${publisher.id} + '/delete'}"> Удалить</a>
+        <a class="btn btn-success" th:href="@{${publisher.id} + '/change'}">Change</a>
+        <a class="btn btn-info" th:href="@{/admin/publisher}">Back</a>
+        <a class="btn btn-danger" th:href="@{${publisher.id} + '/delete'}">Delete</a>
     </div>
 </div>
 </body>

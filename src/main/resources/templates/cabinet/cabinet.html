@@ -17,14 +17,14 @@
     <div class=" main-container">
         <div th:replace="~{fragments/side-nav-fragment :: cabinetSideNav}"></div>
         <div class="main-content">
-            <h1 class="text-center">Личный кабинет</h1>
+            <h1 class="text-center">User account</h1>
 
-            <!-- Авторы -->
+            <!-- Authors -->
             <div style="margin-top: 20px">
                 <div class="border cabinet-info">
-                    <a th:href="@{/cabinet/authors}" class="cabinet-string-link">Избранные авторы</a>
+                    <a th:href="@{/cabinet/authors}" class="cabinet-string-link">Selected authors</a>
                     <div th:if="${#lists.isEmpty(client.authors)}">
-                        <p>Пока нет избранных авторов</p>
+                        <p>There are currently no selected authors</p>
                     </div>
                     <div th:unless="${#lists.isEmpty(client.authors)}">
                         <ul th:each="author : ${client.authors}" style="margin-top: 15px" th:if="${authorStat.index<3}">
@@ -46,12 +46,12 @@
                 </div>
             </div>
 
-            <!-- Художники -->
+            <!-- Artists -->
             <div style="margin-top: 20px">
                 <div class="border cabinet-info">
-                    <a th:href="@{/cabinet/artists}" class="cabinet-string-link">Избранные художники</a>
+                    <a th:href="@{/cabinet/artists}" class="cabinet-string-link">Selected artists</a>
                     <div th:if="${#lists.isEmpty(client.artists)}">
-                        <p>Пока нет избранных художников</p>
+                        <p>There are currently no selected artists</p>
                     </div>
                     <div th:unless="${#lists.isEmpty(client.artists)}">
                         <ul th:each="artist : ${client.artists}" style="margin-top: 15px"
@@ -75,12 +75,12 @@
             </div>
 
 
-            <!-- Серии -->
+            <!-- Series -->
             <div style="margin-top: 20px">
                 <div class="border cabinet-info">
-                    <a th:href="@{/cabinet/series}" class="cabinet-string-link">Избранные серии</a>
+                    <a th:href="@{/cabinet/series}" class="cabinet-string-link">Selected series</a>
                     <div th:if="${#lists.isEmpty(client.series)}">
-                        <p>Пока нет избранных серий</p>
+                        <p>There are currently no selected series</p>
                     </div>
                     <div th:unless="${#lists.isEmpty(client.series)}">
                         <ul style="margin-top: 15px" th:each="ser : ${client.series}"  th:if="${serStat.index<3}">
@@ -103,18 +103,18 @@
                 </div>
             </div>
 
-            <!-- История заказов -->
+            <!-- Order history -->
             <div style="margin-top: 20px">
                 <div class="border cabinet-info">
-                    <a th:href="@{/cabinet/orders}" class="cabinet-string-link">История заказов</a>
+                    <a th:href="@{/cabinet/orders}" class="cabinet-string-link">Order history</a>
                     <div th:if="${#lists.isEmpty(client.orders)}">
-                        <p>История заказов пуста</p>
+                        <p>Order history is empty</p>
                     </div>
                     <table class="table" th:unless="${#lists.isEmpty(client.orders)}">
                         <thead>
                         <tr>
-                            <td> Номер заказа</td>
-                            <td> Дата заказа</td>
+                            <td>Order number</td>
+                            <td>Order date</td>
                         </tr>
                         </thead>
                         <tbody>

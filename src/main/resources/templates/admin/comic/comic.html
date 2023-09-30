@@ -16,17 +16,17 @@
             </div>
             <div class="col-5">
                 <div>
-                    <h3>Авторы</h3>
+                    <h3>Authors</h3>
                     <p th:each="author:${comic.authors}">[[${author.name}]]</p>
                 </div>
                 <div>
-                    <h3>Художники</h3>
+                    <h3>Artists</h3>
                     <p th:each="artist:${comic.artists}">[[${artist.name}]]</p>
                 </div>
                 <h4 th:if="${comic.series} != null">[[${comic.series.name}]]</h4>
                 <div class="d-flex justify-content-between">
                     <h4>[[${comic.publisher.name}]]</h4>
-                    <h4>Цена: [[${comic.price}]]</h4>
+                    <h4>Price: [[${comic.price}]]</h4>
                 </div>
                 <div>
                     <p>[[${comic.description}]]</p>
@@ -35,9 +35,9 @@
         </div>
         <div class="row mt-lg-5">
             <div class="col text-center">
-                <a class="btn btn-success" th:href="@{${comic.id} + '/change'}">Изменить</a>
-                <a class="btn btn-info" th:href="@{/admin/comic}">Назад</a>
-                <a class="btn btn-danger" th:href="@{${comic.id} + '/delete'}">Удалить</a>
+                <a class="btn btn-success" th:href="@{${comic.id} + '/change'}">Change</a>
+                <a class="btn btn-info" th:href="@{/admin/comic}">Back</a>
+                <a class="btn btn-danger" th:href="@{${comic.id} + '/delete'}">Delete</a>
             </div>
         </div>
     </div>

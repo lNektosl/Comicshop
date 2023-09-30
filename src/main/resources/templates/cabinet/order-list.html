@@ -19,15 +19,15 @@
         <div class="main-content">
             <div style="margin-top: 20px">
                 <div class="border cabinet-info">
-                    <a class="cabinet-string-link">История заказов</a>
+                    <a class="cabinet-string-link">Order list</a>
                     <div th:if="${#lists.isEmpty(orders)}">
-                        <p>История заказов пуста</p>
+                        <p>Order history is empty</p>
                     </div>
                     <table class="table" th:unless="${#lists.isEmpty(orders)}">
                         <thead>
                         <tr>
-                            <td> Номер заказа</td>
-                            <td> Дата заказа</td>
+                            <td>Order number</td>
+                            <td>Order date</td>
                         </tr>
                         </thead>
                         <tbody>

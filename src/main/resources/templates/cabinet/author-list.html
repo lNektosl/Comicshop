@@ -17,12 +17,12 @@
     <div class=" main-container">
         <div th:replace="~{fragments/side-nav-fragment :: cabinetSideNav}"></div>
         <div class="main-content">
-            <h1 class="text-center">Список авторов</h1>
+            <h1 class="text-center">List of authors</h1>
             <div style="margin-top: 20px">
                 <div class="border cabinet-info">
-                    <a class="cabinet-string-link">Избранные авторы</a>
+                    <a class="cabinet-string-link">Selected authors</a>
                     <div th:if="${#lists.isEmpty(authors)}">
-                        <p>Пока нет избранных авторов</p>
+                        <p>There are currently no selected authors</p>
                     </div>
                     <div th:unless="${#lists.isEmpty(authors)}">
                         <ul th:each="author : ${authors}" style="margin-top: 15px">

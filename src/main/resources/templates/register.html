@@ -18,19 +18,19 @@
         <div th:replace="~{fragments/side-nav-fragment :: sideNav}"></div>
         <div class="main-content">
             <div class="form-container">
-                <p th:if="${error} != null" class="alert alert-danger">Пользователь с таким логином или Email уже существует</p>
-                <h1>Регистрация пользователя</h1>
+                <p th:if="${error} != null" class="alert alert-danger">User with this login or Email already exist</p>
+                <h1>Registration</h1>
                 <form th:object="${client}" th:action="@{/register}" method="post">
-                    <label for="login">Логин</label>
+                    <label for="login">Login</label>
                     <input type="text" th:field="*{login}" id="login" class="input-field" required>
-                    <label for="password">Пароль</label>
+                    <label for="password">Password</label>
                     <input type="password" th:field="*{password}" id="password" class="input-field" required>
                     <label for="email">Email</label>
                     <input type="email" th:field="*{email}" id="email" class="input-field" required>
 
-                    <button class="login-btn" style="background-color: darkgreen">Зарегистрироваться</button>
+                    <button class="login-btn" style="background-color: darkgreen">Register</button>
                     <div style="align-items: center;">
-                    <a th:href="@{/}" style="text-decoration: none">Отмена</a>
+                    <a th:href="@{/}" style="text-decoration: none">Cancel</a>
                     </div>
                 </form>
             </div>

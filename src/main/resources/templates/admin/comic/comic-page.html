@@ -9,20 +9,20 @@
 <body>
 
 <p th:if="${newComic != null}" class="alert alert-success">
-    Добавлен новый комикс [[${newComic.name}]]
+    New comic added [[${newComic.name}]]
 </p>
 <p th:if="${deletedComics != null}" class="alert alert-danger">
-    Комикс был удален [[${deletedComics.name}]]
+    Comic was deleted [[${deletedComics.name}]]
 </p>
 <p th:if="${updatedComic != null}" class="alert alert-info">
-    Комикс был обновлен [[${updatedComic.name}]]
+    Comic was changed [[${updatedComic.name}]]
 </p>
 <div class="container main-content">
-    <h1 class="text-center" style="margin:15px 0 15px ">Комиксы</h1>
+    <h1 class="text-center" style="margin:15px 0 15px ">Comics</h1>
     <div class="ILMenu">
-        <a th:href="@{comic/add}">Добавить</a>
-        <a th:href="@{/admin}">Назад</a>
-        <a th:href="@{/}">Главная</a>
+        <a th:href="@{comic/add}">Add</a>
+        <a th:href="@{/admin}">Back</a>
+        <a th:href="@{/}">Home</a>
     </div>
     <div style="margin-top:10px ">
     <ul>
