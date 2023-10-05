@@ -2,8 +2,8 @@
     Login Information:
 
    ADMIN:
-      Username: admin
-      Password: admin
+        <p>Username: admin</p>
+        <p>Password: admin</p>
 
 This MVC app is simulator of E-shop.
 
