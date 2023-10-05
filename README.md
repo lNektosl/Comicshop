@@ -1,39 +1,32 @@
     Login Information:
 
 ADMIN:
-<p> Username: admin</p>
-<p> Password: admin</p>
+<p>Username: admin</p>
+<p>Password: admin</p>
 
-This MVC app is simulator of E-shop.
-
+___________________
     Tools
 
 Back-end:
-<ol>
-<li>Spring</li>
-<li>Spring Boot</li>
-<li>Spring MVC</li>
-<li>Spring Security</li>>
-<li>Hibernate</li>> 
-<li>Mapstruct</li>
-</ol>
+* Spring
+* Spring Boot
+* Spring MVC
+* Spring Security
+* Hibernate
+* Mapstruct
+
 Front-end:
-<ol>
-<li>HTML</li>
-<li>CSS</li>>
-<li>JavaScript</li>>
-<li>Thymeleaf</li>> 
-<li>bootstrap</li>
-</ol>
+* HTML
+* CSS
+* JavaScript
+* Thymeleaf
+* Bootstrap
+
 Database:
-<ol>
-<li>Postgresql</li>
-<li>Docker</li>
-<li>Liquibase</li>
-</ol>
-
+* Postgresql
+* Docker
+* Liquibase
 ______________________________________
-
     User roles
 
 In this app user can have 3 different roles.
@@ -73,8 +66,9 @@ ______________________________________
     3) register new admins
 
 ______________________________________
-
     Application operation
+
+This MVC app is simulator of E-shop.
 
 This application uses Docker with ports 5432:5432 (database), 5433:5433 (Adminer) and 8080:8080(hosting).
 
@@ -82,9 +76,7 @@ After clicking on any comic you will be directed to the comic menu.
 
 <img height="686" src="src/main/resources/static/doc/comic-page.png" width="1075"/>
 
-1 - Link to the author
-2 - Link to the artist
-3 - Link to the series
+ 1 - Link to the author / 2 - Link to the artist / 3 - Link to the series
 
 After clicking the "Buy" button comic will be added to a user's cart.
 
