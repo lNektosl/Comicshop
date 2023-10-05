@@ -110,7 +110,7 @@ In other scenario he will be redirected to a login page.
 ______
 Also, user can access login page by click on "Log in" or "Cabinet".
 
-<img height="401" src="src/main/resources/static/doc/login.png" width="701"/>
+<img height="386" src="src/main/resources/static/doc/login.png" width="712"/>
 Here you can log in or move to a registration page.
 
 ______
