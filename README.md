@@ -1,10 +1,13 @@
-логин - пароль 
-ADMIN:
-admin - admin
 
-Данное MVC приложения является симулятором работы магазина комиксов.
+    Login Information:
 
-    Инструменты
+   ADMIN:
+      Username: admin
+      Password: admin
+
+This MVC app is simulator of E-shop.
+
+    Tools
 
 Back-end:
 Spring, Spring Boot, Spring MVC, Spring Security, Hibernate, Mapstruct
@@ -12,121 +15,111 @@ Spring, Spring Boot, Spring MVC, Spring Security, Hibernate, Mapstruct
 Front-end:
 HTML, CSS, JavaScript, Thymeleaf, bootstrap
 
-База данных:
+Database:
 Postgresql, Docker, Liquibase
 ______________________________________
-    Роли пользователя приложением
+    User roles
 
-Это приложение написано с учетом 3‑х ролей пользователей.
+In this app user can have 3 different roles.
 
-Далее будут описаны роли пользователей и их возможности.
-
-1) не аутентифицированный пользователь:
-   1) Просматривать
-      1) товары
-      2) авторов
-      3) серии
-      4) художников
-   2) добавлять товары в корзину
-   3) совершать покупки
-   4) регистрироваться
+1) Unauthenticated user:
+   1) Check:
+      1) goods
+      2) authors
+      3) series
+      4) artists
+   2) add goods to the cart
+   3) buy goods
+   4) register
 ______________________________________
 2) USER:
-    1) имеет все те-же возможности, что и не аутентифицированный пользователь
-    2) доступ к личному кабинету
-    3) просмотр истории покупок
-    4) добавление в избранное и отслеживание в личном кабинете 
-       1) авторов
-       2) художников 
-       3) серии
-    5) изменение личных данных (таких, как адрес)
-    6) при первой покупке, если адрес пользователя был пустым, то введенный адрес сохраняется как основной
+    1) all actions available to unauthenticated users
+    2) access to personal account
+    3) view orders history
+    4) add and view selected
+       1) authors
+       2) artists 
+       3) series
+    5) change personal information
 ______________________________________
 3) ADMIN:
-   1) имеет все те-же возможности, что и предыдущие пользователи
-   2) совершать все CRUD операции над
-      1) авторами
-      2) сериями
-      3) художниками
-      4) издательствами
-      5) комиксами
-   3) регистрировать других администраторов
+   1) all actions available to other users
+   2) perform CRUD operation:
+      1) authors
+      2) series
+      3) artists
+      4) publishers
+      5) comics
+   3) register new admins
 
 ______________________________________
-    Работа приложения
+    Application operation
 
-Данное приложения для своей работы использует Docker на портах 5432:5432 (База данных) и 5433:5433 (Adminer)
-А так-же порт 8080:8080 для хоста.
+This application uses Docker with ports 5432:5432 (database), 5433:5433 (Adminer) and 8080:8080(hosting).
 
-После клика на любой из комиксов вы попадаете в меню комикса
+After clicking on any comic you will be directed to the comic menu.
 
-<img height="696" src="src/main/resources/static/doc/comic-page.png" width="1125"/>
+<img height="686" src="src/main/resources/static/doc/comic-page.png" width="1075"/>
 
- 1 - ссылка на автора
- 2 - ссылка на художника
- 3 - ссылка на серию
+ 1 - Link to the author
+ 2 - Link to the artist
+ 3 - Link to the series
 
-При клике на кнопку "купить" комикс добавляется в корзину пользователя.
+After clicking the "Buy" button comic will be added to a user's cart.
 
-При переходе на вкладку корзины мы можем увидеть все добавленные в нее комиксы, стоимость каждого, а так-же общую стоимость
+In the cart, you can see all added comics, the price of each one and total price.
 
-<img height="315" src="src/main/resources/static/doc/cart.png" width="1112"/>
+<img height="355" src="src/main/resources/static/doc/cart.png" width="1112"/>
 
-Здесь мы можем совершать изменения над сущностями в корзине
+Here you can make changes to the items in the cart.
 
-После клика на кнопку оплатить применяются все изменения в кол-ве комиксов и происходит переход на странницу заполнения
-личной информации
+After clicking the "Buy" button, all changes in the quantity of comics is confirmed, and you proceed to personal information
+filling page.
 
-<img height="864" src="src/main/resources/static/doc/unautenficated.png" width="663"/>
-   не аутентифицированный пользователь или пользователь с не заполненной информацией<br><br><br>
+<img height="873" src="src/main/resources/static/doc/filling_page.png" width="470"/>
+   If user is authenticated and already fill personal information, the page will autofill<br><br><br>
 
+After clicking the "Continue" button, order will be saved in bd.
+in the future there are plans to add payment system and transfer all the data to it.
 ______
+If you move to an author/artist/series page, you will see all the comics associated with them. 
 
-<img height="858" src="src/main/resources/static/doc/autheticated.png" width="538"/>
-   аутентифицированный пользователь с заполненной информацией<br><br><br>
+<img height="832" src="src/main/resources/static/doc/author-page.png" width="909"/>
 
-При нажатии на кнопку продолжить происходит сохранение заказа и пользовательской информации если ее еще нет в бд.
-В противном случае она находится и подставляется в заказ. В дальнейшем будет происходить переход на систему оплаты
-и передача туда необходимой информации.
-______
-Если мы перейдем на страницу автора/художника/серии, то мы сможем увидеть все комиксы написанные им
-
-<img height="845" src="src/main/resources/static/doc/author-page.png" width="942"/>
-
-Так-же рядом с именем мы можем видеть серое сердечко. При нажатии на него аутентифицированный пользователь
-добавляет его в избранное и сердечко изменяет цвет на красное
+Near the author's name, you can see a grey heart. If authenticated user clicks on it, he will add author to selected, and 
+heart will change colour to red.
 
 <img height="94" src="src/main/resources/static/doc/folowed.png" width="269"/>
 
-В противном случае пользователь отправляется на страницу аутентификации
+In other scenario he will be redirected to a login page.
 ______
-Аутентификация происходит при нажатии на кнопку "Вход" или "Кабинет"
+Also, user can access login page by click on "Log in" or "Cabinet".
 
 <img height="401" src="src/main/resources/static/doc/login.png" width="701"/>
-Здесь можно аутентифицироваться или перейти на страницу регистрации
+Here you can log in or move to a registration page.
 
 ______
-В личном кабинете можно
-1) просматривать свою историю покупок
-2) отслеживать
-   1) авторов
-   2) художников
-   3) серии
-3) изменять личные данные
+In personal account user can:
+1) check order history
+2) track
+   1) authors
+   2) artists
+   3) series
+3) change personal information
 
-<img height="294" src="src/main/resources/static/doc/folowed_author.png" width="1063"/>
+<img height="303" src="src/main/resources/static/doc/folowed_author.png" width="1067"/>
 
-При нажатии на "Избранные авторы" пользователь может увидеть всех авторов и их комиксы,
-которых он отслеживает, а при нажатии на имя автора он перейдет на страницу автора. Это нужно, тк на самой странице не 
-отображается больше трех авторов/художников/серий и их 4-х комиксов
+In the user's cabinet you can see at most 3 selected authors/artists/series and their 4 comics.
+After clicking on "Selected authors" shows all selected authors, 
+and by clicking on the author's name you will be redirected to the author's page.
 
-В личном кабинете<br>
+In personal account<br>
 <img height="300" src="src/main/resources/static/doc/author_in_cabinet.png" width="500"/>
 
-На странице отслеживаемых авторов<br>
+On selected authors page<br>
 <img height="300" src="src/main/resources/static/doc/in_folowed_authors.png" width="500"/>
-_____
+________________________________
+    Admin features
 
-После аутентификации в роли ADMIN в верхнем навигационном меню появляется кнопка "Админ меню"
-При нажатии на нее мы переходим в меню администратора, где мы можем совершать CRUD операции над сущностями, а так-же 
-создавать новых администраторов
+After authentication as an ADMIN, an "Admin menu" button appears in the navigation menu.
+In this menu, you can perform CRUD operations on entities and create new admins.
