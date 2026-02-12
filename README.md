@@ -1,142 +1,183 @@
-    Login Information:
+# Comic Shop – Spring Boot Web Application
+
+A full-stack web application for managing an online comic book store.
+Built with Spring Boot, Spring Security, Thymeleaf, JPA/Hibernate, Liquibase, PostgreSQL, and Docker.  
+
+
+# Login Information:
 
 ADMIN:
 <p>Username: admin</p>
 <p>Password: admin</p>
 
-___________________
-    Tools
 
-Back-end:
-* Spring
-* Spring Boot
-* Spring MVC
-* Spring Security
-* Hibernate
-* Mapstruct
+Comic Shop is a layered Spring Boot application that allows users to browse and purchase comics, while administrators manage the catalog and orders.
 
-Front-end:
-* HTML
-* CSS
-* JavaScript
-* Thymeleaf
-* Bootstrap
+The project demonstrates:
 
-Database:
-* Postgresql
-* Docker
-* Liquibase
-______________________________________
-    User roles
+- Clean layered architecture
 
-In this app user can have 3 different roles.
+- Database versioning with Liquibase
 
-1) Unauthenticated user:
-    1) Check:
-        1) goods
-        2) authors
-        3) series
-        4) artists
-    2) add goods to the cart
-    3) buy goods
-    4) register
+- Role-based security
 
-______________________________________
+- Server-side rendering with Thymeleaf
 
-2) USER:
-    1) all actions available to unauthenticated users
-    2) access to personal account
-    3) view orders history
-    4) add and view selected
-        1) authors
-        2) artists
-        3) series
-    5) change personal information
+- Dockerized deployment
 
-______________________________________
+# User Features
 
-3) ADMIN:
-    1) all actions available to other users
-    2) perform CRUD operation:
-        1) authors
-        2) series
-        3) artists
-        4) publishers
-        5) comics
-    3) register new admins
+- Registration & login
 
-______________________________________
-    Application operation
+- Secure authentication (Spring Security)
 
-This MVC app is simulator of E-shop.
+- Browse:
 
-This application uses Docker with ports 5432:5432 (database), 5433:5433 (Adminer) and 8080:8080(hosting).
+    - Comics
 
-After clicking on any comic you will be directed to the comic menu.
+    - Authors
 
-<img height="686" src="src/main/resources/static/doc/comic-page.png" width="1075"/>
+    - Artists
 
- 1 - Link to the author / 2 - Link to the artist / 3 - Link to the series
+    - Publishers
 
-After clicking the "Buy" button comic will be added to a user's cart.
+    - Series
 
-In the cart, you can see all added comics, the price of each one and total price.
+- View detailed comic pages
 
-<img height="355" src="src/main/resources/static/doc/cart.png" width="1112"/>
+- Add comics to cart
 
-Here you can make changes to the items in the cart.
+- Place orders
 
-After clicking the "Buy" button, all changes in the quantity of comics is confirmed, and you proceed to personal
-information
-filling page.
+- Personal cabinet:
 
-<img height="873" src="src/main/resources/static/doc/filling_page.png" width="470"/>
-   If user is authenticated and already fill personal information, the page will autofill<br><br><br>
+    - View order history
 
-After clicking the "Continue" button, order will be saved in bd.
-in the future there are plans to add payment system and transfer all the data to it.
-______
-If you move to an author/artist/series page, you will see all the comics associated with them.
+    - Manage profile
 
-<img height="832" src="src/main/resources/static/doc/author-page.png" width="909"/>
+    - Follow authors/artists/series
 
-Near the author's name, you can see a grey heart. If authenticated user clicks on it, he will add author to selected,
-and
-heart will change colour to red.
 
-<img height="94" src="src/main/resources/static/doc/folowed.png" width="269"/>
+# Admin Features
 
-In other scenario he will be redirected to a login page.
-______
-Also, user can access login page by click on "Log in" or "Cabinet".
+- Admin dashboard
 
-<img height="386" src="src/main/resources/static/doc/login_page.png" width="712"/>
-Here you can log in or move to a registration page.
+- Full CRUD management for:
 
-______
-In personal account user can:
+    - Comics
 
-1) check order history
-2) track
-    1) authors
-    2) artists
-    3) series
-3) change personal information
+    - Authors
 
-<img height="303" src="src/main/resources/static/doc/folowed_author.png" width="1067"/>
+    - Artists
 
-In the user's cabinet you can see at most 3 selected authors/artists/series and their 4 comics.
-After clicking on "Selected authors" shows all selected authors,
-and by clicking on the author's name you will be redirected to the author's page.
+    - Publishers
 
-In personal account<br>
-<img height="300" src="src/main/resources/static/doc/author_in_cabinet.png" width="500"/>
+    - Series
 
-On selected authors page<br>
-<img height="300" src="src/main/resources/static/doc/in_folowed_authors.png" width="500"/>
-________________________________
+- Order management
 
-    Admin features
+- Admin registration
 
-After authentication as an ADMIN, an "Admin menu" button appears in the navigation menu.
-In this menu, you can perform CRUD operations on entities and create new admins.
+- Role-based access control
+
+# Project architecture
+
+
+The project follows a classic layered architecture
+
+* Layers
+
+- Controller – Handles HTTP requests
+
+- Service – Business logic
+
+- Repository – Data access (Spring Data JPA)
+
+- Entity – Database models
+
+- DTO + Mapper – Data transfer & conversion
+
+- Config – Security & application configuration
+
+# Tech Stack
+
+## Backend
+
+- Java
+
+- Spring Boot
+
+- Spring MVC
+
+- Spring Security
+
+- Spring Data JPA
+
+- Hibernate
+
+- Liquibase
+
+## Frontend
+
+- Thymeleaf
+
+- HTML / CSS
+
+- Static resources
+
+## Database
+
+- PostgreSQL
+
+## DevOps
+
+- Docker
+
+- Docker Compose
+
+- Maven
+
+# Database Initialization
+
+The database is initialized by Docker (PostgreSQL container) using SQL scripts.
+
+In docker-compose.yml
+
+# Running with Docker
+
+## Build and start containers
+``` 
+docker-compose up --build 
+```
+This will:
+
+- Start PostgreSQL
+
+- Run Liquibase migrations
+
+- Launch the Spring Boot application
+
+## Open the application
+
+```
+http://localhost:8080
+```
+
+
+# Learning Goals Demonstrated
+
+- Full-stack Spring Boot development
+
+- Secure authentication & authorization
+
+- Database version control with Liquibase
+
+- Clean architecture & separation of concerns
+
+- Dockerized environment
+
+- Production-style configuration
+
+# License
+
+This project is for educational and portfolio purposes.
