@@ -163,7 +163,6 @@ This will:
 http://localhost:8080
 ```
 
-
 # Learning Goals Demonstrated
 
 - Full-stack Spring Boot development
@@ -179,5 +178,7 @@ http://localhost:8080
 - Production-style configuration
 
 # License
+
+Originally built in 2023
 
 This project is for educational and portfolio purposes.
