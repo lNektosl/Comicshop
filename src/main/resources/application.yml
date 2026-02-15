@@ -6,7 +6,7 @@ spring:
 #    password: "8NKZTa_ZUyXlyeyjBc1G2XTCiJZYRU5a"
 
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/Comic_shop
+    url: jdbc:postgresql://db:5432/Comic_shop
     username: postgres
     password: 1
 
